@@ -1,12 +1,11 @@
 <page-header></page-header>
 
 <div class="container pb-5">
-  <h2>{{ event.name }}</h2>
+  <h2>{{ modality.name }}</h2>
+  <h5>{{ modality.event?.name }}</h5>
 
-  <div class="buttons mt-2">
-    <button type="button" class="btn btn-primary me-2" [routerLink]="['/event', event.id, 'modalities']">{{ 'events.modalities' | translate }}</button>
-    <button type="button" class="btn btn-success me-2" [routerLink]="['/event', event.id, 'schedule']">{{ 'events.schedule' | translate }}</button>
-    <button type="button" class="btn btn-warning me-2" [routerLink]="['/event', event.id, 'manage']">{{ 'events.manage' | translate }}</button>
+  <div class="buttons mt-2" *ngIf="modality.event">
+    <button type="button" class="btn btn-secondary" [routerLink]="['/event', modality.event.id]">{{ 'navigation.back' | translate }}</button>
   </div>
 
   <div *ngIf="liveMatches.length > 0" class="live">
@@ -17,7 +16,7 @@
           <a [routerLink]="['/match', item.id]">
             <div class="card-header">
               <span class="spinner-grow text-danger" role="status"></span>
-              Sport - Stage
+              Stage
             </div>
             <ul *ngIf="item.teams" class="list-group list-group-flush">
               <li *ngFor="let team of item.teams" class="list-group-item"><span class="score">{{ team.score }}</span>{{ team.name }}</li>

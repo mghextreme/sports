@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IEvent } from '../models';
+import { IEvent, IModality } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,31 @@ export class EventsService {
     };
   }
 
+  getDefaultModality(): IModality {
+    return {
+      id: 0,
+      name: '',
+      sport: {
+        id: 0,
+        code: ''
+      }
+    };
+  }
+
   getAll(): Observable<IEvent[]> {
     return this.http.get<IEvent[]>('/api/events');
   }
 
   get(id: number): Observable<IEvent> {
     return this.http.get<IEvent>(`/api/events/${id}`);
+  }
+
+  getModalities(id: any): Observable<IModality[]> {
+    return this.http.get<IModality[]>(`/api/events/${id}/modalities`);
+  }
+
+  getModality(modalityId: number): Observable<IModality> {
+    return this.http.get<IModality>(`/api/modalities/${modalityId}`);
   }
 
 }

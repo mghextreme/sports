@@ -7,7 +7,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './components';
-import { EventPageComponent, HomePageComponent } from './pages';
+import { EventModalitiesPageComponent, EventPageComponent, HomePageComponent, ModalityPageComponent } from './pages';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
@@ -18,6 +18,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     HomePageComponent,
     EventPageComponent,
+    EventModalitiesPageComponent,
+    ModalityPageComponent,
     PageHeaderComponent
   ],
   imports: [

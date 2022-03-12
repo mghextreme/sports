@@ -22,6 +22,10 @@ export class MatchesService {
     return this.http.get<IMatch[]>(`/api/events/${eventId}/liveMatches`);
   }
 
+  getLiveFromModality(modalityId: number): Observable<IMatch[]> {
+    return this.http.get<IMatch[]>(`/api/modalities/${modalityId}/liveMatches`);
+  }
+
   get(id: number): Observable<IMatch> {
     return this.http.get<IMatch>(`/api/matches/${id}`);
   }

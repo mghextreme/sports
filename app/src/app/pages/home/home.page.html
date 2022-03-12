@@ -17,10 +17,10 @@
           </div>
         </a>
         <ul class="list-group list-group-flush">
-          <a [routerLink]="['/event', item.id, 'modalities']" class="list-group-item">{{ 'events.modalities' | translate }}</a>
-          <a [routerLink]="['/event', item.id, 'schedule']" class="list-group-item">{{ 'events.schedule' | translate }}</a>
-          <a [routerLink]="['/event', item.id, 'live']" class="list-group-item">{{ 'events.live' | translate }}</a>
-          <a [routerLink]="['/event', item.id, 'manage']" class="list-group-item">{{ 'events.manage' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'modalities']" class="list-group-item list-group-item-action">{{ 'events.modalities' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'schedule']" class="list-group-item list-group-item-action">{{ 'events.schedule' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'live']" class="list-group-item list-group-item-action">{{ 'events.live' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'manage']" class="list-group-item list-group-item-action">{{ 'events.manage' | translate }}</a>
         </ul>
       </div>
     </div>

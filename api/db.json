@@ -40,11 +40,16 @@
     { "id": 2, "eventSportId": 1, "order": 2, "maxTeams": 8, "name": "Finais", "groups": 1, "mode": "single", "started": false, "finished": false }
   ],
   "matches": [
-    { "id": 1, "stageId": 1, "group": 1, "name": null, "started": true, "finished": false },
-    { "id": 2, "stageId": 2, "group": 1, "name": "Final", "started": false, "finished": false }
-  ],
-  "matchTeams": [
-    { "id": 1, "matchId": 1, "teamId": 1, "seed": 1, "score": 3, "placing": null },
-    { "id": 2, "matchId": 1, "teamId": 2, "seed": 2, "score": 2, "placing": null }
+    {
+      "id": 1, "stageId": 1, "group": 1, "name": null, "started": true, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "teams": [
+        { "id": 1, "matchId": 1, "teamId": 1, "seed": 1, "score": 3, "placing": null, "name": "Group 1" },
+        { "id": 2, "matchId": 1, "teamId": 2, "seed": 2, "score": 2, "placing": null, "name": "Group 2" }
+      ]
+    },
+    {
+      "id": 2, "stageId": 2, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "teams": []
+    }
   ]
 }

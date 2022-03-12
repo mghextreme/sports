@@ -4,6 +4,9 @@
     "home": "Home",
     "manage": "Manage"
   },
+  "navigation": {
+    "back": "Back"
+  },
   "titles": {
     "events": "Events"
   },
