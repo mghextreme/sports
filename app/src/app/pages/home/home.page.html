@@ -1,0 +1,28 @@
+<page-header></page-header>
+
+<div class="container pb-5">
+  <h2>{{ 'titles.events' | translate }}</h2>
+
+  <div class="row">
+    <div *ngFor="let item of events" class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="card">
+        <a [routerLink]="['/event', item.id]">
+          <img src="https://dummyimage.com/480x360/000/fff.png" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">
+              {{ item.startDate }} - {{ item.endDate }}<br/>
+              {{ item.location }}
+            </p>
+          </div>
+        </a>
+        <ul class="list-group list-group-flush">
+          <a [routerLink]="['/event', item.id, 'modalities']" class="list-group-item">{{ 'events.modalities' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'schedule']" class="list-group-item">{{ 'events.schedule' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'live']" class="list-group-item">{{ 'events.live' | translate }}</a>
+          <a [routerLink]="['/event', item.id, 'manage']" class="list-group-item">{{ 'events.manage' | translate }}</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

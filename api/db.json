@@ -1,0 +1,50 @@
+{
+  "genders": [
+    { "id": "M", "code": "Male" },
+    { "id": "F", "code": "Female" },
+    { "id": "U", "code": "Unidentified" }
+  ],
+  "persons": [
+    { "id": 1, "name": "Matias Henschel", "email": "email@sample.com", "gender": "M", "groupId": 1, "document": "012.345.678-90", "number": 64 },
+    { "id": 2, "name": "Other Guy", "email": null, "gender": "M", "groupId": 2, "document": null, "number": 9 }
+  ],
+  "groups": [
+    { "id": 1, "name": "Group 1", "city": "City - SC", "logo": null },
+    { "id": 2, "name": "Group 2", "city": "Other - SC", "logo": null }
+  ],
+  "sports": [
+    { "id": 1, "code": "football", "teamsPerMatch": 2 },
+    { "id": 2, "code": "volleyball", "teamsPerMatch": 2 },
+    { "id": 3, "code": "basketball", "teamsPerMatch": 2 },
+    { "id": 4, "code": "running", "teamsPerMatch": null }
+  ],
+  "events": [
+    { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": null }
+  ],
+  "eventSports": [
+    { "id": 1, "sportId": 1, "eventId": 1, "name": "Futebol - Masculino", "maxTeamSize": null, "maxParticipantsPerGroup": 1 },
+    { "id": 2, "sportId": 4, "eventId": 1, "name": "Corrida de Fundo - Masculino", "maxTeamSize": 1, "maxParticipantsPerGroup": 4 }
+  ],
+  "teams": [
+    { "id": 1, "eventSportId": 1, "groupId": 1 },
+    { "id": 2, "eventSportId": 1, "groupId": 2 },
+    { "id": 3, "eventSportId": 2, "groupId": 1 }
+  ],
+  "teamParticipants": [
+    { "id": 1, "teamId": 1, "personId": 1 },
+    { "id": 2, "teamId": 2, "personId": 2 },
+    { "id": 3, "teamId": 3, "personId": 1 }
+  ],
+  "stages": [
+    { "id": 1, "eventSportId": 1, "order": 1, "maxTeams": 16, "name": "Grupos", "groups": 4, "mode": "round", "started": true, "finished": false },
+    { "id": 2, "eventSportId": 1, "order": 2, "maxTeams": 8, "name": "Finais", "groups": 1, "mode": "single", "started": false, "finished": false }
+  ],
+  "matches": [
+    { "id": 1, "stageId": 1, "group": 1, "name": null, "started": true, "finished": false },
+    { "id": 2, "stageId": 2, "group": 1, "name": "Final", "started": false, "finished": false }
+  ],
+  "matchTeams": [
+    { "id": 1, "matchId": 1, "teamId": 1, "seed": 1, "score": null, "placing": null },
+    { "id": 2, "matchId": 1, "teamId": 2, "seed": 2, "score": null, "placing": null }
+  ]
+}

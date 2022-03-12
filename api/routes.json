@@ -1,0 +1,4 @@
+{
+  "/api/*": "/$1",
+  "/events/:id/modalities": "/eventSports?eventId=:id"
+}

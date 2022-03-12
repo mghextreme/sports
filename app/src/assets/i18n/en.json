@@ -1,0 +1,15 @@
+{
+  "app-title": "Sports Tournament",
+  "menu": {
+    "home": "Home"
+  },
+  "titles": {
+    "events": "Events"
+  },
+  "events": {
+    "modalities": "Modalities",
+    "schedule": "Schedule",
+    "live": "Live",
+    "manage": "Manage"
+  }
+}
