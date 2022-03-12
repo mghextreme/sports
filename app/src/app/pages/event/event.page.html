@@ -2,4 +2,30 @@
 
 <div class="container pb-5">
   <h2>{{ event.name }}</h2>
+
+  <div class="buttons">
+    <button type="button" class="btn btn-primary me-2" [routerLink]="['/event', event.id, 'modalities']">{{ 'events.modalities' | translate }}</button>
+    <button type="button" class="btn btn-success me-2" [routerLink]="['/event', event.id, 'schedule']">{{ 'events.schedule' | translate }}</button>
+    <button type="button" class="btn btn-warning me-2" [routerLink]="['/event', event.id, 'manage']">{{ 'events.manage' | translate }}</button>
+  </div>
+
+  <div *ngIf="liveMatches.length > 0" class="live">
+    <h3 class="mt-3">Live</h3>
+    <div class="row">
+      <div *ngFor="let item of liveMatches" class="col-sm-6 col-lg-4 col-xl-3">
+        <div class="card">
+          <a [routerLink]="['/match', item.id]">
+            <div class="card-header">
+              <span class="spinner-grow text-danger" role="status"></span>
+              Sport - Stage
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><span class="score">3</span>Team 1</li>
+              <li class="list-group-item"><span class="score">2</span>Team 2</li>
+            </ul>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

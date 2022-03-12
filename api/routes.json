@@ -1,4 +1,5 @@
 {
   "/api/*": "/$1",
+  "/events/:id/liveMatches": "/matches?started=true&stage.eventSport.event.id=:id",
   "/events/:id/modalities": "/eventSports?eventId=:id"
 }
