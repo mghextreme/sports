@@ -26,4 +26,40 @@
       </div>
     </div>
   </div>
+
+  <ul class="nav nav-tabs mt-3" id="modalityTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-selected="true">{{ 'events.schedule' | translate }}</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-selected="false">{{ 'events.results' | translate }}</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="modalityTabsContent">
+    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+      <ul class="list-group list-group-flush">
+        <a *ngFor="let item of schedule" [routerLink]="['/match', item.id]" class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-6 col-md-2 datetime text-center">12h30</div>
+            <div class="col-6 col-md-2 stage text-center">Group A</div>
+            <div class="col-6 col-md-3 team text-end">Team 1</div>
+            <div class="col-6 col-md-2 text-center">x</div>
+            <div class="col-6 col-md-3 team text-start">Team 2</div>
+          </div>
+        </a>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+      <ul class="list-group list-group-flush">
+        <a *ngFor="let item of schedule" [routerLink]="['/match', item.id]" class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-6 col-md-2 stage text-center">Group A</div>
+            <div class="col-6 col-md-4 team text-end">Team 1</div>
+            <div class="col-6 col-md-2 text-center">3 x 2</div>
+            <div class="col-6 col-md-4 team text-start">Team 2</div>
+          </div>
+        </a>
+      </ul>
+    </div>
+  </div>
 </div>

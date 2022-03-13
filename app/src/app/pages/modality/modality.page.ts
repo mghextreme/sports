@@ -11,6 +11,7 @@ export class ModalityPageComponent {
 
   modality: IModality;
   liveMatches: IMatch[];
+  schedule: IMatch[];
 
   constructor(
     private readonly eventsService: EventsService,
@@ -19,6 +20,11 @@ export class ModalityPageComponent {
   ) {
     this.modality = this.eventsService.getDefaultModality();
     this.liveMatches = [];
+    this.schedule = [{
+      finished: false,
+      started: false,
+      id: 0
+    }];
 
     const modalityId = this.activeRoute.snapshot.params['id'];
     this.eventsService.getModality(modalityId).subscribe(modality => {
