@@ -2,6 +2,7 @@
   "/api/*": "/$1",
   "/events/:id/liveMatches": "/matches?started=true&finished=false",
   "/events/:id/modalities": "/eventSports?eventId=:id&_expand=sport&_sort=name&_order=asc",
+  "/events/:id/groups": "/groups?_sort=name&_order=asc",
   "/modalities/:id": "/eventSports/:id?&_expand=event&_expand=sport",
   "/modalities/:id/liveMatches": "/matches?started=true&finished=false",
   "/modalities/:id/schedule": "/matches?started=false&_sort=dateTimeScheduled&_order=asc"

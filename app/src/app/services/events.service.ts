@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IEvent, IModality } from '../models';
+import { IEvent, IGroup, IModality } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -39,12 +39,16 @@ export class EventsService {
     return this.http.get<IEvent>(`/api/events/${id}`);
   }
 
-  getModalities(id: any): Observable<IModality[]> {
+  getModalities(id: number): Observable<IModality[]> {
     return this.http.get<IModality[]>(`/api/events/${id}/modalities`);
   }
 
   getModality(modalityId: number): Observable<IModality> {
     return this.http.get<IModality>(`/api/modalities/${modalityId}`);
+  }
+
+  getGroups(id: number): Observable<IGroup[]> {
+    return this.http.get<IGroup[]>(`/api/events/${id}/groups`);
   }
 
 }
