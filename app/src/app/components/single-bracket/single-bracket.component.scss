@@ -1,0 +1,57 @@
+.single-bracket {
+  overflow-x: auto;
+
+  .round {
+    flex: 0 0 auto;
+
+    .round-matches {
+      width: 180px;
+    }
+
+    .round-brackets {
+      width: 40px;
+
+      .bracket-part {
+        span {
+          position: absolute;
+          background: #aaa;
+
+          &.from {
+            left: 0;
+            right: 50%;
+            height: 1px;
+
+            &.top {
+              top: 25%;
+            }
+
+            &.bottom {
+              top: 75%;
+            }
+          }
+          
+          &.to {
+            top: 50%;
+            left: 50%;
+            right: 0;
+            height: 1px;
+          }
+
+          &.connector {
+            left: 50%;
+            top: 25%;
+            bottom: 25%;
+            width: 1px;
+          }
+        }
+      }
+    }
+
+    .equal-holder {
+      position: relative;
+      flex: 1 1 auto;
+      height: 50%;
+      margin: 0;
+    }
+  }
+}

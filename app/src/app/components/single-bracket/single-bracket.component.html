@@ -1,0 +1,19 @@
+<div class="single-bracket">
+  <div class="d-flex flex-row align-items-stretch">
+    <div *ngFor="let round of rounds; let i = index" class="round d-flex flex-row">
+      <div *ngIf="i != 0" class="round-brackets d-flex flex-column align-items-stretch justify-content-stretch">
+        <div *ngFor="let match of round.matches" class="equal-holder bracket-part">
+          <span class="from top"></span>
+          <span class="from bottom"></span>
+          <span class="connector"></span>
+          <span class="to"></span>
+        </div>
+      </div>
+      <div class="round-matches d-flex flex-column align-items-stretch justify-content-stretch">
+        <div *ngFor="let match of round.matches" class="equal-holder d-flex flex-column align-items-stretch justify-content-center">
+          <match [match]="match"></match>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
