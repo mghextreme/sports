@@ -5,4 +5,6 @@ export * from './modality.interface';
 export * from './single-bracket-match.interface';
 export * from './single-bracket-round.interface';
 export * from './sport.interface';
+export * from './stage.interface';
+export * from './stage-type.enum';
 export * from './team.interface';

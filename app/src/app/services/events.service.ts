@@ -27,7 +27,8 @@ export class EventsService {
       sport: {
         id: 0,
         code: ''
-      }
+      },
+      finished: false
     };
   }
 

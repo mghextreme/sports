@@ -1,12 +1,11 @@
 <page-header></page-header>
 
 <div class="container-md pb-5">
-  <h2>{{ 'events.groups' | translate }}</h2>
-  <h5>{{ event.name }}</h5>
-
-  <div class="buttons mt-2">
-    <button type="button" class="btn btn-secondary" [routerLink]="['/event', event.id]">{{ 'navigation.back' | translate }}</button>
-  </div>
+  <title-bar
+    title="{{ 'events.groups' | translate }}"
+    [subtitle]="event.name"
+    [back]="['/event', event.id]">
+  </title-bar>
 
   <ul class="groups list-group list-group-flush mt-3">
     <a *ngFor="let item of groups" [routerLink]="['/group', item.id]" class="list-group-item list-group-item-action">{{ item.name }}</a>

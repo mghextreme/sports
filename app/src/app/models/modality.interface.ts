@@ -5,5 +5,6 @@ export interface IModality {
   id: number;
   name: string;
   sport: ISport;
+  finished: boolean;
   event?: IEvent;
 }

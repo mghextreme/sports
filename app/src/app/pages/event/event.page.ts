@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IEvent, IMatch } from 'src/app/models';
+import { IEvent } from 'src/app/models';
 import { EventsService, MatchesService } from 'src/app/services';
 
 @Component({
@@ -10,7 +10,6 @@ import { EventsService, MatchesService } from 'src/app/services';
 export class EventPageComponent {
 
   event: IEvent;
-  liveMatches: IMatch[];
 
   constructor(
     private readonly eventsService: EventsService,
@@ -18,14 +17,10 @@ export class EventPageComponent {
     private readonly activeRoute: ActivatedRoute
   ) {
     this.event = this.eventsService.getDefault();
-    this.liveMatches = [];
 
     const eventId = this.activeRoute.snapshot.params['id'];
     this.eventsService.get(eventId).subscribe(event => {
       this.event = event;
-    });
-    this.matchesService.getLiveFromEvent(eventId).subscribe(matches => {
-      this.liveMatches = matches;
     });
   }
 

@@ -1,90 +1,69 @@
 <page-header></page-header>
 
-<div class="container-md pb-5">
-  <h2>{{ modality.name }}</h2>
-  <h5>{{ modality.event?.name }}</h5>
+<div class="container-md modality pb-5">
+  <title-bar
+    [title]="modality.name"
+    [subtitle]="modality.event?.name"
+    [back]="modality.event ? ['/event', modality.event.id] : undefined">
+  </title-bar>
 
-  <div class="buttons mt-2" *ngIf="modality.event">
-    <button type="button" class="btn btn-secondary" [routerLink]="['/event', modality.event.id]">{{ 'navigation.back' | translate }}</button>
+  <div *ngIf="modality.finished" class="collapse-holder mb-3">
+    <a class="collapse-title" data-bs-toggle="collapse" href="#collapseStandings" role="button" aria-expanded="true" aria-controls="collapseStandings">
+      {{ 'modalities.standings' | translate }}
+    </a>
+    <div class="collapse show standings" id="collapseStandings">
+      List of Standings
+    </div>
   </div>
 
-  <div *ngIf="liveMatches.length > 0" class="live">
-    <h3 class="mt-3">{{ 'events.live' | translate }}</h3>
-    <div class="row">
-      <div *ngFor="let item of liveMatches" class="col-sm-6 col-lg-4 col-xl-3">
-        <div class="card">
-          <a [routerLink]="['/match', item.id]">
-            <div class="card-header">
-              <span class="spinner-grow text-danger" role="status"></span>
-              Stage
-            </div>
-            <ul *ngIf="item.teams" class="list-group list-group-flush">
-              <li *ngFor="let team of item.teams" class="list-group-item"><span class="score">{{ team.score }}</span>{{ team.name }}</li>
-            </ul>
-          </a>
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseMatches" role="button" aria-expanded="false" aria-controls="collapseMatches">
+      {{ 'modalities.matches' | translate }}
+    </a>
+    <div class="collapse matches" id="collapseMatches">
+      <ul *ngIf="!modality.finished" class="nav nav-tabs mt-2" id="matchesTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="prev-tab" data-bs-toggle="tab" data-bs-target="#prev" type="button" role="tab" aria-selected="false">Previous</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="next-tab" data-bs-toggle="tab" data-bs-target="#next" type="button" role="tab" aria-selected="true">Next</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="modalityTabsContent">
+        <div class="tab-pane fade" [class.active]="modality.finished" [class.show]="modality.finished" id="prev" role="tabpanel" aria-labelledby="prev-tab">
+          List of finished matches
+        </div>
+        <div *ngIf="!modality.finished" class="tab-pane fade active show" id="next" role="tabpanel" aria-labelledby="next-tab">
+          List of ongoing and future matches
         </div>
       </div>
     </div>
   </div>
 
-  <ul class="nav nav-tabs mt-3" id="modalityTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="standings-tab" data-bs-toggle="tab" data-bs-target="#standings" type="button" role="tab" aria-selected="false">{{ 'events.standings' | translate }}</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-selected="true">{{ 'events.schedule' | translate }}</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-selected="false">{{ 'events.results' | translate }}</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="modalityTabsContent">
-    <div class="tab-pane fade" id="standings" role="tabpanel" aria-labelledby="standings-tab">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6 col-md-2 datetime text-center">1º</div>
-            <div class="col-6 col-md-10 team text">Team 1</div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6 col-md-2 datetime text-center">2º</div>
-            <div class="col-6 col-md-10 team text">Team 2</div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6 col-md-2 datetime text-center">3º</div>
-            <div class="col-6 col-md-10 team text">Team 3</div>
-          </div>
-        </li>
-      </ul>
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseStage1" role="button" aria-expanded="false" aria-controls="collapseStage1">
+      Group Stage
+    </a>
+    <div class="collapse stage" id="collapseStage1">
+      Stage 1 groups
     </div>
-    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-      <ul class="list-group list-group-flush">
-        <a *ngFor="let item of schedule" [routerLink]="['/match', item.id]" class="list-group-item list-group-item-action">
-          <div class="row">
-            <div class="col-6 col-md-2 datetime text-center">12h30</div>
-            <div class="col-6 col-md-2 stage text-center">Group A</div>
-            <div class="col-6 col-md-3 team text-end">Team 1</div>
-            <div class="col-6 col-md-2 text-center">x</div>
-            <div class="col-6 col-md-3 team text-start">Team 2</div>
-          </div>
-        </a>
-      </ul>
+  </div>
+
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseStage2" role="button" aria-expanded="false" aria-controls="collapseStage2">
+      Playoffs
+    </a>
+    <div class="collapse stage" id="collapseStage2">
+      Stage 2 brackets
     </div>
-    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
-      <ul class="list-group list-group-flush">
-        <a *ngFor="let item of schedule" [routerLink]="['/match', item.id]" class="list-group-item list-group-item-action">
-          <div class="row">
-            <div class="col-6 col-md-2 stage text-center">Group A</div>
-            <div class="col-6 col-md-4 team text-end">Team 1</div>
-            <div class="col-6 col-md-2 text-center">3 x 2</div>
-            <div class="col-6 col-md-4 team text-start">Team 2</div>
-          </div>
-        </a>
-      </ul>
+  </div>
+
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseParticipants" role="button" aria-expanded="false" aria-controls="collapseParticipants">
+      {{ 'modalities.participants' | translate }}
+    </a>
+    <div class="collapse participants" id="collapseParticipants">
+      List of Participants
     </div>
   </div>
 </div>

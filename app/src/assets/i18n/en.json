@@ -12,11 +12,11 @@
   },
   "events": {
     "modalities": "Modalities",
-    "schedule": "Schedule",
-    "live": "Live",
     "manage": "Manage",
-    "results": "Results",
-    "groups": "Groups",
+    "groups": "Groups"
+  },
+  "modalities": {
+    "matches": "Matches",
     "standings": "Standings"
   }
 }
