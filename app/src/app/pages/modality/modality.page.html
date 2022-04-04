@@ -22,19 +22,23 @@
     </a>
     <div class="collapse matches" id="collapseMatches">
       <ul *ngIf="!modality.finished" class="nav nav-tabs mt-2" id="matchesTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="prev-tab" data-bs-toggle="tab" data-bs-target="#prev" type="button" role="tab" aria-selected="false">Previous</button>
+        <li class="nav-item w-50 text-center" role="presentation">
+          <button class="nav-link d-block w-100" id="prev-tab" data-bs-toggle="tab" data-bs-target="#prev" type="button" role="tab" aria-selected="false">Previous</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="next-tab" data-bs-toggle="tab" data-bs-target="#next" type="button" role="tab" aria-selected="true">Next</button>
+        <li class="nav-item w-50 text-center" role="presentation">
+          <button class="nav-link d-block w-100 active" id="next-tab" data-bs-toggle="tab" data-bs-target="#next" type="button" role="tab" aria-selected="true">Next</button>
         </li>
       </ul>
       <div class="tab-content" id="modalityTabsContent">
         <div class="tab-pane fade" [class.active]="modality.finished" [class.show]="modality.finished" id="prev" role="tabpanel" aria-labelledby="prev-tab">
-          List of finished matches
+          <div *ngFor="let match of finishedMatches" class="match-item mt-2">
+            <match [match]="match"></match>
+          </div>
         </div>
         <div *ngIf="!modality.finished" class="tab-pane fade active show" id="next" role="tabpanel" aria-labelledby="next-tab">
-          List of ongoing and future matches
+          <div *ngFor="let match of remainingMatches" class="match-item mt-2">
+            <match [match]="match"></match>
+          </div>
         </div>
       </div>
     </div>
@@ -59,11 +63,31 @@
   </div>
 
   <div class="collapse-holder mb-3">
-    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseParticipants" role="button" aria-expanded="false" aria-controls="collapseParticipants">
-      {{ 'modalities.participants' | translate }}
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseTeams" role="button" aria-expanded="false" aria-controls="collapseTeams">
+      {{ 'modalities.teams' | translate }}
     </a>
-    <div class="collapse participants" id="collapseParticipants">
-      List of Participants
+    <div class="collapse teams" id="collapseTeams">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Group</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of teams" class="team">
+            <td class="group-symbol">
+              <div class="group-color-box">
+                <span class="color-1" [style]="{ 'border-color': 'black' }"></span>
+                <span class="color-2" [style]="{ 'background-color': 'orange' }"></span>
+              </div>
+            </td>
+            <td class="group-name">{{ team.group?.name }}</td>
+            <td class="team-name">{{ team.name }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

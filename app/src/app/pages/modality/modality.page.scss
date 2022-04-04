@@ -1,0 +1,39 @@
+$group-color-box-size: 24px;
+
+.modality {
+  .teams {
+    tr.team {
+      .group-symbol {
+        width: calc($group-color-box-size + 1rem);
+
+        .group-color-box {
+          position: relative;
+          width: $group-color-box-size;
+
+          span {
+            position: absolute;
+            display: block;
+            box-sizing: border-box;
+            width: $group-color-box-size;
+            height: $group-color-box-size;
+
+            &.color-1 {
+              border-top: calc($group-color-box-size / 2) solid;
+              border-left: calc($group-color-box-size / 2) solid;
+              border-bottom: calc($group-color-box-size / 2) solid transparent !important;
+              border-right: calc($group-color-box-size / 2) solid transparent !important;
+              z-index: 2;
+            }
+
+            &.color-2 {
+              top: 0; bottom: 0;
+              left: 0; right: 0;
+              z-index: 1;
+              outline: 1px solid #ccc;
+            }
+          }
+        }
+      }
+    }
+  }
+}

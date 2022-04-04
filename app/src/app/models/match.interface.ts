@@ -5,5 +5,5 @@ export interface IMatch {
   started: boolean;
   finished: boolean;
   name?: string;
-  teams?: ITeam[];
+  teams: ITeam[];
 }

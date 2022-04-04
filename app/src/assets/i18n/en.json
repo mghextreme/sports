@@ -17,6 +17,10 @@
   },
   "modalities": {
     "matches": "Matches",
-    "standings": "Standings"
+    "standings": "Standings",
+    "teams": "Teams"
+  },
+  "teams": {
+    "tbd": "TBD"
   }
 }

@@ -1,11 +1,11 @@
-<div class="match card" [class.live]="isLive">
+<div class="match card round-0" [class.live]="isLive">
   <a [routerLink]="['/match', match.id]">
     <div class="card-header">
       <span *ngIf="isLive" class="spinner-grow text-danger" role="status"></span>
-      {{ match.name }}
+      {{ name }}
     </div>
-    <ul *ngIf="match.teams" class="list-group list-group-flush">
-      <li *ngFor="let team of match.teams" class="list-group-item">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let team of teams" class="list-group-item">
         <span *ngIf="team.score" class="score">{{ team.score }}</span>
         {{ team.name }}
       </li>
