@@ -1,0 +1,11 @@
+.title-bar {
+  position: relative;
+  background: center no-repeat;
+  background-size: cover;
+
+  .btn-back {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+  }
+}

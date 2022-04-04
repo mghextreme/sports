@@ -6,7 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatchComponent, PageHeaderComponent, SingleBracketComponent } from './components';
+import { MatchComponent, PageHeaderComponent, SingleBracketComponent, TitleBarComponent } from './components';
 import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, ModalityPageComponent } from './pages';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -23,7 +23,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatchComponent,
     ModalityPageComponent,
     PageHeaderComponent,
-    SingleBracketComponent
+    SingleBracketComponent,
+    TitleBarComponent
   ],
   imports: [
     BrowserModule,
