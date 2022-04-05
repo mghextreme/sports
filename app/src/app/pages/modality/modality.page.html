@@ -44,21 +44,16 @@
     </div>
   </div>
 
-  <div class="collapse-holder mb-3">
-    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseStage1" role="button" aria-expanded="false" aria-controls="collapseStage1">
-      Group Stage
+  <div *ngFor="let stage of stages; let i = index" class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" [href]="'#collapseStage' + i" role="button" aria-expanded="false" [attr.aria-controls]="'collapseStage' + i">
+      {{ stage.name }}
     </a>
-    <div class="collapse stage" id="collapseStage1">
-      Stage 1 groups
-    </div>
-  </div>
-
-  <div class="collapse-holder mb-3">
-    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseStage2" role="button" aria-expanded="false" aria-controls="collapseStage2">
-      Playoffs
-    </a>
-    <div class="collapse stage" id="collapseStage2">
-      Stage 2 brackets
+    <div class="collapse stage" [id]="'collapseStage' + i">
+      <ng-container [ngSwitch]="stage.mode">
+        <div *ngSwitchCase="'single'">
+          <single-bracket [stageId]="stage.id"></single-bracket>
+        </div>
+      </ng-container>
     </div>
   </div>
 
@@ -71,8 +66,8 @@
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Group</th>
-            <th scope="col">Name</th>
+            <th scope="col">{{ 'teams.group' | translate }}</th>
+            <th scope="col">{{ 'teams.name' | translate }}</th>
           </tr>
         </thead>
         <tbody>

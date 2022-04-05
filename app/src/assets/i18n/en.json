@@ -21,6 +21,8 @@
     "teams": "Teams"
   },
   "teams": {
-    "tbd": "TBD"
+    "tbd": "TBD",
+    "group": "Group",
+    "name": "Team Name"
   }
 }

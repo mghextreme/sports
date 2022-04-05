@@ -36,8 +36,21 @@
     { "id": 3, "teamId": 3, "personId": 1 }
   ],
   "stages": [
-    { "id": 1, "eventSportId": 1, "order": 1, "maxTeams": 16, "name": "Grupos", "groups": 4, "mode": "round", "started": true, "finished": false },
-    { "id": 2, "eventSportId": 1, "order": 2, "maxTeams": 8, "name": "Finais", "groups": 1, "mode": "single", "started": false, "finished": false }
+    {
+      "id": 1, "eventSportId": 1, "order": 1, "maxTeams": 4, "name": "Grupo A", "mode": "round", "started": true, "finished": true,
+      "teams": [
+        { "id": 1, "stageId": 1, "teamId": 1, "seed": 1, "score": 3, "placing": null },
+        { "id": 2, "stageId": 1, "teamId": 2, "seed": 2, "score": 0, "placing": null }
+      ]
+    },
+    {
+      "id": 2, "eventSportId": 1, "order": 2, "maxTeams": 4, "name": "Grupo B", "mode": "round", "started": true, "finished": false,
+      "teams": []
+    },
+    {
+      "id": 3, "eventSportId": 1, "order": 3, "maxTeams": 4, "name": "Finais", "mode": "single", "started": false, "finished": false,
+      "teams": []
+    }
   ],
   "matches": [
     {
@@ -48,7 +61,7 @@
       ]
     },
     {
-      "id": 2, "stageId": 2, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "id": 2, "stageId": 3, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
       "teams": []
     }
   ]

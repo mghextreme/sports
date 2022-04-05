@@ -29,12 +29,15 @@ export class ModalityPageComponent {
     this.modalitiesService.get(modalityId).subscribe(modality => {
       this.modality = modality;
     });
+    this.modalitiesService.getMatches(modalityId).subscribe(matches => {
+      this.finishedMatches = matches.filter(m => m.finished).reverse();
+      this.remainingMatches = matches.filter(m => !m.finished);
+    });
+    this.modalitiesService.getStages(modalityId).subscribe(stages => {
+      this.stages = stages;
+    });
     this.modalitiesService.getTeams(modalityId).subscribe(teams => {
       this.teams = teams;
-    });
-    this.modalitiesService.getMatches(modalityId).subscribe(matches => {
-      this.finishedMatches = matches.filter(m => m.finished);
-      this.remainingMatches = matches.filter(m => !m.finished);
     });
   }
 

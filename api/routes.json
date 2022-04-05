@@ -4,7 +4,7 @@
   "/events/:id/modalities": "/eventSports?eventId=:id&_expand=sport&_sort=name&_order=asc",
   "/events/:id/groups": "/groups?_sort=name&_order=asc",
   "/modalities/:id": "/eventSports/:id?&_expand=event&_expand=sport",
-  "/modalities/:id/matches": "/matches?eventSportId=:id&_expand=event",
-  "/modalities/:id/schedule": "/matches?started=false&_sort=dateTimeScheduled&_order=asc",
-  "/modalities/:id/teams": "/teams?eventSportId=:id"
+  "/modalities/:id/matches": "/matches?eventSportId=:id&_sort=dateTimeScheduled&_order=asc",
+  "/modalities/:id/stages": "/stages?eventSportId=:id&_sort=order&_order=asc",
+  "/modalities/:id/teams": "/teams?eventSportId=:id&_expand=group"
 }

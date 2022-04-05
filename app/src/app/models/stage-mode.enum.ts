@@ -1,3 +1,3 @@
-export enum StageType {
+export enum StageMode {
   SingleBracket = 'single'
 }

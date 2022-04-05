@@ -1,9 +1,9 @@
-import { StageType } from "./stage-type.enum";
+import { StageMode } from "./stage-mode.enum";
 
 export interface IStage {
   id: number;
   started: boolean;
   finished: boolean;
-  type: StageType;
+  mode: StageMode;
   name?: string;
 }
