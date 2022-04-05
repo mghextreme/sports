@@ -30,10 +30,6 @@ export class MatchesService {
     return this.http.get<IMatch[]>(`/api/events/${eventId}/liveMatches`);
   }
 
-  getFromStage(stageId: number): Observable<IMatch[]> {
-    return this.http.get<IMatch[]>(`/api/stage/${stageId}/matches`);
-  }
-
   get(id: number): Observable<IMatch> {
     return this.http.get<IMatch>(`/api/matches/${id}`);
   }

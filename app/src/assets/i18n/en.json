@@ -20,9 +20,31 @@
     "standings": "Standings",
     "teams": "Teams"
   },
+  "matches": {
+    "finished": "Finished",
+    "next": "Next"
+  },
   "teams": {
     "tbd": "TBD",
     "group": "Group",
     "name": "Team Name"
+  },
+  "stages": {
+    "matches-played": "Matches Played",
+    "wins": "Wins",
+    "ties": "Ties",
+    "losses": "Losses",
+    "score-pro": "Score Pro",
+    "score-against": "Score Against",
+    "score-delta": "Score Delta",
+    "points": "Points",
+    "matches-played-abbr": "M",
+    "wins-abbr": "W",
+    "ties-abbr": "T",
+    "losses-abbr": "L",
+    "score-pro-abbr": "SP",
+    "score-against-abbr": "SA",
+    "score-delta-abbr": "SD",
+    "points-abbr": "P"
   }
 }

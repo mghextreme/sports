@@ -1,0 +1,36 @@
+<div class="round-robin">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" colspan="2">{{ 'teams.name' | translate }}</th>
+        <th scope="col" [title]="'stages.matches-played' | translate">{{ 'stages.matches-played-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.wins' | translate">{{ 'stages.wins-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.ties' | translate">{{ 'stages.ties-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.losses' | translate">{{ 'stages.losses-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.score-delta' | translate">{{ 'stages.score-delta-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.score-pro' | translate">{{ 'stages.score-pro-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.score-against' | translate">{{ 'stages.score-against-abbr' | translate }}</th>
+        <th scope="col" [title]="'stages.points' | translate">{{ 'stages.points-abbr' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of standings" class="team">
+        <td class="group-symbol">
+          <div class="group-color-box">
+            <span class="color-1" [style]="{ 'border-color': 'black' }"></span>
+            <span class="color-2" [style]="{ 'background-color': 'orange' }"></span>
+          </div>
+        </td>
+        <td class="team-name">{{ item.team.name }}</td>
+        <td class="matches-played">{{ item.matchesPlayed }}</td>
+        <td class="wins">{{ item.wins }}</td>
+        <td class="ties">{{ item.ties }}</td>
+        <td class="losses">{{ item.losses }}</td>
+        <td class="score-delta">{{ item.scorePro - item.scoreAgainst }}</td>
+        <td class="score-pro">{{ item.scorePro }}</td>
+        <td class="score-against">{{ item.scoreAgainst }}</td>
+        <td class="points"><strong>{{ item.points }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

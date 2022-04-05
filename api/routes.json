@@ -6,5 +6,7 @@
   "/modalities/:id": "/eventSports/:id?&_expand=event&_expand=sport",
   "/modalities/:id/matches": "/matches?eventSportId=:id&_sort=dateTimeScheduled&_order=asc",
   "/modalities/:id/stages": "/stages?eventSportId=:id&_sort=order&_order=asc",
-  "/modalities/:id/teams": "/teams?eventSportId=:id&_expand=group"
+  "/modalities/:id/teams": "/teams?eventSportId=:id&_expand=group",
+  "/stages/:id/matches": "/matches?stageId=:id&_sort=id&_order=asc",
+  "/stages/:id/roundRobinRows": "/stageStandings?stageId=:id&_order=asc&_expand=team"
 }

@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ISingleBracketMatch, ISingleBracketRound } from 'src/app/models';
-import * as _ from 'lodash';
-import { MatchesService } from 'src/app/services';
+import { StagesService } from 'src/app/services';
 import { MatchesUtils } from 'src/app/utils';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'single-bracket',
@@ -21,14 +21,13 @@ export class SingleBracketComponent {
   }
 
   @Input('stageId') public set stageId(stageId: number) {
-    this.matchesService.getFromStage(stageId).subscribe(matches => {
-      this.matches = MatchesUtils.toSingleBracketMatches(matches);
+    this.stagesService.getSingleBracketMatches(stageId).subscribe(matches => {
+      this.matches = matches;
     });
   }
 
   constructor(
-    readonly translate: TranslateService,
-    private readonly matchesService: MatchesService
+    private readonly stagesService: StagesService
   ) { }
 
   private setupMatches(): void {

@@ -23,10 +23,10 @@
     <div class="collapse matches" id="collapseMatches">
       <ul *ngIf="!modality.finished" class="nav nav-tabs mt-2" id="matchesTabs" role="tablist">
         <li class="nav-item w-50 text-center" role="presentation">
-          <button class="nav-link d-block w-100" id="prev-tab" data-bs-toggle="tab" data-bs-target="#prev" type="button" role="tab" aria-selected="false">Previous</button>
+          <button class="nav-link d-block w-100" id="prev-tab" data-bs-toggle="tab" data-bs-target="#prev" type="button" role="tab" aria-selected="false">{{ 'matches.finished' | translate }}</button>
         </li>
         <li class="nav-item w-50 text-center" role="presentation">
-          <button class="nav-link d-block w-100 active" id="next-tab" data-bs-toggle="tab" data-bs-target="#next" type="button" role="tab" aria-selected="true">Next</button>
+          <button class="nav-link d-block w-100 active" id="next-tab" data-bs-toggle="tab" data-bs-target="#next" type="button" role="tab" aria-selected="true">{{ 'matches.next' | translate }}</button>
         </li>
       </ul>
       <div class="tab-content" id="modalityTabsContent">
@@ -53,6 +53,9 @@
         <div *ngSwitchCase="'single'">
           <single-bracket [stageId]="stage.id"></single-bracket>
         </div>
+        <div *ngSwitchCase="'round'">
+          <round-robin [stageId]="stage.id"></round-robin>
+        </div>
       </ng-container>
     </div>
   </div>
@@ -65,8 +68,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col"></th>
-            <th scope="col">{{ 'teams.group' | translate }}</th>
+            <th scope="col" colspan="2">{{ 'teams.group' | translate }}</th>
             <th scope="col">{{ 'teams.name' | translate }}</th>
           </tr>
         </thead>

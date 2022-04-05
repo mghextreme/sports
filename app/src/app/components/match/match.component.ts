@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { IMatch, ITeam } from 'src/app/models';
 import { MatchesService, TeamsService } from 'src/app/services';
 
@@ -13,7 +12,6 @@ export class MatchComponent {
   @Input('match') match: IMatch;
 
   constructor(
-    private readonly translate: TranslateService,
     readonly matchesService: MatchesService,
     readonly teamsService: TeamsService
   ) {
@@ -29,7 +27,7 @@ export class MatchComponent {
   get name(): string {
     return this.match.name
       ? this.match.name
-      : this.translate.instant('teams.tbd');
+      : '#' + this.match.id;
   }
 
   get isLive(): boolean {

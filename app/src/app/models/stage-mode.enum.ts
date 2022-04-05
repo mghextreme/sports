@@ -1,3 +1,4 @@
 export enum StageMode {
-  SingleBracket = 'single'
+  SingleBracket = 'single',
+  RoundRobin = 'round'
 }

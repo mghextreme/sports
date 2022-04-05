@@ -26,9 +26,9 @@
     { "id": 2, "sportId": 4, "eventId": 1, "name": "Men's Running - 3km", "maxTeamSize": 1, "maxParticipantsPerGroup": 4, "finished": false }
   ],
   "teams": [
-    { "id": 1, "eventSportId": 1, "groupId": 1 },
-    { "id": 2, "eventSportId": 1, "groupId": 2 },
-    { "id": 3, "eventSportId": 2, "groupId": 1 }
+    { "id": 1, "eventSportId": 1, "groupId": 1, "name": "Group 1" },
+    { "id": 2, "eventSportId": 1, "groupId": 2, "name": "Group 2" },
+    { "id": 3, "eventSportId": 2, "groupId": 1, "name": "Matias G Henschel" }
   ],
   "teamParticipants": [
     { "id": 1, "teamId": 1, "personId": 1 },
@@ -52,6 +52,10 @@
       "teams": []
     }
   ],
+  "stageStandings": [
+    { "stageId": 1, "matchesPlayed": 2, "teamId": 1, "wins": 2, "ties": 0, "losses": 0, "points": 6, "scorePro": 4, "scoreAgainst": 1 },
+    { "stageId": 1, "matchesPlayed": 2, "teamId": 2, "wins": 0, "ties": 1, "losses": 0, "points": 1, "scorePro": 2, "scoreAgainst": 3 }
+  ],
   "matches": [
     {
       "id": 1, "stageId": 1, "group": 1, "name": null, "started": true, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
@@ -61,7 +65,15 @@
       ]
     },
     {
-      "id": 2, "stageId": 3, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "id": 2, "stageId": 3, "group": null, "name": "Semi-Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "teams": []
+    },
+    {
+      "id": 3, "stageId": 3, "group": null, "name": "Semi-Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
+      "teams": []
+    },
+    {
+      "id": 4, "stageId": 3, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
       "teams": []
     }
   ]
