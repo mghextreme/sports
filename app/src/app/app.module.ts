@@ -7,7 +7,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatchComponent, PageHeaderComponent, RoundRobinComponent, SingleBracketComponent, TitleBarComponent } from './components';
-import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, ModalityPageComponent } from './pages';
+import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
@@ -21,6 +21,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EventGroupsPageComponent,
     EventModalitiesPageComponent,
     MatchComponent,
+    MatchPageComponent,
     ModalityPageComponent,
     PageHeaderComponent,
     RoundRobinComponent,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, ModalityPageComponent } from './pages';
+import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -36,6 +36,16 @@ const routes: Routes = [
       {
         path: '',
         component: ModalityPageComponent,
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'match/:id',
+    children: [
+      {
+        path: '',
+        component: MatchPageComponent,
         pathMatch: 'full'
       }
     ]
