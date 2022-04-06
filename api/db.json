@@ -9,8 +9,8 @@
     { "id": 2, "name": "Other Guy", "email": null, "gender": "M", "groupId": 2, "document": null, "number": 9 }
   ],
   "groups": [
-    { "id": 1, "name": "Group 1", "city": "City - SC", "logo": null },
-    { "id": 2, "name": "Group 2", "city": "Other - SC", "logo": null }
+    { "id": 1, "name": "Group 1", "city": "City - SC", "logo": null, "color1": "#0000bb", "color2": "#ffffff" },
+    { "id": 2, "name": "Group 2", "city": "Other - SC", "logo": null, "color1": "#aa2222", "color2": "#cccc44" }
   ],
   "sports": [
     { "id": 1, "code": "football", "teamsPerMatch": 2 },
@@ -21,14 +21,14 @@
   "events": [
     { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": null }
   ],
-  "eventSports": [
+  "modalities": [
     { "id": 1, "sportId": 1, "eventId": 1, "name": "Men's Football", "maxTeamSize": null, "maxParticipantsPerGroup": 1, "finished": false },
     { "id": 2, "sportId": 4, "eventId": 1, "name": "Men's Running - 3km", "maxTeamSize": 1, "maxParticipantsPerGroup": 4, "finished": false }
   ],
   "teams": [
-    { "id": 1, "eventSportId": 1, "groupId": 1, "name": "Group 1" },
-    { "id": 2, "eventSportId": 1, "groupId": 2, "name": "Group 2" },
-    { "id": 3, "eventSportId": 2, "groupId": 1, "name": "Matias G Henschel" }
+    { "id": 1, "modalityId": 1, "groupId": 1, "name": "Group 1" },
+    { "id": 2, "modalityId": 1, "groupId": 2, "name": "Group 2" },
+    { "id": 3, "modalityId": 2, "groupId": 1, "name": "Matias G Henschel" }
   ],
   "teamParticipants": [
     { "id": 1, "teamId": 1, "personId": 1 },
@@ -37,18 +37,18 @@
   ],
   "stages": [
     {
-      "id": 1, "eventSportId": 1, "order": 1, "maxTeams": 4, "name": "Grupo A", "mode": "round", "started": true, "finished": true,
+      "id": 1, "modalityId": 1, "order": 1, "maxTeams": 4, "name": "Grupo A", "mode": "round", "started": true, "finished": true,
       "teams": [
         { "id": 1, "stageId": 1, "teamId": 1, "seed": 1, "score": 3, "placing": null },
         { "id": 2, "stageId": 1, "teamId": 2, "seed": 2, "score": 0, "placing": null }
       ]
     },
     {
-      "id": 2, "eventSportId": 1, "order": 2, "maxTeams": 4, "name": "Grupo B", "mode": "round", "started": true, "finished": false,
+      "id": 2, "modalityId": 1, "order": 2, "maxTeams": 4, "name": "Grupo B", "mode": "round", "started": true, "finished": false,
       "teams": []
     },
     {
-      "id": 3, "eventSportId": 1, "order": 3, "maxTeams": 4, "name": "Finais", "mode": "single", "started": false, "finished": false,
+      "id": 3, "modalityId": 1, "order": 3, "maxTeams": 4, "name": "Finais", "mode": "single", "started": false, "finished": false,
       "teams": []
     }
   ],
@@ -75,6 +75,34 @@
     {
       "id": 4, "stageId": 3, "group": null, "name": "Final", "started": false, "finished": false, "dateTimeScheduled": null, "dateTimeStarted": null, "dateTimeFinished": null,
       "teams": []
+    }
+  ],
+  "matchesWithDetails": [
+    {
+      "id": 1, "group": 1, "name": null, "started": true, "finished": false, "dateTimeScheduled": "2022-04-06T10:00:00", "dateTimeStarted": "2022-04-06T10:00:00", "dateTimeFinished": null,
+      "stage": {
+        "id": 1, "order": 1, "maxTeams": 4, "name": "Grupo A", "mode": "round", "started": true, "finished": true
+      },
+      "modality": {
+        "id": 1, "name": "Men's Football", "maxParticipantsPerGroup": 1, "finished": false,
+        "sport": {
+          "id": 1, "code": "football"
+        }
+      },
+      "teams": [
+        {
+          "id": 1, "score": 3, "placing": null, "name": "Group 1",
+          "group": {
+            "id": 1, "name": "Group 1", "logo": null, "color1": "#0000bb", "color2": "#ffffff"
+          }
+        },
+        {
+          "id": 2, "score": 1002, "placing": null, "name": "Group 2",
+          "group": {
+            "id": 2, "name": "Group 2", "logo": null, "color1": "#aa2222", "color2": "#cccc44"
+          }
+        }
+      ]
     }
   ]
 }

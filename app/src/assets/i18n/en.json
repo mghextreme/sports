@@ -22,7 +22,11 @@
   },
   "matches": {
     "finished": "Finished",
-    "next": "Next"
+    "next": "Next",
+    "lineups": "Lineups",
+    "live": "Live",
+    "final": "Final",
+    "live-feed": "Live Feed"
   },
   "teams": {
     "tbd": "TBD",

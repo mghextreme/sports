@@ -1,3 +1,4 @@
+export * from './detailed-match.interface';
 export * from './event.interface';
 export * from './group.interface';
 export * from './match.interface';

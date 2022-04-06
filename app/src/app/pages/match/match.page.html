@@ -1,7 +1,70 @@
 <page-header></page-header>
 
-<div class="container-md pb-5">
-  <title-bar
-    title="Match page">
-  </title-bar>
+<title-bar
+  [title]="matchName"
+  [subtitle]="match.modality?.name"
+  [subtitleLink]="['/modality', match.modality?.id]"
+  [backButton]="true">
+</title-bar>
+
+<div class="time-bar text-center p-2" [class.live]="isLive" [class.final]="match.finished">
+  <div *ngIf="!match.started" class="schedule container-md fs-6">{{ (match.dateTimeScheduled | date:'dd/MM/yyyy HH:mm') ?? ('matches.schedule-tbd' | translate) }}</div>
+  <div *ngIf="isLive" class="live container-md fs-5 text-white pe-3"><span class="spinner-grow" role="status"></span> {{ 'matches.live' | translate }}</div>
+  <div *ngIf="match.finished" class="final container-md fs-6">{{ 'matches.final' | translate }}</div>
+</div>
+
+<div class="score-bar bg-light text-center py-2">
+  <div class="group-symbols d-flex align-items-stretch py-2">
+    <div class="symbol-item w-50 px-4">
+      <img [src]="match.teams[0]?.group?.logo ?? '../../../assets/images/default-symbol.png'" alt="" />
+    </div>
+    <div class="symbol-item w-50 px-4">
+      <img [src]="match.teams[1]?.group?.logo ?? '../../../assets/images/default-symbol.png'" alt="" />
+    </div>
+  </div>
+  <div class="score-banner py-2">
+    <div class="score-box d-flex align-content-stretch w-50 bg-white p-2 mx-auto">
+      <div class="score-item w-50">
+        <span class="d-block score fs-1">{{ (match.teams[0]?.score ?? 0) % 1000 }}</span>
+        <span *ngIf="showSubscore" class="d-block sub fs-6 text-muted">{{ subscore(match.teams[0].score) }}</span>
+      </div>
+      <div class="v"></div>
+      <div class="score-item w-50">
+        <span class="d-block score fs-1">{{ (match.teams[1]?.score ?? 0) % 1000 }}</span>
+        <span *ngIf="showSubscore" class="d-block sub fs-6 text-muted">{{ subscore(match.teams[1].score) }}</span>
+      </div>
+    </div>
+    <div class="color-strip c1 t1" [style]="{ 'background-color': (match.teams[0]?.group?.color1 ?? 'black') }"></div>
+    <div class="color-strip c2 t1" [style]="{ 'background-color': (match.teams[0]?.group?.color2 ?? 'white') }"></div>
+    <div class="color-strip c1 t2" [style]="{ 'background-color': (match.teams[1]?.group?.color1 ?? 'black') }"></div>
+    <div class="color-strip c2 t2" [style]="{ 'background-color': (match.teams[1]?.group?.color2 ?? 'white') }"></div>
+  </div>
+  <div class="group-names d-flex align-items-stretch py-2">
+    <div class="symbol-item w-50 px-1 text-truncate fs-5">
+      {{ match.teams[0].name }}
+    </div>
+    <div class="symbol-item w-50 px-1 text-truncate fs-5">
+      {{ match.teams[1].name }}
+    </div>
+  </div>
+</div>
+
+<div class="container-md pb-5 mt-3">
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseLiveFeed" role="button" aria-expanded="true" aria-controls="collapseLiveFeed">
+      {{ 'matches.live-feed' | translate }}
+    </a>
+    <div class="collapse live-feed show" id="collapseLiveFeed">
+      Live feed content
+    </div>
+  </div>
+
+  <div class="collapse-holder mb-3">
+    <a class="btn btn-secondary rounded-0 d-block collapse-title" data-bs-toggle="collapse" href="#collapseLineup" role="button" aria-expanded="false" aria-controls="collapseLineup">
+      {{ 'matches.lineups' | translate }}
+    </a>
+    <div class="collapse lineup" id="collapseLineup">
+      Teams lineups
+    </div>
+  </div>
 </div>

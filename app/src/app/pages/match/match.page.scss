@@ -1,0 +1,68 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.time-bar {
+  background-color: $light;
+
+  &.live,
+  &.final {
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  &.live { background-color: $red-600; }
+
+  .live {
+    .spinner-grow {
+      width: .5rem;
+      height: .5rem;
+      vertical-align: .15em;
+      margin-right: .1em;
+    }
+  }
+}
+
+.score-bar {
+  .group-symbols {
+    max-height: 150px;
+
+    .symbol-item {
+      img {
+        max-height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  .score-banner {
+    position: relative;
+
+    .color-strip {
+      position: absolute;
+      width: 50%;
+      height: 8px;
+
+      &.c1 { bottom: 50%; z-index: 3; }
+      &.c2 { top: 50%; z-index: 2; box-shadow: 0 0 2px 0 rgba(0,0,0,0.6); }
+
+      &.t1 { left: 0; }
+      &.t2 { right: 0; }
+    }
+
+    .score-box {
+      position: relative;
+      box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.6);
+      z-index: 10;
+
+      .v {
+        box-sizing: border-box;
+        width: 1px;
+        border-top: 8px solid white;
+        border-bottom: 8px solid white;
+        background-color: black;
+        opacity: .6;
+      }
+    }
+  }
+}

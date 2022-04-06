@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMatch } from '../models';
+import { IDetailedMatch, IMatch, StageMode } from '../models';
 import { TeamsService } from './teams.service';
 
 @Injectable({
@@ -26,12 +26,40 @@ export class MatchesService {
     };
   }
 
+  getDefaultDetailed(): IDetailedMatch {
+    return {
+      id: 0,
+      started: false,
+      finished: false,
+      teams: [
+        this.teams.getDefault(),
+        this.teams.getDefault()
+      ],
+      modality: {
+        id: 0,
+        finished: false,
+        maxParticipantsPerGroup: 1,
+        name: '',
+        sport: {
+          id: 0,
+          code: ''
+        }
+      },
+      stage: {
+        id: 0,
+        started: false,
+        finished: false,
+        mode: StageMode.RoundRobin
+      }
+    };
+  }
+
   getLiveFromEvent(eventId: number): Observable<IMatch[]> {
     return this.http.get<IMatch[]>(`/api/events/${eventId}/liveMatches`);
   }
 
-  get(id: number): Observable<IMatch> {
-    return this.http.get<IMatch>(`/api/matches/${id}`);
+  get(id: number): Observable<IDetailedMatch> {
+    return this.http.get<IDetailedMatch>(`/api/matches/${id}/details`);
   }
 
 }

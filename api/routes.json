@@ -1,12 +1,13 @@
 {
   "/api/*": "/$1",
   "/events/:id/liveMatches": "/matches?started=true&finished=false",
-  "/events/:id/modalities": "/eventSports?eventId=:id&_expand=sport&_sort=name&_order=asc",
+  "/events/:id/modalities": "/modalities?eventId=:id&_expand=sport&_sort=name&_order=asc",
   "/events/:id/groups": "/groups?_sort=name&_order=asc",
-  "/modalities/:id": "/eventSports/:id?&_expand=event&_expand=sport",
-  "/modalities/:id/matches": "/matches?eventSportId=:id&_sort=dateTimeScheduled&_order=asc",
-  "/modalities/:id/stages": "/stages?eventSportId=:id&_sort=order&_order=asc",
-  "/modalities/:id/teams": "/teams?eventSportId=:id&_expand=group",
+  "/modalities/:id": "/modalities/:id?&_expand=event&_expand=sport",
+  "/modalities/:id/matches": "/matches?modalityId=:id&_sort=dateTimeScheduled&_order=asc",
+  "/modalities/:id/stages": "/stages?modalityId=:id&_sort=order&_order=asc",
+  "/modalities/:id/teams": "/teams?modalityId=:id&_expand=group",
   "/stages/:id/matches": "/matches?stageId=:id&_sort=id&_order=asc",
-  "/stages/:id/roundRobinRows": "/stageStandings?stageId=:id&_order=asc&_expand=team"
+  "/stages/:id/roundRobinRows": "/stageStandings?stageId=:id&_order=asc&_expand=team",
+  "/matches/:id/details": "/matchesWithDetails/:id"
 }
