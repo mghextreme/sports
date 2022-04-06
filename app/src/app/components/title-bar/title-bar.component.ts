@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'title-bar',
@@ -10,13 +10,17 @@ export class TitleBarComponent {
 
   @Input('title') title: string = '';
   @Input('subtitle') subtitle?: string;
+  @Input('subtitleLink') subtitleLink?: any[];
   @Input('background') background?: string;
-  @Input('back') back?: any[];
+  @Input('backButton') backButton: boolean = false;
 
   constructor(
-    readonly translate: TranslateService
+    private readonly location: Location
   ) {
   }
 
-}
+  back(): void {
+    this.location.back();
+  }
 
+}

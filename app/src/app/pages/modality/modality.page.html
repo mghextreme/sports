@@ -1,12 +1,13 @@
 <page-header></page-header>
 
-<div class="container-md modality pb-5">
-  <title-bar
-    [title]="modality.name"
-    [subtitle]="modality.event?.name"
-    [back]="modality.event ? ['/event', modality.event.id] : undefined">
-  </title-bar>
+<title-bar
+  [title]="modality.name"
+  [subtitle]="modality.event?.name"
+  [subtitleLink]="modality.event ? ['/event', modality.event.id] : undefined"
+  [backButton]="true">
+</title-bar>
 
+<div class="container-md modality pb-5 mt-3">
   <div *ngIf="modality.finished" class="collapse-holder mb-3">
     <a class="collapse-title" data-bs-toggle="collapse" href="#collapseStandings" role="button" aria-expanded="true" aria-controls="collapseStandings">
       {{ 'modalities.standings' | translate }}

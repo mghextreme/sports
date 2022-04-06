@@ -1,11 +1,19 @@
 .title-bar {
-  position: relative;
   background: center no-repeat;
   background-size: cover;
+
+  .container-md {
+    position: relative;
+  }
 
   .btn-back {
     position: absolute;
     top: .5em;
     right: .5em;
+  }
+
+  .lead a {
+    color: inherit;
+    text-decoration: none;
   }
 }
