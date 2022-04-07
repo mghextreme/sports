@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/services';
 
 @Component({
   selector: 'page-header',
@@ -9,9 +11,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class PageHeaderComponent {
 
   constructor(
-    readonly translate: TranslateService
-  ) {
+    readonly authService: AuthService,
+    readonly translate: TranslateService,
+    private router: Router
+  ) { }
 
+  public logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }

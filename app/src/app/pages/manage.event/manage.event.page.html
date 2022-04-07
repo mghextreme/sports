@@ -1,0 +1,19 @@
+<page-header></page-header>
+
+<title-bar
+  title="Event name here"
+  [backButton]="true"
+  [management]="true">
+</title-bar>
+
+<div class="container-md pb-5 mt-3">
+  <h2>Manage Event page</h2>
+  <div>Go to event</div>
+  <div>Event details (name, city, dates, image)</div>
+  <div>List modalities (with edit and remove button)</div>
+  <div>Add modality</div>
+  <a [routerLink]="['/modality', 1, 'manage']">Sample edit modality button</a>
+  <div>List groups (with edit and remove button)</div>
+  <div>Add group</div>
+  <a [routerLink]="['/group', 1, 'manage']">Sample edit group button</a>
+</div>

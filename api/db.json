@@ -5,8 +5,8 @@
     { "id": "U", "code": "Unidentified" }
   ],
   "persons": [
-    { "id": 1, "name": "Matias Henschel", "email": "email@sample.com", "gender": "M", "groupId": 1, "document": "012.345.678-90", "number": 64 },
-    { "id": 2, "name": "Other Guy", "email": null, "gender": "M", "groupId": 2, "document": null, "number": 9 }
+    { "id": 1, "name": "Matias Henschel", "email": "email@sample.com", "dateOfBirth": null, "gender": "M", "groupId": 1, "document": "012.345.678-90", "number": 64 },
+    { "id": 2, "name": "Other Guy", "email": null, "dateOfBirth": null, "gender": "M", "groupId": 2, "document": null, "number": 9 }
   ],
   "groups": [
     { "id": 1, "name": "Group 1", "city": "City - SC", "logo": null, "color1": "#0000bb", "color2": "#ffffff" },

@@ -1,8 +1,8 @@
 <page-header></page-header>
 
-<div class="container-md pb-5 mt-3">
-  <h2>{{ 'titles.events' | translate }}</h2>
+<title-bar title="{{ 'titles.events' | translate }}"></title-bar>
 
+<div class="container-md pb-5 mt-3">
   <div class="row">
     <div *ngFor="let item of events" class="col-sm-6 col-lg-4 col-xl-3">
       <div class="card">
@@ -19,7 +19,7 @@
         <ul class="list-group list-group-flush">
           <a [routerLink]="['/event', item.id, 'modalities']" class="list-group-item list-group-item-action">{{ 'events.modalities' | translate }}</a>
           <a [routerLink]="['/event', item.id, 'groups']" class="list-group-item list-group-item-action">{{ 'events.groups' | translate }}</a>
-          <a [routerLink]="['/event', item.id, 'manage']" class="list-group-item list-group-item-action">{{ 'events.manage' | translate }}</a>
+          <a *ngIf="authService.isLoggedIn" [routerLink]="['/event', item.id, 'manage']" class="list-group-item list-group-item-action bg-warning text-dark">{{ 'events.manage' | translate }}</a>
         </ul>
       </div>
     </div>

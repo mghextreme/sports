@@ -1,3 +1,4 @@
+export * from './auth.service';
 export * from './events.service';
 export * from './matches.service';
 export * from './modalities.service';

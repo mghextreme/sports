@@ -8,10 +8,16 @@
       <div class="navbar-collapse collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item mr-3">
-            <a class="nav-link" [class.active]="true" [routerLink]="['/']">{{ 'menu.home' | translate }}</a>
+            <a class="nav-link active" [routerLink]="['/']">{{ 'menu.home' | translate }}</a>
           </li>
-          <li class="nav-item mr-3">
-            <a class="nav-link" [class.active]="false" [routerLink]="['/manage']">{{ 'menu.manage' | translate }}</a>
+          <li *ngIf="!authService.isLoggedIn" class="nav-item mr-3">
+            <a class="nav-link" [routerLink]="['/login']">{{ 'menu.login' | translate }}</a>
+          </li>
+          <li *ngIf="authService.isLoggedIn" class="nav-item mr-3">
+            <a class="nav-link" [routerLink]="['/manage']">{{ 'menu.manage' | translate }}</a>
+          </li>
+          <li *ngIf="authService.isLoggedIn" class="nav-item mr-3">
+            <a class="nav-link" (click)="logout()">{{ 'menu.logout' | translate }}</a>
           </li>
           <li class="nav-item px-3 lang-select ms-auto mr-0">
             <select #langSelect (change)="translate.use(langSelect.value)" class="form-control">

@@ -1,0 +1,17 @@
+<page-header></page-header>
+
+<title-bar
+  title="{{ 'titles.manage' | translate }}"
+  [management]="true">
+</title-bar>
+
+<div class="container-md pb-5 mt-3">
+  <h2>Manage page</h2>
+  <div>Go to home</div>
+  <div>List events (with edit and remove button)</div>
+  <div>Add event</div>
+  <a [routerLink]="['/event', 1, 'manage']">Sample edit event button</a>
+  <div>List people (with edit and remove button)</div>
+  <div>Add person</div>
+  <a [routerLink]="['/person', 1, 'manage']">Sample edit person button</a>
+</div>

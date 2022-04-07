@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
+import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -11,6 +11,14 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomePageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: 'manage',
+    component: ManagePageComponent
   },
   {
     path: 'event/:id',
@@ -27,6 +35,24 @@ const routes: Routes = [
       {
         path: 'modalities',
         component: EventModalitiesPageComponent
+      },
+      {
+        path: 'manage',
+        component: ManageEventPageComponent
+      }
+    ]
+  },
+  {
+    path: 'group/:id',
+    children: [
+      {
+        path: '',
+        component: ManageGroupPageComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'manage',
+        component: ManageGroupPageComponent
       }
     ]
   },
@@ -37,6 +63,10 @@ const routes: Routes = [
         path: '',
         component: ModalityPageComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'manage',
+        component: ManageModalityPageComponent
       }
     ]
   },
@@ -46,6 +76,16 @@ const routes: Routes = [
       {
         path: '',
         component: MatchPageComponent,
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'person/:id',
+    children: [
+      {
+        path: 'manage',
+        component: ManagePersonPageComponent,
         pathMatch: 'full'
       }
     ]

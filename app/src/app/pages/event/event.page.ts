@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IEvent } from 'src/app/models';
-import { EventsService, MatchesService } from 'src/app/services';
+import { AuthService, EventsService, MatchesService } from 'src/app/services';
 
 @Component({
   templateUrl: './event.page.html',
@@ -12,6 +12,7 @@ export class EventPageComponent {
   event: IEvent;
 
   constructor(
+    readonly authService: AuthService,
     private readonly eventsService: EventsService,
     private readonly matchesService: MatchesService,
     private readonly activeRoute: ActivatedRoute

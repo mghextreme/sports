@@ -13,6 +13,7 @@ export class TitleBarComponent {
   @Input('subtitleLink') subtitleLink?: any[];
   @Input('background') background?: string;
   @Input('backButton') backButton: boolean = false;
+  @Input('management') management: boolean = false;
 
   constructor(
     private readonly location: Location
