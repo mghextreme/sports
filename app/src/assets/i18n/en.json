@@ -28,10 +28,20 @@
     "final": "Final",
     "live-feed": "Live Feed"
   },
+  "feed": {
+    "match-start": "Match started",
+    "match-end": "Match ended",
+    "card-yellow": "Yellow card",
+    "card-red": "Red card",
+    "score": "GOAL!"
+  },
   "teams": {
     "tbd": "TBD",
     "group": "Group",
     "name": "Team Name"
+  },
+  "participant": {
+    "name": "Name"
   },
   "stages": {
     "matches-played": "Matches Played",

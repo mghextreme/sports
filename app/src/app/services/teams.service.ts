@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { IMatch, ITeam } from '../models';
+import { IMatch, ITeam, ITeamParticipant } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +9,31 @@ import { IMatch, ITeam } from '../models';
 export class TeamsService {
 
   constructor(
-    private readonly http: HttpClient,
-    private readonly translate: TranslateService
+    private readonly http: HttpClient
   ) { }
 
   getDefault(): ITeam {
-    const tbd = this.translate.instant('teams.tbd');
     return {
       id: 0,
-      name: tbd
+      name: ''
     };
+  }
+
+  getDefaultParticipant(): ITeamParticipant {
+    return {
+      id: 0,
+      name: '',
+      number: 0,
+      teamId: 0
+    }
   }
 
   get(id: number): Observable<IMatch> {
     return this.http.get<IMatch>(`/api/teams/${id}`);
+  }
+
+  getParticipants(id: number): Observable<ITeamParticipant[]> {
+    return this.http.get<ITeamParticipant[]>(`/api/teams/${id}/participants`);
   }
 
 }

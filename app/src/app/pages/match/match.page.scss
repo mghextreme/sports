@@ -66,3 +66,96 @@
     }
   }
 }
+
+.live-feed {
+  .feed-item {
+    .time {
+      flex: 0 0 auto;
+      width: 70px;
+    }
+
+    .line {
+      position: relative;
+      flex: 0 0 auto;
+      width: 39px;
+
+      .icon {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        top: 50%; left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        border: 1px solid #aaa;
+        background-color: white;
+        z-index: 9;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 4px; bottom: 4px;
+          left: 4px; right: 4px;
+          background: center no-repeat;
+          background-size: contain;
+        }
+
+        &.score::before { background-image: url('../../../assets/images/icon-score-football.png'); }
+        &.card-yellow::before { background-image: url('../../../assets/images/icon-card-yellow.png'); }
+        &.card-red::before { background-image: url('../../../assets/images/icon-card-red.png'); }
+
+        &.match-start,
+        &.match-end {
+          width: 5px;
+          height: 5px;
+          background-color: #aaa;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 50%;
+        width: 1px;
+        transform: translateX(-50%);
+        background-color: #aaa;
+        z-index: 5;
+      }
+    }
+
+    &:first-child {
+      .line::before {
+        bottom: 50%;
+      }
+    }
+
+    &:last-child {
+      .line::before {
+        top: 50%;
+      }
+    }
+
+    .content {
+      .action { margin-top: 1em; }
+
+      &.score .action {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .details {
+        font-size: .8em;
+
+        span { margin: 0 1em; }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .live-feed .feed-item .time > small {
+    vertical-align: .5em;
+    margin-left: .2em;
+    font-size: .6em;
+  }
+}

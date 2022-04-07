@@ -7,7 +7,7 @@
     <ul class="list-group list-group-flush">
       <li *ngFor="let team of teams" class="list-group-item">
         <span *ngIf="team.score" class="score">{{ team.score }}</span>
-        {{ team.name }}
+        {{ team.name ? team.name : ('teams.tbd' | translate) }}
       </li>
     </ul>
   </a>

@@ -55,7 +55,24 @@
       {{ 'matches.live-feed' | translate }}
     </a>
     <div class="collapse live-feed show" id="collapseLiveFeed">
-      Live feed content
+      <div class="d-flex flex-column-reverse align-content-stretch mt-2">
+        <div *ngFor="let item of feed"
+          class="feed-item d-flex align-items-center"
+          [class.team1]="item.teamId == match.teams[0].id"
+          [class.team2]="item.teamId == match.teams[1].id">
+          <div class="time text-center display-6 text-muted py-2" [innerHTML]="formatFeedTime(item.matchTime)"></div>
+          <div class="line align-self-stretch">
+            <div class="icon" [ngClass]="[item.type]"></div>
+          </div>
+          <div class="w-100 content ps-3" [ngClass]="[item.type]">
+            <div class="action">{{ 'feed.' + item.type | translate }}</div>
+            <div class="details text-muted">
+              <span class="team">{{ getTeamById(item.teamId).name }}</span>
+              <span class="participant">{{ getTeamParticipantById(item.teamParticipantId).name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -64,7 +81,36 @@
       {{ 'matches.lineups' | translate }}
     </a>
     <div class="collapse lineup" id="collapseLineup">
-      Teams lineups
+      <h5 class="mt-3 mb-0">{{ match.teams[0].name }}</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col">{{ 'participant.name' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of participantsByTeam[match.teams[0].id]" class="participant">
+            <td class="p-number text-center">{{ p.number }}</td>
+            <td class="p-name">{{ p.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h5 class="mt-3 mb-0">{{ match.teams[1].name }}</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col">{{ 'participant.name' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of participantsByTeam[match.teams[1].id]" class="participant">
+            <td class="p-number text-center">{{ p.number }}</td>
+            <td class="p-name">{{ p.name }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

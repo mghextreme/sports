@@ -9,5 +9,7 @@
   "/modalities/:id/teams": "/teams?modalityId=:id&_expand=group",
   "/stages/:id/matches": "/matches?stageId=:id&_sort=id&_order=asc",
   "/stages/:id/roundRobinRows": "/stageStandings?stageId=:id&_order=asc&_expand=team",
-  "/matches/:id/details": "/matchesWithDetails/:id"
+  "/matches/:id/details": "/matchesWithDetails/:id",
+  "/matches/:id/feed": "/matchesFeed?matchId=:id",
+  "/teams/:id/participants": "/teams/:id/persons?groupId=:id&_sort=number&_order=asc"
 }

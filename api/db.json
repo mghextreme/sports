@@ -97,12 +97,17 @@
           }
         },
         {
-          "id": 2, "score": 1002, "placing": null, "name": "Group 2",
+          "id": 2, "score": 2, "placing": null, "name": "Group 2",
           "group": {
             "id": 2, "name": "Group 2", "logo": null, "color1": "#aa2222", "color2": "#cccc44"
           }
         }
       ]
     }
+  ],
+  "matchesFeed": [
+    { "id": 1, "matchId": 1, "timestamp": "2022-04-06T10:00:00.000", "matchTime": 0, "type": "match-start", "teamId": null, "teamParticipantId": null },
+    { "id": 2, "matchId": 1, "timestamp": "2022-04-06T10:03:00.000", "matchTime": 135, "type": "score", "teamId": 1, "teamParticipantId": 1 },
+    { "id": 3, "matchId": 1, "timestamp": "2022-04-06T10:05:15.000", "matchTime": 269, "type": "card-yellow", "teamId": 2, "teamParticipantId": 2 }
   ]
 }
