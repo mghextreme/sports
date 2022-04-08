@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services';
 
@@ -7,6 +8,11 @@ import { AuthService } from 'src/app/services';
   styleUrls: ['./login.page.scss']
 })
 export class LoginPageComponent {
+
+  username: string = '';
+  password: string = '';
+
+  @ViewChild('loginForm', { static: false }) form?: NgForm;
 
   constructor(
     readonly authService: AuthService,
@@ -18,7 +24,7 @@ export class LoginPageComponent {
   }
 
   public attemptLogin() {
-    this.authService.login('admin', 'p4ssw0rd');
+    this.authService.login(this.username, this.password);
     this.router.navigate(['/manage']);
   }
 

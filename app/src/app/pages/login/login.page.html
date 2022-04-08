@@ -4,7 +4,19 @@
   title="{{ 'titles.login' | translate }}">
 </title-bar>
 
-<div class="container-md pb-5 mt-3">
-  <h2>Login page</h2>
-  <a (click)="attemptLogin()">Click to Login</a>
+<div class="container-md form-signin pb-5 mt-3">
+  <form #loginForm="ngForm" (ngSubmit)="attemptLogin()">
+    <div class="form-floating">
+      <input type="email" class="form-control rounded-0" id="username" name="username" placeholder="name@example.com" [(ngModel)]="username">
+      <label for="username">{{ 'login.email' | translate }}</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control rounded-0" id="password" name="password" placeholder="Password" [(ngModel)]="password">
+      <label for="password">{{ 'login.password' | translate }}</label>
+    </div>
+    <div class="checkbox my-3 text-center">
+      <label><input type="checkbox" value="remember-me" data-np-checked="1"> {{ 'login.remember-me' | translate }}</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary rounded-0" type="submit">{{ 'login.sign-in' | translate }}</button>
+  </form>
 </div>

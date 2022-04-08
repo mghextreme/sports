@@ -74,5 +74,11 @@
     "score-against-abbr": "SA",
     "score-delta-abbr": "SD",
     "points-abbr": "P"
+  },
+  "login": {
+    "email": "Email address",
+    "password": "Password",
+    "remember-me": "Remember me",
+    "sign-in": "Sign in"
   }
 }
