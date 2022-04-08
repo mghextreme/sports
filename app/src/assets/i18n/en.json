@@ -12,7 +12,8 @@
   "titles": {
     "events": "Events",
     "manage": "Manage",
-    "login": "Login"
+    "login": "Login",
+    "groups": "Groups"
   },
   "events": {
     "modalities": "Modalities",
@@ -38,6 +39,15 @@
     "card-yellow": "Yellow card",
     "card-red": "Red card",
     "score": "GOAL!"
+  },
+  "groups": {
+    "city": "City",
+    "colors": "Colors",
+    "primary-color": "Primary color",
+    "secondary-color": "Secondary color",
+    "participating-modalities": "Participating Modalities",
+    "modality": "Modality",
+    "result": "Result"
   },
   "teams": {
     "tbd": "TBD",

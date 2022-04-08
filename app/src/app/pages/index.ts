@@ -1,6 +1,7 @@
 export * from './event/event.page';
 export * from './event.groups/event.groups.page';
 export * from './event.modalities/event.modalities.page';
+export * from './group/group.page';
 export * from './login/login.page';
 export * from './match/match.page';
 export * from './manage/manage.page';

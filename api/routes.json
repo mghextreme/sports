@@ -11,5 +11,6 @@
   "/stages/:id/roundRobinRows": "/stageStandings?stageId=:id&_order=asc&_expand=team",
   "/matches/:id/details": "/matchesWithDetails/:id",
   "/matches/:id/feed": "/matchesFeed?matchId=:id",
-  "/teams/:id/participants": "/teams/:id/persons?groupId=:id&_sort=number&_order=asc"
+  "/teams/:id/participants": "/teams/:id/persons?groupId=:id&_sort=number&_order=asc",
+  "/groups/:id/modalities": "/teams?_expand=modality&groupId=:id"
 }

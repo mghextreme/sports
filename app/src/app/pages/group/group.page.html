@@ -1,0 +1,47 @@
+<page-header></page-header>
+
+<title-bar
+  [title]="group.name"
+  subtitle="{{ 'titles.groups' | translate }}"
+  [subtitleLink]="['/event', 1, 'groups']"
+  [backButton]="true">
+</title-bar>
+
+<div class="container-md pb-5 mt-3">
+  <div class="row">
+    <div class="col-auto group-symbol me-3">
+      <img [src]="group.logo ?? '../../../assets/images/default-symbol.png'" alt="" />
+    </div>
+    <div class="col group-content">
+      <h4 class="fs-5">{{ 'groups.city' | translate }}</h4>
+      <div class="city">{{ group.city }}</div>
+      <h4 class="fs-5 mt-3">{{ 'groups.colors' | translate }}</h4>
+      <div class="colors row">
+        <div class="col">
+          <h5 class="fs-6">{{ 'groups.primary-color' | translate }}</h5>
+          <div class="color-fill p-2" [style]="{ 'background-color': group.color1 }"></div>
+        </div>
+        <div class="col">
+          <h5 class="fs-6">{{ 'groups.secondary-color' | translate }}</h5>
+          <div class="color-fill p-2" [style]="{ 'background-color': group.color2 }"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="fs-4 mt-4">{{ 'groups.participating-modalities' | translate }}</h3>
+  <table class="table table-hover modalities">
+    <thead>
+      <tr>
+        <th scope="col">{{ 'groups.modality' | translate }}</th>
+        <th scope="col" class="text-center">{{ 'groups.result' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of modalities" class="modality">
+        <td class="m-number">{{ m.name }}</td>
+        <td class="m-name text-center">1º</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

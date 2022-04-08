@@ -1,4 +1,5 @@
 import { IGroup } from "./group.interface";
+import { IModality } from "./modality.interface";
 
 export interface ITeam {
   id: number;
@@ -7,4 +8,5 @@ export interface ITeam {
   seed?: number;
   score?: number;
   placing?: number;
+  modality?: IModality;
 }
