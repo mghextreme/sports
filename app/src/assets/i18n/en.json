@@ -81,12 +81,26 @@
     "sign-in": "Sign in"
   },
   "go-to": {
-    "home-page": "Go to Home page"
+    "home-page": "Go to Home page",
+    "event-page": "Go to Event page"
   },
   "manage": {
     "events": "Events",
+    "event-details": "Event details",
     "add-event": "Add event",
     "people": "People",
-    "add-person": "Add person"
+    "add-person": "Add person",
+    "modalities": "Modalities",
+    "add-modality": "Add modality",
+    "groups": "Groups",
+    "add-group": "Add group",
+    "submit": "Submit",
+    "event-form": {
+      "name": "Name",
+      "city": "City",
+      "date-start": "Starting Date",
+      "date-end": "End Date",
+      "logo": "Logo"
+    }
   }
 }

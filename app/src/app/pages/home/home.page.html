@@ -7,7 +7,7 @@
     <div *ngFor="let item of events" class="col-sm-6 col-lg-4 col-xl-3">
       <div class="card">
         <a [routerLink]="['/event', item.id]">
-          <img src="https://dummyimage.com/480x360/000/fff.png" class="card-img-top">
+          <img *ngIf="item.logo" src="{{ item.logo }}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">
