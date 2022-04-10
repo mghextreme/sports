@@ -82,7 +82,8 @@
   },
   "go-to": {
     "home-page": "Go to Home page",
-    "event-page": "Go to Event page"
+    "event-page": "Go to Event page",
+    "group-page": "Go to Group page"
   },
   "manage": {
     "events": "Events",
@@ -93,13 +94,23 @@
     "modalities": "Modalities",
     "add-modality": "Add modality",
     "groups": "Groups",
+    "group-details": "Group details",
     "add-group": "Add group",
+    "members": "Members",
+    "add-member": "Add member",
     "submit": "Submit",
     "event-form": {
       "name": "Name",
-      "city": "City",
+      "location": "Location",
       "date-start": "Starting Date",
       "date-end": "End Date",
+      "logo": "Logo"
+    },
+    "group-form": {
+      "name": "Name",
+      "city": "City",
+      "color-1": "Primary Color",
+      "color-2": "Secondary Color",
       "logo": "Logo"
     }
   }

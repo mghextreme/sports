@@ -1,15 +1,52 @@
 <page-header></page-header>
 
 <title-bar
-  title="Group name here"
+  [title]="group.name"
   [backButton]="true"
   [management]="true">
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
-  <h2>Manage Group page</h2>
-  <div>Go to group</div>
-  <div>Group details (name, city, colors, image)</div>
-  <div>List members (with edit and remove button)</div>
-  <div>Add member (with option to create people if not exists - modal)</div>
+  <div class="buttons mt-2">
+    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/group', group.id]">{{ 'go-to.group-page' | translate }}</button>
+  </div>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.group-details' | translate }}</h2>
+  <form class="details">
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ 'manage.group-form.name' | translate }}</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="group.name">
+    </div>
+    <div class="mb-3">
+      <label for="city" class="form-label">{{ 'manage.group-form.city' | translate }}</label>
+      <input type="text" class="form-control" id="city" name="city" [(ngModel)]="group.city">
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="color1" class="form-label">{{ 'manage.group-form.color-1' | translate }}</label>
+        <input type="color" class="form-control form-control-color w-100" id="color1" name="color1" [(ngModel)]="group.color1" value="#000000">
+      </div>
+      <div class="col">
+        <label for="color2" class="form-label">{{ 'manage.group-form.color-2' | translate }}</label>
+        <input type="color" class="form-control form-control-color w-100" id="color2" name="color2" [(ngModel)]="group.color2" value="#ffffff">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="logo" class="form-label">{{ 'manage.group-form.logo' | translate }}</label>
+      <input class="form-control" type="file" id="logo" name="logo" [(ngModel)]="group.logo">
+    </div>
+    <div class="buttons mt-2 text-end">
+      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+    </div>
+  </form>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.members' | translate }}</h2>
+  <div class="members">
+    <ul class="list-group list-group-flush">
+      <a *ngFor="let member of members" [routerLink]="['/person', member.id, 'manage']" class="list-group-item list-group-item-action">{{ member.name }}</a>
+    </ul>
+    <div class="buttons mt-2 text-end">
+      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-member' | translate }}</button>
+    </div>
+  </div>
 </div>

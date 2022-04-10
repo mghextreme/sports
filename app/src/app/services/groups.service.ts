@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IGroup, IModality, ITeam } from '../models';
+import { IGroup, IModality, IPerson, ITeam } from '../models';
 import { ModalitiesService } from './modalities.service';
 
 @Injectable({
@@ -27,6 +27,10 @@ export class GroupsService {
 
   get(id: number): Observable<IGroup> {
     return this.http.get<IGroup>(`/api/groups/${id}`);
+  }
+
+  getMembers(id: number): Observable<IPerson[]> {
+    return this.http.get<IPerson[]>(`/api/groups/${id}/members`);
   }
 
   getModalities(id: number): Observable<IModality[]> {
