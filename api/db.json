@@ -22,8 +22,8 @@
     { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png" }
   ],
   "modalities": [
-    { "id": 1, "sportId": 1, "eventId": 1, "name": "Men's Football", "maxTeamSize": null, "maxParticipantsPerGroup": 1, "finished": false },
-    { "id": 2, "sportId": 4, "eventId": 1, "name": "Men's Running - 3km", "maxTeamSize": 1, "maxParticipantsPerGroup": 4, "finished": false }
+    { "id": 1, "sportId": 1, "eventId": 1, "name": "Men's Football", "maxTeamSize": null, "maxTeamsPerGroup": 1, "finished": false },
+    { "id": 2, "sportId": 4, "eventId": 1, "name": "Men's Running - 3km", "maxTeamSize": 1, "maxTeamsPerGroup": 4, "finished": false }
   ],
   "teams": [
     { "id": 1, "modalityId": 1, "groupId": 1, "name": "Group 1" },
@@ -84,7 +84,7 @@
         "id": 1, "order": 1, "maxTeams": 4, "name": "Grupo A", "mode": "round", "started": true, "finished": true
       },
       "modality": {
-        "id": 1, "name": "Men's Football", "maxParticipantsPerGroup": 1, "finished": false,
+        "id": 1, "name": "Men's Football", "maxTeamsPerGroup": 1, "finished": false,
         "sport": {
           "id": 1, "code": "football"
         }

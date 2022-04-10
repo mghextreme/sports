@@ -83,7 +83,8 @@
   "go-to": {
     "home-page": "Go to Home page",
     "event-page": "Go to Event page",
-    "group-page": "Go to Group page"
+    "group-page": "Go to Group page",
+    "modality-page": "Go to Modality page"
   },
   "manage": {
     "events": "Events",
@@ -92,12 +93,19 @@
     "people": "People",
     "add-person": "Add person",
     "modalities": "Modalities",
+    "modality-details": "Modality details",
     "add-modality": "Add modality",
     "groups": "Groups",
     "group-details": "Group details",
     "add-group": "Add group",
     "members": "Members",
     "add-member": "Add member",
+    "stages": "Stages",
+    "stage-details": "Stage details",
+    "add-stage": "Add stage",
+    "teams": "Teams",
+    "team-details": "Team details",
+    "add-team": "Add team",
     "submit": "Submit",
     "event-form": {
       "name": "Name",
@@ -112,6 +120,12 @@
       "color-1": "Primary Color",
       "color-2": "Secondary Color",
       "logo": "Logo"
+    },
+    "modality-form": {
+      "name": "Name",
+      "sport": "Sport",
+      "max-team-size": "Max Team size",
+      "max-teams-per-group": "Max Teams per Group"
     }
   }
 }

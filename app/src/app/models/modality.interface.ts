@@ -6,6 +6,7 @@ export interface IModality {
   name: string;
   sport: ISport;
   finished: boolean;
-  maxParticipantsPerGroup: number;
+  maxTeamSize?: number;
+  maxTeamsPerGroup: number;
   event?: IEvent;
 }

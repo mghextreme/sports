@@ -19,7 +19,7 @@ export class ModalitiesService {
         code: ''
       },
       finished: false,
-      maxParticipantsPerGroup: 1
+      maxTeamsPerGroup: 1
     };
   }
 

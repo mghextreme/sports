@@ -1,17 +1,63 @@
 <page-header></page-header>
 
 <title-bar
-  title="Modality name here"
+  [title]="modality.name"
   [backButton]="true"
   [management]="true">
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
-  <h2>Manage Modality page</h2>
-  <div>Go to modality</div>
-  <div>Modality details (sport, name, maxTeamSize, maxParticipantsPerGroup)</div>
-  <div>List stages (with edit - modal - and remove button)</div>
-  <div>Add stage (modal)</div>
-  <div>List teams (with edit - modal - and remove button)</div>
-  <div>Add team (set group, name and members - modal)</div>
+  <div class="buttons mt-2">
+    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/modality', modality.id]">{{ 'go-to.modality-page' | translate }}</button>
+  </div>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.modality-details' | translate }}</h2>
+  <form class="details">
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ 'manage.modality-form.name' | translate }}</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modality.name">
+    </div>
+    <div class="mb-3">
+      <label for="sport" class="form-label">{{ 'manage.modality-form.sport' | translate }}</label>
+      <select class="form-select" id="sport" name="sport" [(ngModel)]="modality.sport">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="max-team-size" class="form-label">{{ 'manage.modality-form.max-team-size' | translate }}</label>
+        <input type="number" class="form-control" id="max-team-size" name="max-team-size" [(ngModel)]="modality.maxTeamSize">
+      </div>
+      <div class="col">
+        <label for="max-teams-per-group" class="form-label">{{ 'manage.modality-form.max-teams-per-group' | translate }}</label>
+        <input type="number" class="form-control" id="max-teams-per-group" name="max-teams-per-group" [(ngModel)]="modality.maxTeamsPerGroup">
+      </div>
+    </div>
+    <div class="buttons mt-2 text-end">
+      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+    </div>
+  </form>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.stages' | translate }}</h2>
+  <div class="stages">
+    <ul class="list-group list-group-flush">
+      <a *ngFor="let stage of stages" class="list-group-item list-group-item-action">{{ stage.name }}</a>
+    </ul>
+    <div class="buttons mt-2 text-end">
+      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-stage' | translate }}</button>
+    </div>
+  </div>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.teams' | translate }}</h2>
+  <div class="teams">
+    <ul class="list-group list-group-flush">
+      <a *ngFor="let team of teams" class="list-group-item list-group-item-action">{{ team.name }}</a>
+    </ul>
+    <div class="buttons mt-2 text-end">
+      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-team' | translate }}</button>
+    </div>
+  </div>
 </div>

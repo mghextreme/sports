@@ -38,7 +38,7 @@ export class MatchesService {
       modality: {
         id: 0,
         finished: false,
-        maxParticipantsPerGroup: 1,
+        maxTeamsPerGroup: 1,
         name: '',
         sport: {
           id: 0,
