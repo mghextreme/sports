@@ -7,8 +7,8 @@
 
 <div class="container-md pb-5 mt-3">
   <div class="buttons mt-2">
-    <button type="button" class="btn btn-primary me-2" [routerLink]="['/event', event.id, 'modalities']">{{ 'events.modalities' | translate }}</button>
-    <button type="button" class="btn btn-success me-2" [routerLink]="['/event', event.id, 'groups']">{{ 'events.groups' | translate }}</button>
-    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-warning me-2" [routerLink]="['/event', event.id, 'manage']">{{ 'events.manage' | translate }}</button>
+    <button type="button" class="btn btn-primary rounded-0 me-2" [routerLink]="['/event', event.id, 'modalities']">{{ 'events.modalities' | translate }}</button>
+    <button type="button" class="btn btn-success rounded-0 me-2" [routerLink]="['/event', event.id, 'groups']">{{ 'events.groups' | translate }}</button>
+    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-warning rounded-0 me-2" [routerLink]="['/event', event.id, 'manage']">{{ 'events.manage' | translate }}</button>
   </div>
 </div>

@@ -6,12 +6,27 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
-  <h2>Manage page</h2>
-  <div>Go to home</div>
-  <div>List events (with edit and remove button)</div>
-  <div>Add event</div>
-  <a [routerLink]="['/event', 1, 'manage']">Sample edit event button</a>
-  <div>List people (with edit and remove button)</div>
-  <div>Add person</div>
-  <a [routerLink]="['/person', 1, 'manage']">Sample edit person button</a>
+  <div class="buttons mt-2">
+    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/home']">{{ 'go-to.home-page' | translate }}</button>
+  </div>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.events' | translate }}</h2>
+  <div class="events">
+    <ul class="list-group list-group-flush">
+      <a *ngFor="let event of events" [routerLink]="['/event', event.id, 'manage']" class="list-group-item list-group-item-action">{{ event.name }}</a>
+    </ul>
+    <div class="buttons mt-2 text-end">
+      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-event' | translate }}</button>
+    </div>
+  </div>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.people' | translate }}</h2>
+  <div class="people">
+    <ul class="list-group list-group-flush">
+      <a *ngFor="let person of people" [routerLink]="['/person', person.id, 'manage']" class="list-group-item list-group-item-action">{{ person.name }}</a>
+    </ul>
+    <div class="buttons mt-2 text-end">
+      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-person' | translate }}</button>
+    </div>
+  </div>
 </div>

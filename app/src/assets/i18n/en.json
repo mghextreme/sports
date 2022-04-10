@@ -17,7 +17,6 @@
   },
   "events": {
     "modalities": "Modalities",
-    "manage": "Manage",
     "groups": "Groups"
   },
   "modalities": {
@@ -80,5 +79,14 @@
     "password": "Password",
     "remember-me": "Remember me",
     "sign-in": "Sign in"
+  },
+  "go-to": {
+    "home-page": "Go to Home page"
+  },
+  "manage": {
+    "events": "Events",
+    "add-event": "Add event",
+    "people": "People",
+    "add-person": "Add person"
   }
 }
