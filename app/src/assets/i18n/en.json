@@ -21,6 +21,11 @@
     "basketball": "Basketball",
     "running": "Running"
   },
+  "genders": {
+    "m": "Male",
+    "f": "Female",
+    "": "Non specified"
+  },
   "events": {
     "modalities": "Modalities",
     "groups": "Groups"
@@ -97,6 +102,7 @@
     "event-details": "Event details",
     "add-event": "Add event",
     "people": "People",
+    "person-details": "Person details",
     "add-person": "Add person",
     "modalities": "Modalities",
     "modality-details": "Modality details",
@@ -133,6 +139,13 @@
       "max-team-size": "Max Team size",
       "max-teams-per-group": "Max Teams per Group",
       "select-sport": "Select Sport"
+    },
+    "person-form": {
+      "name": "Name",
+      "email": "Email",
+      "document": "Document",
+      "gender": "Gender",
+      "date-of-birth": "Date of Birth"
     }
   }
 }
