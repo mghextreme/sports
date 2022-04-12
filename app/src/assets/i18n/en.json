@@ -15,6 +15,12 @@
     "login": "Login",
     "groups": "Groups"
   },
+  "sports": {
+    "football": "Football",
+    "volleyball": "Volleyball",
+    "basketball": "Basketball",
+    "running": "Running"
+  },
   "events": {
     "modalities": "Modalities",
     "groups": "Groups"
@@ -125,7 +131,8 @@
       "name": "Name",
       "sport": "Sport",
       "max-team-size": "Max Team size",
-      "max-teams-per-group": "Max Teams per Group"
+      "max-teams-per-group": "Max Teams per Group",
+      "select-sport": "Select Sport"
     }
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMatch, IModality, IStage, ITeam } from '../models';
+import { IMatch, IModality, ISport, IStage, ITeam } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,10 @@ export class ModalitiesService {
 
   getTeams(id: number): Observable<ITeam[]> {
     return this.http.get<ITeam[]>(`/api/modalities/${id}/teams`);
+  }
+
+  getSports(): Observable<ISport[]> {
+    return this.http.get<ISport[]>(`/api/sports`);
   }
 
 }

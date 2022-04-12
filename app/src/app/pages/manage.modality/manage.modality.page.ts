@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IModality, IStage, ITeam } from 'src/app/models';
+import { IModality, ISport, IStage, ITeam } from 'src/app/models';
 import { AuthService, ModalitiesService } from 'src/app/services';
 
 @Component({
@@ -12,6 +12,7 @@ export class ManageModalityPageComponent {
   modality: IModality;
   stages: IStage[];
   teams: ITeam[];
+  sports: ISport[];
 
   constructor(
     readonly authService: AuthService,
@@ -26,6 +27,7 @@ export class ManageModalityPageComponent {
     this.modality = this.modalitiesService.getDefault();
     this.stages = [];
     this.teams = [];
+    this.sports = [];
 
     const modalityId = this.activeRoute.snapshot.params['id'];
     this.modalitiesService.get(modalityId).subscribe(modality => {
@@ -36,6 +38,9 @@ export class ManageModalityPageComponent {
     });
     this.modalitiesService.getTeams(modalityId).subscribe(teams => {
       this.teams = teams;
+    });
+    this.modalitiesService.getSports().subscribe(sports => {
+      this.sports = sports;
     });
   }
 
