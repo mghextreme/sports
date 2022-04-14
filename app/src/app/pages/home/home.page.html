@@ -11,7 +11,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">
-              {{ item.startDate }} - {{ item.endDate }}<br/>
+              {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate | date:'dd/MM/yyyy' }}<br/>
               {{ item.location }}
             </p>
           </div>
