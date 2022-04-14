@@ -24,11 +24,11 @@
     <div class="row mb-3">
       <div class="col">
         <label for="date-start" class="form-label">{{ 'manage.event-form.date-start' | translate }}</label>
-        <input type="text" class="form-control" id="date-start" name="date-start" [(ngModel)]="event.startDate">
+        <p-calendar id="date-start" name="date-start" [(ngModel)]="event.startDate" dateFormat="dd/mm/yy" [touchUI]="true"></p-calendar>
       </div>
       <div class="col">
         <label for="date-end" class="form-label">{{ 'manage.event-form.date-end' | translate }}</label>
-        <input type="text" class="form-control" id="date-end" name="date-end" [(ngModel)]="event.endDate">
+        <p-calendar id="date-end" name="date-end" [(ngModel)]="event.endDate" dateFormat="dd/mm/yy" [touchUI]="true"></p-calendar>
       </div>
     </div>
     <div class="mb-3">

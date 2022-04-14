@@ -23,7 +23,7 @@
     </div>
     <div class="mb-3">
       <label for="date-of-birth" class="form-label">{{ 'manage.person-form.date-of-birth' | translate }}</label>
-      <input type="text" class="form-control" id="date-of-birth" name="date-of-birth" [(ngModel)]="person.dateOfBirth">
+      <p-calendar id="date-of-birth" name="date-of-birth" [(ngModel)]="person.dateOfBirth" dateFormat="dd/mm/yy" [touchUI]="true"></p-calendar>
     </div>
     <div class="mb-3">
       <label for="gender" class="form-label">{{ 'manage.person-form.gender' | translate }}</label>

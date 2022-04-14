@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IEvent, IGroup, IModality } from '../models';
 
 @Injectable({
@@ -22,11 +22,23 @@ export class EventsService {
   }
 
   getAll(): Observable<IEvent[]> {
-    return this.http.get<IEvent[]>('/api/events');
+    return this.http.get<IEvent[]>('/api/events')
+      .pipe(map(events => {
+        events.forEach(event => {
+          event.startDate = new Date(event.startDate.toString());
+          event.endDate = new Date(event.endDate.toString());
+        });
+        return events;
+      }));
   }
 
   get(id: number): Observable<IEvent> {
-    return this.http.get<IEvent>(`/api/events/${id}`);
+    return this.http.get<IEvent>(`/api/events/${id}`)
+      .pipe(map(event => {
+        event.startDate = new Date(event.startDate.toString());
+        event.endDate = new Date(event.endDate.toString());
+        return event;
+      }));
   }
 
   getModalities(id: number): Observable<IModality[]> {

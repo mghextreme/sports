@@ -1,0 +1,15 @@
+::ng-deep {
+  .form-check.form-switch {
+    input.form-check-input {
+      cursor: pointer;
+    }
+  }
+
+  p-calendar {
+    display: block;
+
+    .p-calendar {
+      display: flex;
+    }
+  }
+}

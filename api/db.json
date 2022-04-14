@@ -6,7 +6,7 @@
   ],
   "persons": [
     { "id": 1, "name": "Matias Henschel", "email": "email@sample.com", "dateOfBirth": null, "gender": "m", "groupId": 1, "document": "012.345.678-90", "number": 64 },
-    { "id": 2, "name": "Other Guy", "email": null, "dateOfBirth": "1993-02-18", "gender": "", "groupId": 2, "document": null, "number": 9 }
+    { "id": 2, "name": "Other Guy", "email": null, "dateOfBirth": "1993-02-18T00:00:00.000Z", "gender": "", "groupId": 2, "document": null, "number": 9 }
   ],
   "groups": [
     { "id": 1, "name": "Group 1", "city": "City - SC", "logo": null, "color1": "#0000bb", "color2": "#ffffff" },
@@ -19,7 +19,7 @@
     { "id": 4, "code": "running", "teamsPerMatch": null }
   ],
   "events": [
-    { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png", "public": true }
+    { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18T00:00:00.000Z", "endDate": "2023-02-21T00:00:00.000Z", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png", "public": true }
   ],
   "modalities": [
     { "id": 1, "sportId": 1, "eventId": 1, "name": "Men's Football", "maxTeamSize": null, "maxTeamsPerGroup": 1, "finished": false },
