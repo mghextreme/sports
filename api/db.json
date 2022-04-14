@@ -1,9 +1,4 @@
 {
-  "genders": [
-    { "id": "M", "code": "Male" },
-    { "id": "F", "code": "Female" },
-    { "id": "U", "code": "Unidentified" }
-  ],
   "persons": [
     { "id": 1, "name": "Matias Henschel", "email": "email@sample.com", "dateOfBirth": null, "gender": "m", "groupId": 1, "document": "012.345.678-90", "number": 64 },
     { "id": 2, "name": "Other Guy", "email": null, "dateOfBirth": "1993-02-18T00:00:00.000Z", "gender": "", "groupId": 2, "document": null, "number": 9 }
