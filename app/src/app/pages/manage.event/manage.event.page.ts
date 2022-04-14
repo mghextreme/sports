@@ -9,6 +9,8 @@ import { AuthService, EventsService, GroupsService, ModalitiesService } from 'sr
 })
 export class ManageEventPageComponent {
 
+  isNew = false;
+
   event: IEvent;
   modalities: IModality[];
   groups: IGroup[];
@@ -27,16 +29,21 @@ export class ManageEventPageComponent {
     this.modalities = [];
     this.groups = [];
 
-    const eventId = this.activeRoute.snapshot.params['id'];
-    this.eventsService.get(eventId).subscribe(event => {
-      this.event = event;
-    });
-    this.eventsService.getModalities(eventId).subscribe(modalities => {
-      this.modalities = modalities;
-    });
-    this.eventsService.getGroups(eventId).subscribe(groups => {
-      this.groups = groups;
-    });
+    const newEvent = this.activeRoute.snapshot.data['new'];
+    if (newEvent === true) {
+      this.isNew = true;
+    } else {
+      const eventId = this.activeRoute.snapshot.params['id'];
+      this.eventsService.get(eventId).subscribe(event => {
+        this.event = event;
+      });
+      this.eventsService.getModalities(eventId).subscribe(modalities => {
+        this.modalities = modalities;
+      });
+      this.eventsService.getGroups(eventId).subscribe(groups => {
+        this.groups = groups;
+      });
+    }
   }
 
 }

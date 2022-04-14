@@ -21,24 +21,35 @@ const routes: Routes = [
     component: ManagePageComponent
   },
   {
-    path: 'event/:id',
+    path: 'event',
     children: [
       {
-        path: '',
-        component: EventPageComponent,
+        path: 'new',
+        data: { new: true },
+        component: ManageEventPageComponent,
         pathMatch: 'full'
       },
       {
-        path: 'groups',
-        component: EventGroupsPageComponent
-      },
-      {
-        path: 'modalities',
-        component: EventModalitiesPageComponent
-      },
-      {
-        path: 'manage',
-        component: ManageEventPageComponent
+        path: ':id',
+        children: [
+          {
+            path: '',
+            component: EventPageComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: 'groups',
+            component: EventGroupsPageComponent
+          },
+          {
+            path: 'modalities',
+            component: EventModalitiesPageComponent
+          },
+          {
+            path: 'manage',
+            component: ManageEventPageComponent
+          }
+        ]
       }
     ]
   },

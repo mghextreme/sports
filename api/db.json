@@ -19,7 +19,7 @@
     { "id": 4, "code": "running", "teamsPerMatch": null }
   ],
   "events": [
-    { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png" }
+    { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18", "endDate": "2023-02-21", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png", "public": true }
   ],
   "modalities": [
     { "id": 1, "sportId": 1, "eventId": 1, "name": "Men's Football", "maxTeamSize": null, "maxTeamsPerGroup": 1, "finished": false },

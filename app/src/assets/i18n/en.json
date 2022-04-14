@@ -101,6 +101,7 @@
     "events": "Events",
     "event-details": "Event details",
     "add-event": "Add event",
+    "new-event": "New event",
     "people": "People",
     "person-details": "Person details",
     "add-person": "Add person",
@@ -124,7 +125,9 @@
       "location": "Location",
       "date-start": "Starting Date",
       "date-end": "End Date",
-      "logo": "Logo"
+      "logo": "Logo",
+      "public": "Public",
+      "public-description": "Allows any website user to see details from event"
     },
     "group-form": {
       "name": "Name",

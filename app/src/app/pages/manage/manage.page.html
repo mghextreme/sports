@@ -16,7 +16,7 @@
       <a *ngFor="let event of events" [routerLink]="['/event', event.id, 'manage']" class="list-group-item list-group-item-action">{{ event.name }}</a>
     </ul>
     <div class="buttons mt-2 text-end">
-      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-event' | translate }}</button>
+      <button type="button" class="btn btn-success rounded-0" [routerLink]="['/event', 'new']">{{ 'manage.add-event' | translate }}</button>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
       <a *ngFor="let person of people" [routerLink]="['/person', person.id, 'manage']" class="list-group-item list-group-item-action">{{ person.name }}</a>
     </ul>
     <div class="buttons mt-2 text-end">
-      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-person' | translate }}</button>
+      <button type="button" class="btn btn-success rounded-0" [routerLink]="['/person', 'new']">{{ 'manage.add-person' | translate }}</button>
     </div>
   </div>
 </div>

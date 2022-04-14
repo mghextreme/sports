@@ -16,7 +16,8 @@ export class EventsService {
       name: '',
       startDate: new Date(),
       endDate: new Date(),
-      location: ''
+      location: '',
+      public: false
     };
   }
 
