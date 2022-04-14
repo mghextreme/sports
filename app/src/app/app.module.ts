@@ -5,7 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ConfirmationService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +45,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     CalendarModule,
+    ConfirmDialogModule,
     FormsModule,
+    TableModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -53,7 +58,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
