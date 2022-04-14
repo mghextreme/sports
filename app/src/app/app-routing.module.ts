@@ -30,6 +30,12 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'new-modality',
+        data: { new: true },
+        component: ManageModalityPageComponent,
+        pathMatch: 'full'
+      },
+      {
         path: ':id',
         children: [
           {

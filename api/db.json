@@ -16,7 +16,8 @@
     { "id": 1, "code": "football", "teamsPerMatch": 2 },
     { "id": 2, "code": "volleyball", "teamsPerMatch": 2 },
     { "id": 3, "code": "basketball", "teamsPerMatch": 2 },
-    { "id": 4, "code": "running", "teamsPerMatch": null }
+    { "id": 4, "code": "running", "teamsPerMatch": null },
+    { "id": 5, "code": "table-tennis", "teamsPerMatch": null }
   ],
   "events": [
     { "id": 1, "name": "Congress 2023", "location": "City - SC", "startDate": "2023-02-18T00:00:00.000Z", "endDate": "2023-02-21T00:00:00.000Z", "lang": "pt", "logo": "https://dummyimage.com/480x360/000/fff.png", "public": true }

@@ -1,14 +1,14 @@
 <page-header></page-header>
 
 <title-bar
-  [title]="modality.name"
+  title="{{ isNew ? ('manage.new-modality' | translate) : modality.name }}"
   [backButton]="true"
   [management]="true">
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
   <div class="buttons mt-2">
-    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/modality', modality.id]">{{ 'go-to.modality-page' | translate }}</button>
+    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/event', modality.event.id, 'modality', modality.id]">{{ 'go-to.modality-page' | translate }}</button>
   </div>
 
   <h2 class="mt-3 fs-4">{{ 'manage.modality-details' | translate }}</h2>
@@ -39,8 +39,8 @@
     </div>
   </form>
 
-  <h2 class="mt-3 fs-4">{{ 'manage.stages' | translate }}</h2>
-  <div class="stages">
+  <div *ngIf="!isNew" class="mt-3 stages">
+    <h2 class="fs-4">{{ 'manage.stages' | translate }}</h2>
     <ul class="list-group list-group-flush">
       <a *ngFor="let stage of stages" class="list-group-item list-group-item-action">{{ stage.name }}</a>
     </ul>
@@ -49,8 +49,8 @@
     </div>
   </div>
 
-  <h2 class="mt-3 fs-4">{{ 'manage.teams' | translate }}</h2>
-  <div class="teams">
+  <div *ngIf="!isNew" class="mt-3 teams">
+    <h2 class="fs-4">{{ 'manage.teams' | translate }}</h2>
     <ul class="list-group list-group-flush">
       <a *ngFor="let team of teams" class="list-group-item list-group-item-action">{{ team.name }}</a>
     </ul>

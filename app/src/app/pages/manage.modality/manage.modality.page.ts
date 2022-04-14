@@ -9,6 +9,8 @@ import { AuthService, ModalitiesService } from 'src/app/services';
 })
 export class ManageModalityPageComponent {
 
+  isNew = false;
+
   modality: IModality;
   stages: IStage[];
   teams: ITeam[];
@@ -29,19 +31,25 @@ export class ManageModalityPageComponent {
     this.teams = [];
     this.sports = [];
 
-    const modalityId = this.activeRoute.snapshot.params['id'];
-    this.modalitiesService.get(modalityId).subscribe(modality => {
-      this.modality = modality;
-    });
-    this.modalitiesService.getStages(modalityId).subscribe(stages => {
-      this.stages = stages;
-    });
-    this.modalitiesService.getTeams(modalityId).subscribe(teams => {
-      this.teams = teams;
-    });
     this.modalitiesService.getSports().subscribe(sports => {
       this.sports = sports;
     });
+
+    const newEvent = this.activeRoute.snapshot.data['new'];
+    if (newEvent === true) {
+      this.isNew = true;
+    } else {
+      const modalityId = this.activeRoute.snapshot.params['id'];
+      this.modalitiesService.get(modalityId).subscribe(modality => {
+        this.modality = modality;
+      });
+      this.modalitiesService.getStages(modalityId).subscribe(stages => {
+        this.stages = stages;
+      });
+      this.modalitiesService.getTeams(modalityId).subscribe(teams => {
+        this.teams = teams;
+      });
+    }
   }
 
 }

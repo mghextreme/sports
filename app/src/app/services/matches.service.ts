@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDetailedMatch, IMatch, IMatchFeedItem, StageMode } from '../models';
+import { ModalitiesService } from './modalities.service';
 import { TeamsService } from './teams.service';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class MatchesService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly teams: TeamsService
+    private readonly teams: TeamsService,
+    private readonly modalities: ModalitiesService
   ) { }
 
   getDefault(): IMatch {
@@ -35,16 +37,7 @@ export class MatchesService {
         this.teams.getDefault(),
         this.teams.getDefault()
       ],
-      modality: {
-        id: 0,
-        finished: false,
-        maxTeamsPerGroup: 1,
-        name: '',
-        sport: {
-          id: 0,
-          code: ''
-        }
-      },
+      modality: this.modalities.getDefault(),
       stage: {
         id: 0,
         started: false,

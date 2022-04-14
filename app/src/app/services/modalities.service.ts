@@ -2,13 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IMatch, IModality, ISport, IStage, ITeam } from '../models';
+import { EventsService } from './events.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalitiesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private readonly events: EventsService
+  ) { }
 
   getDefault(): IModality {
     return {
@@ -19,7 +23,8 @@ export class ModalitiesService {
         code: ''
       },
       finished: false,
-      maxTeamsPerGroup: 1
+      maxTeamsPerGroup: 1,
+      event: this.events.getDefault()
     };
   }
 
