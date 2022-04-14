@@ -30,12 +30,6 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'new-modality',
-        data: { new: true },
-        component: ManageModalityPageComponent,
-        pathMatch: 'full'
-      },
-      {
         path: ':id',
         children: [
           {
@@ -54,6 +48,16 @@ const routes: Routes = [
           {
             path: 'manage',
             component: ManageEventPageComponent
+          },
+          {
+            path: 'new-modality',
+            data: { new: true },
+            component: ManageModalityPageComponent
+          },
+          {
+            path: 'new-group',
+            data: { new: true },
+            component: ManageGroupPageComponent
           }
         ]
       }

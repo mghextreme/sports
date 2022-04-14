@@ -17,7 +17,9 @@ export class GroupsService {
   getDefault(): IGroup {
     return {
       id: 0,
-      name: ''
+      name: '',
+      color1: '#000000',
+      color2: '#ffffff'
     };
   }
 

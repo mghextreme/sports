@@ -7,7 +7,7 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
-  <div class="buttons mt-2">
+  <div *ngIf="!isNew" class="buttons mt-2">
     <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/event', event.id]">{{ 'go-to.event-page' | translate }}</button>
   </div>
 
@@ -63,7 +63,7 @@
       <a *ngFor="let group of groups" [routerLink]="['/group', group.id, 'manage']" class="list-group-item list-group-item-action">{{ group.name }}</a>
     </ul>
     <div class="buttons mt-2 text-end">
-      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-group' | translate }}</button>
+      <button type="button" class="btn btn-success rounded-0" [routerLink]="['/event', event.id, 'new-group']">{{ 'manage.add-group' | translate }}</button>
     </div>
   </div>
 </div>

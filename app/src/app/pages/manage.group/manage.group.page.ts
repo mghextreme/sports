@@ -9,6 +9,8 @@ import { AuthService, GroupsService } from 'src/app/services';
 })
 export class ManageGroupPageComponent {
 
+  isNew = false;
+
   group: IGroup;
   members: IPerson[];
 
@@ -25,13 +27,18 @@ export class ManageGroupPageComponent {
     this.group = this.groupsService.getDefault();
     this.members = [];
 
-    const groupId = this.activeRoute.snapshot.params['id'];
-    this.groupsService.get(groupId).subscribe(group => {
-      this.group = group;
-    });
-    this.groupsService.getMembers(groupId).subscribe(members => {
-      this.members = members;
-    });
+    const newEvent = this.activeRoute.snapshot.data['new'];
+    if (newEvent === true) {
+      this.isNew = true;
+    } else {
+      const groupId = this.activeRoute.snapshot.params['id'];
+      this.groupsService.get(groupId).subscribe(group => {
+        this.group = group;
+      });
+      this.groupsService.getMembers(groupId).subscribe(members => {
+        this.members = members;
+      });
+    }
   }
 
 }
