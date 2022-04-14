@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IMatch, IModality, IStage, ITeam } from 'src/app/models';
-import { ModalitiesService } from 'src/app/services';
+import { AuthService, ModalitiesService } from 'src/app/services';
 
 @Component({
   templateUrl: './modality.page.html',
@@ -16,6 +16,7 @@ export class ModalityPageComponent {
   teams: ITeam[];
 
   constructor(
+    readonly authService: AuthService,
     private readonly modalitiesService: ModalitiesService,
     private readonly activeRoute: ActivatedRoute
   ) {

@@ -134,7 +134,7 @@
       "date-end": "End Date",
       "logo": "Logo",
       "public": "Public",
-      "public-description": "Allows any website user to see details from event"
+      "public-description": "Allows any user to see details from event"
     },
     "group-form": {
       "name": "Name",

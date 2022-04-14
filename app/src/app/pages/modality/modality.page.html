@@ -8,6 +8,10 @@
 </title-bar>
 
 <div class="container-md modality pb-5 mt-3">
+  <div *ngIf="authService.isLoggedIn" class="buttons mb-3">
+    <button type="button" class="btn btn-warning rounded-0 me-2" [routerLink]="['/modality', modality.id, 'manage']">{{ 'menu.manage' | translate }}</button>
+  </div>
+
   <div *ngIf="modality.finished" class="collapse-holder mb-3">
     <a class="collapse-title" data-bs-toggle="collapse" href="#collapseStandings" role="button" aria-expanded="true" aria-controls="collapseStandings">
       {{ 'modalities.standings' | translate }}

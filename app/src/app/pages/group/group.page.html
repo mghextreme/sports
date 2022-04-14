@@ -8,6 +8,10 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
+  <div *ngIf="authService.isLoggedIn" class="buttons mb-3">
+    <button type="button" class="btn btn-warning rounded-0 me-2" [routerLink]="['/group', group.id, 'manage']">{{ 'menu.manage' | translate }}</button>
+  </div>
+
   <div class="row">
     <div class="col-auto group-symbol me-3">
       <img [src]="group.logo ?? '../../../assets/images/default-symbol.png'" alt="" />

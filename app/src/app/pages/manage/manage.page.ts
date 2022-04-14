@@ -12,11 +12,13 @@ import { AuthService, EventsService, PeopleService } from 'src/app/services';
 export class ManagePageComponent {
 
   isLoadingEvents = true;
+  isLoadingPeople = true;
 
   events: IEvent[];
   people: IPerson[];
 
   @ViewChild('eventsTable') eventsTable?: Table;
+  @ViewChild('peopleTable') peopleTable?: Table;
 
   constructor(
     readonly authService: AuthService,
@@ -38,6 +40,7 @@ export class ManagePageComponent {
     });
     this.peopleService.getAll().subscribe(people => {
       this.people = people;
+      this.isLoadingPeople = false;
     });
   }
 
@@ -54,6 +57,28 @@ export class ManagePageComponent {
     this.confirmationService.confirm({
         message: 'Are you sure you want to remove this event?',
         header: 'Remove Name of Event',
+        acceptButtonStyleClass: 'p-button-danger',
+        rejectButtonStyleClass: 'p-button-secondary',
+        accept: () => {
+          // TODO
+          console.error('removed');
+        }
+    });
+  }
+
+  filterPeopleTable(event: Event) {
+    const htmlTarget = event.target as HTMLTextAreaElement;
+    this.peopleTable?.filterGlobal(htmlTarget.value, 'contains');
+  }
+
+  openPerson(person: IPerson) {
+    this.router.navigate(['/person', person.id, 'manage']);
+  }
+
+  removePerson(person: IPerson) {
+    this.confirmationService.confirm({
+        message: 'Are you sure you want to remove this person?',
+        header: 'Remove Name of Person',
         acceptButtonStyleClass: 'p-button-danger',
         rejectButtonStyleClass: 'p-button-secondary',
         accept: () => {
