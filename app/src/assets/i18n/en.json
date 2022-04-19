@@ -84,7 +84,11 @@
     "score-pro-abbr": "SP",
     "score-against-abbr": "SA",
     "score-delta-abbr": "SD",
-    "points-abbr": "P"
+    "points-abbr": "P",
+    "modes": {
+      "round": "Round Robin",
+      "single": "Single Bracket"
+    }
   },
   "login": {
     "email": "Email address",
@@ -143,12 +147,20 @@
       "color-2": "Secondary Color",
       "logo": "Logo"
     },
+    "team-form": {
+      "name": "Name",
+      "group": "Group"
+    },
     "modality-form": {
       "name": "Name",
       "sport": "Sport",
       "max-team-size": "Max Team size",
       "max-teams-per-group": "Max Teams per Group",
       "select-sport": "Select Sport"
+    },
+    "stage-form": {
+      "name": "Name",
+      "mode": "Mode"
     },
     "person-form": {
       "name": "Name",
