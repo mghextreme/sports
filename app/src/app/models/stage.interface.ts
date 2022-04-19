@@ -5,5 +5,6 @@ export interface IStage {
   started: boolean;
   finished: boolean;
   mode: StageMode;
+  maxTeams?: number;
   name?: string;
 }

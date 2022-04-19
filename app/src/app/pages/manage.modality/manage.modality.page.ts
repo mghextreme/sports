@@ -44,8 +44,8 @@ export class ManageModalityPageComponent {
       this.sports = sports;
     });
 
-    const newEvent = this.activeRoute.snapshot.data['new'];
-    if (newEvent === true) {
+    const newModality = this.activeRoute.snapshot.data['new'];
+    if (newModality === true) {
       this.isNew = true;
     } else {
       const modalityId = this.activeRoute.snapshot.params['id'];
@@ -69,7 +69,7 @@ export class ManageModalityPageComponent {
   }
 
   openStage(stage: IStage) {
-    // Modal
+    this.router.navigate(['/stage', stage.id, 'manage']);
   }
 
   removeStage(stage: IStage) {

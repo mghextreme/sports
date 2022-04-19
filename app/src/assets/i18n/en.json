@@ -123,6 +123,7 @@
     "stages": "Stages",
     "stage-details": "Stage details",
     "add-stage": "Add stage",
+    "new-stage": "New stage",
     "teams": "Teams",
     "team-details": "Team details",
     "add-team": "Add team",
@@ -160,7 +161,8 @@
     },
     "stage-form": {
       "name": "Name",
-      "mode": "Mode"
+      "mode": "Mode",
+      "max-teams": "Maximum amount of teams"
     },
     "person-form": {
       "name": "Name",

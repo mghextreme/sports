@@ -75,7 +75,7 @@
       </ng-template>
     </p-table>
     <div class="buttons mt-2 text-end">
-      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-stage' | translate }}</button>
+      <button type="button" class="btn btn-success rounded-0" [routerLink]="['/modality', modality.id, 'new-stage']">{{ 'manage.add-stage' | translate }}</button>
     </div>
   </div>
 

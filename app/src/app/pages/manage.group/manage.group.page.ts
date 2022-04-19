@@ -34,8 +34,8 @@ export class ManageGroupPageComponent {
     this.group = this.groupsService.getDefault();
     this.members = [];
 
-    const newEvent = this.activeRoute.snapshot.data['new'];
-    if (newEvent === true) {
+    const newGroup = this.activeRoute.snapshot.data['new'];
+    if (newGroup === true) {
       this.isNew = true;
     } else {
       const groupId = this.activeRoute.snapshot.params['id'];

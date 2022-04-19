@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IMatch, IRoundRobinRow, ISingleBracketMatch, IStage } from '../models';
+import { IMatch, IRoundRobinRow, ISingleBracketMatch, IStage, StageMode } from '../models';
 import { MatchesUtils } from '../utils';
 
 @Injectable({
@@ -12,6 +12,16 @@ export class StagesService {
   constructor(
     private readonly http: HttpClient
   ) { }
+
+  getDefault(): IStage {
+    return {
+      id: 0,
+      started: false,
+      finished: false,
+      mode: StageMode.SingleBracket,
+      maxTeams: 4
+    };
+  }
 
   getMatches(id: number): Observable<IMatch[]> {
     return this.http.get<IMatch[]>(`/api/stages/${id}/matches`);
