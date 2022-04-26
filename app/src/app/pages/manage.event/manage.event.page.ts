@@ -1,13 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IEvent, IGroup, IModality } from 'src/app/models';
 import { AuthService, EventsService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.event.page.html',
-  styleUrls: ['./manage.event.page.scss']
+  styleUrls: ['./manage.event.page.scss'],
+  providers: [MessageService]
 })
 export class ManageEventPageComponent {
 
@@ -23,11 +26,16 @@ export class ManageEventPageComponent {
   @ViewChild('modalitiesTable') modalitiesTable?: Table;
   @ViewChild('groupsTable') groupsTable?: Table;
 
+  @ViewChild('eventForm', { static: false }) form?: NgForm;
+  validated = false;
+
   constructor(
     readonly authService: AuthService,
     private readonly eventsService: EventsService,
+    private readonly translate: TranslateService,
     private readonly activeRoute: ActivatedRoute,
     private readonly confirmationService: ConfirmationService,
+    private readonly messageService: MessageService,
     private router: Router
   ) {
     if (!authService.isLoggedIn) {
@@ -55,6 +63,34 @@ export class ManageEventPageComponent {
         this.isLoadingGroups = false;
       });
     }
+  }
+
+  handleSubmit() {
+    if (this.form?.valid) {
+      if (this.isNew) {
+        this.eventsService.add(this.event).subscribe(event => {
+          this.router.navigate(['/event', event.id, 'manage']);
+        });
+      } else if (this.form?.dirty) {
+        this.eventsService.update(this.event.id, this.event).subscribe(event => {
+          this.event = event;
+          this.form?.form.markAsPristine();
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-updated')
+          });
+        });
+      } else {
+        this.messageService.add({
+          severity: 'warn',
+          summary: this.translate.instant('manage.messages.attention-required'),
+          detail: this.translate.instant('manage.messages.no-updates')
+        });
+      }
+    }
+
+    this.validated = true;
   }
 
   filterModalitiesTable(event: Event) {

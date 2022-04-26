@@ -24,21 +24,24 @@ export class EventsService {
   getAll(): Observable<IEvent[]> {
     return this.http.get<IEvent[]>('/api/events')
       .pipe(map(events => {
-        events.forEach(event => {
-          event.startDate = new Date(event.startDate.toString());
-          event.endDate = new Date(event.endDate.toString());
-        });
+        events.forEach(this.convertDates);
         return events;
       }));
   }
 
   get(id: number): Observable<IEvent> {
     return this.http.get<IEvent>(`/api/events/${id}`)
-      .pipe(map(event => {
-        event.startDate = new Date(event.startDate.toString());
-        event.endDate = new Date(event.endDate.toString());
-        return event;
-      }));
+      .pipe(map(this.convertDates));
+  }
+
+  add(event: IEvent): Observable<IEvent> {
+    return this.http.post<IEvent>(`/api/events`, event)
+      .pipe(map(this.convertDates));
+  }
+
+  update(id: number, event: IEvent): Observable<IEvent> {
+    return this.http.put<IEvent>(`/api/events/${id}`, event)
+      .pipe(map(this.convertDates));
   }
 
   getModalities(id: number): Observable<IModality[]> {
@@ -47,6 +50,12 @@ export class EventsService {
 
   getGroups(id: number): Observable<IGroup[]> {
     return this.http.get<IGroup[]>(`/api/events/${id}/groups`);
+  }
+
+  private convertDates(event: IEvent): IEvent {
+    event.startDate = new Date(event.startDate.toString());
+    event.endDate = new Date(event.endDate.toString());
+    return event;
   }
 
 }

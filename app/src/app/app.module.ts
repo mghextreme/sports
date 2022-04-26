@@ -9,6 +9,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ConfirmDialogModule,
     FormsModule,
     TableModule,
+    ToastModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({

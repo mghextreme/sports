@@ -170,6 +170,12 @@
       "document": "Document",
       "gender": "Gender",
       "date-of-birth": "Date of Birth"
+    },
+    "messages": {
+      "success": "Success!",
+      "attention-required": "Attention required",
+      "item-updated": "Item was updated.",
+      "no-updates": "There were no changes to the item being edited."
     }
   }
 }
