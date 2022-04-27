@@ -18,18 +18,40 @@ export class ModalitiesService {
     return {
       id: 0,
       name: '',
+      sportId: 0,
+      finished: false,
+      maxTeamsPerGroup: 1,
+      eventId: 0,
       sport: {
         id: 0,
         code: ''
       },
-      finished: false,
-      maxTeamsPerGroup: 1,
       event: this.events.getDefault()
     };
   }
 
   get(id: number): Observable<IModality> {
     return this.http.get<IModality>(`/api/modalities/${id}`);
+  }
+
+  add(modality: IModality): Observable<IModality> {
+    if (modality.eventId === 0 && modality.event?.id !== 0) {
+      modality.eventId = modality.event?.id ?? modality.eventId;
+    }
+
+    if (modality.sportId === 0 && modality.sport?.id !== 0) {
+      modality.sportId = modality.sport?.id ?? modality.sportId;
+    }
+
+    return this.http.post<IModality>(`/api/modalities`, modality);
+  }
+
+  update(id: number, modality: IModality): Observable<IModality> {
+    return this.http.put<IModality>(`/api/modalities/${id}`, modality);
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/modalities/${id}`);
   }
 
   getMatches(id: number): Observable<IMatch[]> {

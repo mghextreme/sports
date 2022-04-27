@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IEvent, IGroup, IModality } from 'src/app/models';
-import { AuthService, EventsService, GroupsService } from 'src/app/services';
+import { AuthService, EventsService, GroupsService, ModalitiesService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.event.page.html',
@@ -33,6 +33,7 @@ export class ManageEventPageComponent {
     readonly authService: AuthService,
     private readonly eventsService: EventsService,
     private readonly groupsService: GroupsService,
+    private readonly modalitiesService: ModalitiesService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -105,14 +106,20 @@ export class ManageEventPageComponent {
 
   removeModality(modality: IModality) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this modality?',
-        header: 'Remove Name of Modality',
-        acceptButtonStyleClass: 'p-button-danger',
-        rejectButtonStyleClass: 'p-button-secondary',
-        accept: () => {
-          // TODO
-          console.error('removed');
-        }
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: modality.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: modality.name }),
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.modalitiesService.deleteById(modality.id).subscribe(() => {
+          this.modalities = this.modalities.filter(m => m.id !== modality.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-removed')
+          });
+        });
+      }
     });
   }
 
