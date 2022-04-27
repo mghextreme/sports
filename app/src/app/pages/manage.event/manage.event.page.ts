@@ -32,10 +32,10 @@ export class ManageEventPageComponent {
   constructor(
     readonly authService: AuthService,
     private readonly eventsService: EventsService,
-    private readonly translate: TranslateService,
-    private readonly activeRoute: ActivatedRoute,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
+    private readonly translate: TranslateService,
+    private readonly activeRoute: ActivatedRoute,
     private router: Router
   ) {
     if (!authService.isLoggedIn) {
@@ -69,7 +69,7 @@ export class ManageEventPageComponent {
     if (this.form?.valid) {
       if (this.isNew) {
         this.eventsService.add(this.event).subscribe(event => {
-          this.router.navigate(['/event', event.id, 'manage']);
+          this.router.navigate(['/event', event.id, 'manage'], { replaceUrl: true });
         });
       } else if (this.form?.dirty) {
         this.eventsService.update(this.event.id, this.event).subscribe(event => {

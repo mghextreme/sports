@@ -31,6 +31,14 @@ export class GroupsService {
     return this.http.get<IGroup>(`/api/groups/${id}`);
   }
 
+  add(group: IGroup): Observable<IGroup> {
+    return this.http.post<IGroup>(`/api/groups`, group);
+  }
+
+  update(id: number, group: IGroup): Observable<IGroup> {
+    return this.http.put<IGroup>(`/api/groups/${id}`, group);
+  }
+
   getMembers(id: number): Observable<IPerson[]> {
     return this.http.get<IPerson[]>(`/api/groups/${id}/members`);
   }

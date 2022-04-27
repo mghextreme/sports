@@ -1,13 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IGroup, IPerson } from 'src/app/models';
 import { AuthService, GroupsService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.group.page.html',
-  styleUrls: ['./manage.group.page.scss']
+  styleUrls: ['./manage.group.page.scss'],
+  providers: [MessageService]
 })
 export class ManageGroupPageComponent {
 
@@ -20,10 +23,15 @@ export class ManageGroupPageComponent {
 
   @ViewChild('membersTable') membersTable?: Table;
 
+  @ViewChild('groupForm', { static: false }) form?: NgForm;
+  validated = false;
+
   constructor(
     readonly authService: AuthService,
     readonly groupsService: GroupsService,
     private readonly confirmationService: ConfirmationService,
+    private readonly messageService: MessageService,
+    private readonly translate: TranslateService,
     private readonly activeRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -47,6 +55,34 @@ export class ManageGroupPageComponent {
         this.isLoadingMembers = false;
       });
     }
+  }
+
+  handleSubmit() {
+    if (this.form?.valid) {
+      if (this.isNew) {
+        this.groupsService.add(this.group).subscribe(group => {
+          this.router.navigate(['/group', group.id, 'manage'], { replaceUrl: true });
+        });
+      } else if (this.form?.dirty) {
+        this.groupsService.update(this.group.id, this.group).subscribe(group => {
+          this.group = group;
+          this.form?.form.markAsPristine();
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-updated')
+          });
+        });
+      } else {
+        this.messageService.add({
+          severity: 'warn',
+          summary: this.translate.instant('manage.messages.attention-required'),
+          detail: this.translate.instant('manage.messages.no-updates')
+        });
+      }
+    }
+
+    this.validated = true;
   }
 
   filterMembersTable(event: Event) {
