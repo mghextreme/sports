@@ -175,7 +175,10 @@
       "success": "Success!",
       "attention-required": "Attention required",
       "item-updated": "Item was updated.",
-      "no-updates": "There were no changes to the item being edited."
+      "item-removed": "Item was removed.",
+      "no-updates": "There were no changes to the item being edited.",
+      "remove-x": "Remove {{x}}",
+      "are-you-sure-remove-x": "Are you sure you want to remove {{x}}?"
     }
   }
 }

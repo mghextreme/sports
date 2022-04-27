@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IEvent, IGroup, IModality } from 'src/app/models';
-import { AuthService, EventsService } from 'src/app/services';
+import { AuthService, EventsService, GroupsService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.event.page.html',
@@ -32,6 +32,7 @@ export class ManageEventPageComponent {
   constructor(
     readonly authService: AuthService,
     private readonly eventsService: EventsService,
+    private readonly groupsService: GroupsService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -126,14 +127,20 @@ export class ManageEventPageComponent {
 
   removeGroup(group: IGroup) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this group?',
-        header: 'Remove Name of Group',
-        acceptButtonStyleClass: 'p-button-danger',
-        rejectButtonStyleClass: 'p-button-secondary',
-        accept: () => {
-          // TODO
-          console.error('removed');
-        }
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: group.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: group.name }),
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.groupsService.deleteById(group.id).subscribe(() => {
+          this.groups = this.groups.filter(g => g.id !== group.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-removed')
+          });
+        });
+      }
     });
   }
 

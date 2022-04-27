@@ -1,13 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IEvent, IPerson } from 'src/app/models';
 import { AuthService, EventsService, PeopleService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.page.html',
-  styleUrls: ['./manage.page.scss']
+  styleUrls: ['./manage.page.scss'],
+  providers: [MessageService]
 })
 export class ManagePageComponent {
 
@@ -25,6 +27,8 @@ export class ManagePageComponent {
     private readonly eventsService: EventsService,
     private readonly peopleService: PeopleService,
     private readonly confirmationService: ConfirmationService,
+    private readonly messageService: MessageService,
+    private readonly translate: TranslateService,
     private router: Router
   ) {
     if (!authService.isLoggedIn) {
@@ -55,13 +59,19 @@ export class ManagePageComponent {
 
   removeEvent(event: IEvent) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this event?',
-        header: 'Remove Name of Event',
+        message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: event.name }),
+        header: this.translate.instant('manage.messages.remove-x', { x: event.name }),
         acceptButtonStyleClass: 'p-button-danger',
         rejectButtonStyleClass: 'p-button-secondary',
         accept: () => {
-          // TODO
-          console.error('removed');
+          this.eventsService.deleteById(event.id).subscribe(() => {
+            this.events = this.events.filter(e => e.id !== event.id);
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translate.instant('manage.messages.success'),
+              detail: this.translate.instant('manage.messages.item-removed')
+            });
+          });
         }
     });
   }

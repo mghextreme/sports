@@ -44,6 +44,10 @@ export class EventsService {
       .pipe(map(this.convertDates));
   }
 
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/events/${id}`);
+  }
+
   getModalities(id: number): Observable<IModality[]> {
     return this.http.get<IModality[]>(`/api/events/${id}/modalities`);
   }

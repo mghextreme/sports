@@ -39,6 +39,10 @@ export class GroupsService {
     return this.http.put<IGroup>(`/api/groups/${id}`, group);
   }
 
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/groups/${id}`);
+  }
+
   getMembers(id: number): Observable<IPerson[]> {
     return this.http.get<IPerson[]>(`/api/groups/${id}/members`);
   }
