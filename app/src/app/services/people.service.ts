@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IPerson } from '../models';
-import { ModalitiesService } from './modalities.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +39,18 @@ export class PeopleService {
           : undefined;
         return person;
       }));
+  }
+
+  add(person: IPerson): Observable<IPerson> {
+    return this.http.post<IPerson>(`/api/persons`, person);
+  }
+
+  update(id: number, person: IPerson): Observable<IPerson> {
+    return this.http.put<IPerson>(`/api/persons/${id}`, person);
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/persons/${id}`);
   }
 
 }

@@ -87,13 +87,19 @@ export class ManagePageComponent {
 
   removePerson(person: IPerson) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this person?',
-        header: 'Remove Name of Person',
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: person.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: person.name }),
         acceptButtonStyleClass: 'p-button-danger',
         rejectButtonStyleClass: 'p-button-secondary',
         accept: () => {
-          // TODO
-          console.error('removed');
+          this.eventsService.deleteById(person.id).subscribe(() => {
+            this.events = this.events.filter(p => p.id !== person.id);
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translate.instant('manage.messages.success'),
+              detail: this.translate.instant('manage.messages.item-removed')
+            });
+          });
         }
     });
   }

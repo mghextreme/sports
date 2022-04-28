@@ -1,25 +1,25 @@
 <page-header></page-header>
 
 <title-bar
-  [title]="person.name"
+  title="{{ isNew ? ('manage.new-person' | translate) : person.name }}"
   [backButton]="true"
   [management]="true">
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
   <h2 class="mt-3 fs-4">{{ 'manage.person-details' | translate }}</h2>
-  <form class="details">
+  <form class="details" #personForm="ngForm" (ngSubmit)="handleSubmit()" [class.validated]="validated">
     <div class="mb-3">
       <label for="name" class="form-label">{{ 'manage.person-form.name' | translate }}</label>
-      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="person.name">
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="person.name" #name="ngModel">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">{{ 'manage.person-form.email' | translate }}</label>
-      <input type="text" class="form-control" id="email" name="email" [(ngModel)]="person.email">
+      <input type="text" class="form-control" id="email" name="email" [(ngModel)]="person.email" #email="ngModel">
     </div>
     <div class="mb-3">
       <label for="document" class="form-label">{{ 'manage.person-form.document' | translate }}</label>
-      <input type="text" class="form-control" id="document" name="document" [(ngModel)]="person.document">
+      <input type="text" class="form-control" id="document" name="document" [(ngModel)]="person.document" #document="ngModel">
     </div>
     <div class="mb-3">
       <label for="date-of-birth" class="form-label">{{ 'manage.person-form.date-of-birth' | translate }}</label>
@@ -27,12 +27,12 @@
     </div>
     <div class="mb-3">
       <label for="gender" class="form-label">{{ 'manage.person-form.gender' | translate }}</label>
-      <select class="form-select" id="gender" name="gender" [(ngModel)]="person.gender">
+      <select class="form-select" id="gender" name="gender" [(ngModel)]="person.gender" #gender="ngModel">
         <option *ngFor="let gender of genders" [value]="gender">{{ 'genders.' + gender | translate }}</option>
       </select>
     </div>
     <div class="buttons mt-2 text-end">
-      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+      <button type="submit" class="btn btn-success rounded-0" [disabled]="!personForm.form.valid">{{ 'manage.submit' | translate }}</button>
     </div>
   </form>
 </div>

@@ -116,12 +116,22 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'person/:id',
+    path: 'person',
     children: [
       {
-        path: 'manage',
+        path: 'new',
+        data: { new: true },
         component: ManagePersonPageComponent,
         pathMatch: 'full'
+      },
+      {
+        path: ':id',
+        children: [
+          {
+            path: 'manage',
+            component: ManagePersonPageComponent
+          }
+        ]
       }
     ]
   }
