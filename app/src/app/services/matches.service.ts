@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDetailedMatch, IMatch, IMatchFeedItem, StageMode } from '../models';
 import { ModalitiesService } from './modalities.service';
+import { StagesService } from './stages.service';
 import { TeamsService } from './teams.service';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class MatchesService {
   constructor(
     private readonly http: HttpClient,
     private readonly teams: TeamsService,
+    private readonly stages: StagesService,
     private readonly modalities: ModalitiesService
   ) { }
 
@@ -38,12 +40,7 @@ export class MatchesService {
         this.teams.getDefault()
       ],
       modality: this.modalities.getDefault(),
-      stage: {
-        id: 0,
-        started: false,
-        finished: false,
-        mode: StageMode.RoundRobin
-      }
+      stage: this.stages.getDefault()
     };
   }
 

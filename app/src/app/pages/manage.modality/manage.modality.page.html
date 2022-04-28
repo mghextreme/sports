@@ -7,6 +7,8 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
+  <p-toast></p-toast>
+
   <div *ngIf="!isNew" class="buttons mt-2">
     <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/modality', modality.id]">{{ 'go-to.modality-page' | translate }}</button>
   </div>
@@ -35,7 +37,7 @@
       </div>
     </div>
     <div class="buttons mt-2 text-end">
-      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+      <button type="submit" class="btn btn-success rounded-0" [disabled]="!modalityForm.form.valid">{{ 'manage.submit' | translate }}</button>
     </div>
   </form>
 
@@ -54,12 +56,16 @@
           <th>{{ 'manage.stage-form.mode' | translate }}</th>
           <th style="width:4rem"></th>
           <th style="width:4rem"></th>
+          <th style="width:4rem"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-stage>
         <tr>
           <td>{{ stage.name }}</td>
           <td>{{ 'stages.modes.' + stage.mode | translate }}</td>
+          <td>
+            <button *ngIf="!stage.started" type="button" pButton icon="pi pi-play" (click)="startStage(stage)" title="{{ 'manage.start' | translate }}" class="p-button-success"></button>
+          </td>
           <td>
             <button type="button" pButton icon="pi pi-pencil" (click)="openStage(stage)" title="{{ 'manage.edit' | translate }}"></button>
           </td>

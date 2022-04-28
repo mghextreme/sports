@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IModality, ISport, IStage, ITeam } from 'src/app/models';
-import { AuthService, ModalitiesService } from 'src/app/services';
+import { AuthService, ModalitiesService, StagesService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.modality.page.html',
@@ -33,6 +33,7 @@ export class ManageModalityPageComponent {
   constructor(
     readonly authService: AuthService,
     private readonly modalitiesService: ModalitiesService,
+    private readonly stagesService: StagesService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -107,6 +108,10 @@ export class ManageModalityPageComponent {
     this.stagesTable?.filterGlobal(htmlTarget.value, 'contains');
   }
 
+  startStage(stage: IStage) {
+    this.router.navigate(['/stage', stage.id, 'start']);
+  }
+
   openStage(stage: IStage) {
     this.router.navigate(['/stage', stage.id, 'manage']);
   }
@@ -118,8 +123,14 @@ export class ManageModalityPageComponent {
         acceptButtonStyleClass: 'p-button-danger',
         rejectButtonStyleClass: 'p-button-secondary',
         accept: () => {
-          // TODO
-          console.error('removed');
+          this.stagesService.deleteById(stage.id).subscribe(() => {
+            this.stages = this.stages.filter(s => s.id !== stage.id);
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translate.instant('manage.messages.success'),
+              detail: this.translate.instant('manage.messages.item-removed')
+            });
+          });
         }
     });
   }

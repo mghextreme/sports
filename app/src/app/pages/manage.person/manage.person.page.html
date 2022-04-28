@@ -7,6 +7,8 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
+  <p-toast></p-toast>
+
   <h2 class="mt-3 fs-4">{{ 'manage.person-details' | translate }}</h2>
   <form class="details" #personForm="ngForm" (ngSubmit)="handleSubmit()" [class.validated]="validated">
     <div class="mb-3">

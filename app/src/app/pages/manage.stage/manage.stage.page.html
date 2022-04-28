@@ -7,28 +7,30 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
+  <p-toast></p-toast>
+
   <div *ngIf="!isNew" class="buttons mt-2">
-    <button type="button" class="btn btn-secondary rounded-0 w-100" [routerLink]="['/modality', stage.id]">{{ 'go-to.modality-page' | translate }}</button>
+    <button type="button" class="btn btn-success rounded-0" [routerLink]="['/stage', stage.id, 'start']">{{ 'manage.start' | translate }}</button>
   </div>
 
   <h2 class="mt-3 fs-4">{{ 'manage.stage-details' | translate }}</h2>
-  <form class="details">
+  <form class="details" #stageForm="ngForm" (ngSubmit)="handleSubmit()" [class.validated]="validated">
     <div class="mb-3">
       <label for="name" class="form-label">{{ 'manage.stage-form.name' | translate }}</label>
-      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="stage.name">
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="stage.name" #name="ngModel">
     </div>
     <div class="mb-3">
       <label for="mode" class="form-label">{{ 'manage.stage-form.mode' | translate }}</label>
-      <select class="form-select" id="mode" name="mode" [(ngModel)]="stage.mode">
+      <select class="form-select" id="mode" name="mode" [(ngModel)]="stage.mode" #mode="ngModel">
         <option *ngFor="let mode of modes" [value]="mode">{{ 'stages.modes.' + mode | translate }}</option>
       </select>
     </div>
     <div class="mb-3">
       <label for="maxTeams" class="form-label">{{ 'manage.stage-form.max-teams' | translate }}</label>
-      <input type="number" class="form-control" id="maxTeams" name="maxTeams" [(ngModel)]="stage.maxTeams">
+      <input type="number" class="form-control" id="maxTeams" name="maxTeams" [(ngModel)]="stage.maxTeams" #maxTeams="ngModel">
     </div>
     <div class="buttons mt-2 text-end">
-      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+      <button type="submit" class="btn btn-success rounded-0" [disabled]="!stageForm.form.valid">{{ 'manage.submit' | translate }}</button>
     </div>
   </form>
 </div>

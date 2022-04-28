@@ -16,6 +16,7 @@ export class StagesService {
   getDefault(): IStage {
     return {
       id: 0,
+      modalityId: 0,
       started: false,
       finished: false,
       mode: StageMode.SingleBracket,
@@ -38,6 +39,18 @@ export class StagesService {
 
   get(id: number): Observable<IStage> {
     return this.http.get<IStage>(`/api/stages/${id}`);
+  }
+
+  add(stage: IStage): Observable<IStage> {
+    return this.http.post<IStage>(`/api/stages`, stage);
+  }
+
+  update(id: number, stage: IStage): Observable<IStage> {
+    return this.http.put<IStage>(`/api/stages/${id}`, stage);
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`/api/stages/${id}`);
   }
 
 }

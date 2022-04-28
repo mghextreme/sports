@@ -133,6 +133,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "submit": "Submit",
+    "start": "Start",
     "event-form": {
       "name": "Name",
       "location": "Location",
