@@ -13,5 +13,6 @@
   "/matches/:id/feed": "/matchesFeed?matchId=:id",
   "/teams/:id/participants": "/teams/:id/persons?groupId=:id&_sort=number&_order=asc",
   "/groups/:id/modalities": "/teams?_expand=modality&groupId=:id",
-  "/groups/:id/members": "/groups/:id/persons"
+  "/groups/:id/members": "/groups/:id/persons",
+  "/persons/search/:term": "/persons?q=:term"
 }

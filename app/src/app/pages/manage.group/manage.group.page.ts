@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IGroup, IPerson } from 'src/app/models';
-import { AuthService, GroupsService } from 'src/app/services';
+import { AuthService, GroupsService, PeopleService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.group.page.html',
@@ -17,9 +17,14 @@ export class ManageGroupPageComponent {
   isNew = false;
 
   isLoadingMembers = true;
+  isLoadingPeople = false;
+  showAddMemberDialog = false;
 
   group: IGroup;
   members: IPerson[];
+
+  peopleSearch: IPerson[];
+  peopleSearchTerm = '';
 
   @ViewChild('membersTable') membersTable?: Table;
 
@@ -28,7 +33,8 @@ export class ManageGroupPageComponent {
 
   constructor(
     readonly authService: AuthService,
-    readonly groupsService: GroupsService,
+    private readonly groupsService: GroupsService,
+    private readonly peopleService: PeopleService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -41,6 +47,7 @@ export class ManageGroupPageComponent {
 
     this.group = this.groupsService.getDefault();
     this.members = [];
+    this.peopleSearch = [];
 
     const newGroup = this.activeRoute.snapshot.data['new'];
     if (newGroup === true) {
@@ -90,20 +97,43 @@ export class ManageGroupPageComponent {
     this.membersTable?.filterGlobal(htmlTarget.value, 'contains');
   }
 
+  addMember(person: IPerson) {
+    this.peopleSearch = this.peopleSearch.filter(p => p.id !== person.id);
+    this.groupsService.addMember(this.group.id, person.id).subscribe({
+      next: () => {
+        this.members.push(person);
+      }
+    });
+  }
+
+  searchPeople() {
+    this.peopleService.search(this.peopleSearchTerm).subscribe({
+      next: (result) => {
+        this.peopleSearch = result;
+      }
+    });
+  }
+
   openMember(person: IPerson) {
     this.router.navigate(['/person', person.id, 'manage']);
   }
 
   removeMember(person: IPerson) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this member?',
-        header: 'Remove Name of Member',
-        acceptButtonStyleClass: 'p-button-danger',
-        rejectButtonStyleClass: 'p-button-secondary',
-        accept: () => {
-          // TODO
-          console.error('removed');
-        }
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: person.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: person.name }),
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.groupsService.deleteMemberById(this.group.id, person.id).subscribe(() => {
+          this.members = this.members.filter(m => m.id !== person.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-removed')
+          });
+        });
+      }
     });
   }
 

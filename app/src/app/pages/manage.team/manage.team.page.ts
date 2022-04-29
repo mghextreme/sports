@@ -3,8 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { IGroup, ITeam } from 'src/app/models';
-import { AuthService, GroupsService, TeamsService } from 'src/app/services';
+import { IGroup, IModality, ITeam } from 'src/app/models';
+import { AuthService, GroupsService, ModalitiesService, TeamsService } from 'src/app/services';
+import * as _ from 'lodash';
 
 @Component({
   templateUrl: './manage.team.page.html',
@@ -16,7 +17,9 @@ export class ManageTeamPageComponent {
   isNew = false;
 
   team: ITeam;
+  modality: IModality;
   groups: IGroup[];
+  selectedGroup?: IGroup;
 
   @ViewChild('teamForm', { static: false }) form?: NgForm;
   validated = false;
@@ -25,6 +28,7 @@ export class ManageTeamPageComponent {
     readonly authService: AuthService,
     private readonly teamsService: TeamsService,
     private readonly groupsService: GroupsService,
+    private readonly modalitiesService: ModalitiesService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
     private readonly activeRoute: ActivatedRoute,
@@ -35,10 +39,12 @@ export class ManageTeamPageComponent {
     }
 
     this.team = this.teamsService.getDefault();
+    this.modality = this.modalitiesService.getDefault();
     this.groups = [];
 
     this.groupsService.getAll().subscribe(groups => {
       this.groups = groups;
+      this.updateSelection();
     });
 
     const newTeam = this.activeRoute.snapshot.data['new'];
@@ -47,16 +53,22 @@ export class ManageTeamPageComponent {
 
       const modalityId = this.activeRoute.snapshot.params['id'];
       this.team.modalityId = modalityId;
+      this.loadModality();
     } else {
       const teamId = this.activeRoute.snapshot.params['id'];
       this.teamsService.get(teamId).subscribe(team => {
         this.team = team;
+        this.updateSelection();
+        this.loadModality();
       });
     }
   }
 
   handleSubmit() {
     if (this.form?.valid) {
+      this.team.group = this.selectedGroup;
+      this.team.groupId = this.selectedGroup?.id ?? this.team.groupId;
+
       if (this.isNew) {
         this.teamsService.add(this.team).subscribe(team => {
           this.router.navigate(['/team', team.id, 'manage'], { replaceUrl: true });
@@ -81,6 +93,37 @@ export class ManageTeamPageComponent {
     }
 
     this.validated = true;
+  }
+
+  handleGroupChange() {
+    if (this.modality.maxTeamsPerGroup === 1) {
+      const selGroup = this.groups.find(g => g.id === this.selectedGroup?.id);
+      if (selGroup) {
+        const tempTeam = _.cloneDeep(this.team);
+        tempTeam.name = selGroup.name;
+        this.team = tempTeam;
+      }
+    }
+  }
+
+  get autoGenerateName(): boolean {
+    return this.modality.maxTeamSize === 1 ||
+      this.modality.maxTeamsPerGroup === 1;
+  }
+
+  private loadModality(): void {
+    this.modalitiesService.get(this.team.modalityId).subscribe(modality => {
+      this.modality = modality;
+    });
+  }
+
+  private updateSelection() {
+    if (this.groups.length > 0 && this.team.groupId) {
+      const selGroup = this.groups.find(g => g.id === this.team.groupId);
+      if (selGroup) {
+        this.selectedGroup = selGroup;
+      }
+    }
   }
 
 }

@@ -8,6 +8,7 @@
   },
   "navigation": {
     "back": "Back",
+    "close": "Close",
     "offline": "Offline"
   },
   "titles": {
@@ -128,6 +129,7 @@
     "new-stage": "New stage",
     "teams": "Teams",
     "team-details": "Team details",
+    "team-participants": "Team participants",
     "add-team": "Add team",
     "new-team": "New team",
     "no-results-found": "No results found",
@@ -154,7 +156,8 @@
     },
     "team-form": {
       "name": "Name",
-      "group": "Group"
+      "group": "Group",
+      "modality": "Modality"
     },
     "modality-form": {
       "name": "Name",

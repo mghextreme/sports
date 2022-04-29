@@ -47,6 +47,14 @@ export class GroupsService {
     return this.http.get<IPerson[]>(`/api/groups/${id}/members`);
   }
 
+  addMember(id: number, personId: number): Observable<void> {
+    return this.http.post<void>(`/api/groups/${id}/members`, { personId });
+  }
+
+  deleteMemberById(id: number, personId: number): Observable<void> {
+    return this.http.delete<void>(`/api/groups/${id}/members/${personId}`);
+  }
+
   getModalities(id: number): Observable<IModality[]> {
     return this.http.get<ITeam[]>(`/api/groups/${id}/modalities`).pipe(map(teams => teams.map(t => t.modality ?? this.modalitiesService.getDefault())));
   }

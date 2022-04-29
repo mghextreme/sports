@@ -41,6 +41,19 @@ export class PeopleService {
       }));
   }
 
+  search(term: string): Observable<IPerson[]> {
+    return this.http.get<IPerson[]>(`/api/persons/search/${term}`)
+      .pipe(map(persons => {
+        persons.forEach(person => {
+          person.dateOfBirth = person.dateOfBirth
+            ? new Date(person.dateOfBirth.toString())
+            : undefined;
+          return person;
+        });
+        return persons;
+      }));
+  }
+
   add(person: IPerson): Observable<IPerson> {
     return this.http.post<IPerson>(`/api/persons`, person);
   }
