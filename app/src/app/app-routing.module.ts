@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, GroupPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, ManageStagePageComponent, ManageTeamPageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
+import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, GroupPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, ManageStagePageComponent, ManageStageStartPageComponent, ManageTeamPageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -107,6 +107,10 @@ const routes: Routes = [
       {
         path: 'manage',
         component: ManageStagePageComponent
+      },
+      {
+        path: 'start',
+        component: ManageStageStartPageComponent
       }
     ]
   },

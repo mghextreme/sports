@@ -1,0 +1,41 @@
+<page-header></page-header>
+
+<title-bar
+  [title]="stage.name ?? ''"
+  [backButton]="true"
+  [management]="true">
+</title-bar>
+
+<div class="container-md pb-5 mt-3">
+  <h2 class="mt-3 fs-4">{{ 'manage.stage-start' | translate }}</h2>
+  <ul>
+    <li>
+      <p>Select teams</p>
+      <ul>
+        <li>
+          <p>If only stage, add option to select all teams</p>
+        </li>
+        <li>
+          <p>If auto-qualifiers (from groups) set, auto-add teams</p>
+        </li>
+        <li>
+          <p>If selection is lower than max teams on stage, ask for confirmation</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Seeding</p>
+      <ul>
+        <li>
+          <p>If multiple teams per group, add option to prevent teams from the same group to play each other early</p>
+        </li>
+        <li>
+          <p>If auto-qualifiers (from groups) set, auto-seed teams</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Generate games</p>
+    </li>
+  </ul>
+</div>
