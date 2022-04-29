@@ -1,3 +1,4 @@
+export * from './connection-bar/connection-bar.component';
 export * from './match/match.component';
 export * from './page-header/page-header.component';
 export * from './round-robin/round-robin.component';

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class AuthService {
 
   public logout() {
     this._loggedIn = false;
+  }
+
+  public checkConnection(): Observable<void> {
+    return this.http.options<void>('/api/events');
   }
 
 }

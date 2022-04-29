@@ -9,7 +9,7 @@
 
 <div class="container-md modality pb-5 mt-3">
   <div *ngIf="authService.isLoggedIn" class="buttons mb-3">
-    <button type="button" class="btn btn-warning rounded-0 me-2" [routerLink]="['/modality', modality.id, 'manage']">{{ 'menu.manage' | translate }}</button>
+    <button type="button" class="btn btn-success text-white rounded-0 me-2" [routerLink]="['/modality', modality.id, 'manage']">{{ 'menu.manage' | translate }}</button>
   </div>
 
   <div *ngIf="modality.finished" class="collapse-holder mb-3">

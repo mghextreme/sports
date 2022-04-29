@@ -7,7 +7,8 @@
     "logout": "Logout"
   },
   "navigation": {
-    "back": "Back"
+    "back": "Back",
+    "offline": "Offline"
   },
   "titles": {
     "events": "Events",

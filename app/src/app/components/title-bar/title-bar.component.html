@@ -1,12 +1,12 @@
 <div
-  class="title-bar py-2"
-  [ngClass]="management ? ['bg-warning', 'text-dark'] : ['bg-dark', 'text-white']"
+  class="title-bar py-2 text-white"
+  [ngClass]="management ? ['bg-success'] : ['bg-dark']"
   [style]="{ 'background-image': background ? 'url(' + background + ')' : 'none' }">
   <div class="container-md pt-4 pb-2">
     <h1 class="display-5 mb-0">{{ title }}</h1>
     <p *ngIf="subtitle" class="lead mb-0"><a [routerLink]="subtitleLink">{{ subtitle }}</a></p>
     <div *ngIf="backButton" class="buttons">
-      <button type="button" class="btn btn-link btn-back" [ngClass]="management ? ['text-dark'] : ['text-white']" (click)="back()">{{ 'navigation.back' | translate }}</button>
+      <button type="button" class="btn btn-link btn-back text-white" (click)="back()">{{ 'navigation.back' | translate }}</button>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatchComponent, PageHeaderComponent, RoundRobinComponent, SingleBracketComponent, TitleBarComponent } from './components';
+import { ConnectionBarComponent, MatchComponent, PageHeaderComponent, RoundRobinComponent, SingleBracketComponent, TitleBarComponent } from './components';
 import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, GroupPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, ManageStagePageComponent, ManageStageStartPageComponent, ManageTeamPageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -23,6 +23,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    ConnectionBarComponent,
     EventPageComponent,
     EventGroupsPageComponent,
     EventModalitiesPageComponent,
