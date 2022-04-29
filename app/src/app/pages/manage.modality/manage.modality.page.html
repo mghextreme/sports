@@ -21,7 +21,7 @@
     </div>
     <div class="mb-3">
       <label for="sport" class="form-label">{{ 'manage.modality-form.sport' | translate }}</label>
-      <select class="form-select" id="sport" name="sport" [(ngModel)]="modality.sport.id" #sport="ngModel">
+      <select class="form-select" id="sport" name="sport" [(ngModel)]="modality.sportId" #sport="ngModel">
         <option value="0" selected>- {{ 'manage.modality-form.select-sport' | translate }} -</option>
         <option *ngFor="let sport of sports" [value]="sport.id">{{ 'sports.' + sport.code | translate }}</option>
       </select>
@@ -105,7 +105,7 @@
       <ng-template pTemplate="body" let-team>
         <tr>
           <td>{{ team.name }}</td>
-          <td>{{ team.group.name }}</td>
+          <td>{{ team.group?.name }}</td>
           <td>
             <button type="button" pButton icon="pi pi-pencil" (click)="openTeam(team)" title="{{ 'manage.edit' | translate }}"></button>
           </td>
@@ -121,7 +121,7 @@
       </ng-template>
     </p-table>
     <div class="buttons mt-2 text-end">
-      <button type="button" class="btn btn-success rounded-0">{{ 'manage.add-team' | translate }}</button>
+      <button type="button" class="btn btn-success rounded-0" [routerLink]="['/modality', modality.id, 'new-team']">{{ 'manage.add-team' | translate }}</button>
     </div>
   </div>
 </div>

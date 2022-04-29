@@ -1,0 +1,28 @@
+<page-header></page-header>
+
+<title-bar
+  title="{{ isNew ? ('manage.new-team' | translate) : team.name }}"
+  [backButton]="true"
+  [management]="true">
+</title-bar>
+
+<div class="container-md pb-5 mt-3">
+  <p-toast></p-toast>
+
+  <h2 class="mt-3 fs-4">{{ 'manage.team-details' | translate }}</h2>
+  <form class="details" #teamForm="ngForm" (ngSubmit)="handleSubmit()" [class.validated]="validated">
+    <div class="mb-3">
+      <label for="group" class="form-label">{{ 'manage.team-form.group' | translate }}</label>
+      <select class="form-select" id="group" name="group" [(ngModel)]="team.groupId" #group="ngModel">
+        <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">{{ 'manage.team-form.name' | translate }}</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="team.name" #name="ngModel">
+    </div>
+    <div class="buttons mt-2 text-end">
+      <button type="submit" class="btn btn-success rounded-0" [disabled]="!teamForm.form.valid">{{ 'manage.submit' | translate }}</button>
+    </div>
+  </form>
+</div>

@@ -10,5 +10,6 @@ export * from './manage.group/manage.group.page';
 export * from './manage.modality/manage.modality.page';
 export * from './manage.person/manage.person.page';
 export * from './manage.stage/manage.stage.page';
+export * from './manage.team/manage.team.page';
 export * from './modality/modality.page';
 export * from './home/home.page';

@@ -14,7 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatchComponent, PageHeaderComponent, RoundRobinComponent, SingleBracketComponent, TitleBarComponent } from './components';
-import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, GroupPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, ManageStagePageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
+import { EventGroupsPageComponent, EventModalitiesPageComponent, EventPageComponent, GroupPageComponent, HomePageComponent, LoginPageComponent, ManageEventPageComponent, ManageGroupPageComponent, ManageModalityPageComponent, ManagePageComponent, ManagePersonPageComponent, ManageStagePageComponent, ManageTeamPageComponent, MatchPageComponent, ModalityPageComponent } from './pages';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
@@ -35,6 +35,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ManageModalityPageComponent,
     ManagePersonPageComponent,
     ManageStagePageComponent,
+    ManageTeamPageComponent,
     MatchComponent,
     MatchPageComponent,
     ModalityPageComponent,

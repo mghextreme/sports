@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IModality, ISport, IStage, ITeam } from 'src/app/models';
-import { AuthService, ModalitiesService, StagesService } from 'src/app/services';
+import { AuthService, ModalitiesService, StagesService, TeamsService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.modality.page.html',
@@ -34,6 +34,7 @@ export class ManageModalityPageComponent {
     readonly authService: AuthService,
     private readonly modalitiesService: ModalitiesService,
     private readonly stagesService: StagesService,
+    private readonly teamsService: TeamsService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -118,20 +119,20 @@ export class ManageModalityPageComponent {
 
   removeStage(stage: IStage) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this stage?',
-        header: 'Remove Name of Stage',
-        acceptButtonStyleClass: 'p-button-danger',
-        rejectButtonStyleClass: 'p-button-secondary',
-        accept: () => {
-          this.stagesService.deleteById(stage.id).subscribe(() => {
-            this.stages = this.stages.filter(s => s.id !== stage.id);
-            this.messageService.add({
-              severity: 'success',
-              summary: this.translate.instant('manage.messages.success'),
-              detail: this.translate.instant('manage.messages.item-removed')
-            });
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: stage.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: stage.name }),
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.stagesService.deleteById(stage.id).subscribe(() => {
+          this.stages = this.stages.filter(s => s.id !== stage.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-removed')
           });
-        }
+        });
+      }
     });
   }
 
@@ -141,19 +142,25 @@ export class ManageModalityPageComponent {
   }
 
   openTeam(team: ITeam) {
-    // Modal
+    this.router.navigate(['/team', team.id, 'manage']);
   }
 
   removeTeam(team: ITeam) {
     this.confirmationService.confirm({
-        message: 'Are you sure you want to remove this team?',
-        header: 'Remove Name of Team',
-        acceptButtonStyleClass: 'p-button-danger',
-        rejectButtonStyleClass: 'p-button-secondary',
-        accept: () => {
-          // TODO
-          console.error('removed');
-        }
+      message: this.translate.instant('manage.messages.are-you-sure-remove-x', { x: team.name }),
+      header: this.translate.instant('manage.messages.remove-x', { x: team.name }),
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.teamsService.deleteById(team.id).subscribe(() => {
+          this.stages = this.stages.filter(s => s.id !== team.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('manage.messages.success'),
+            detail: this.translate.instant('manage.messages.item-removed')
+          });
+        });
+      }
     });
   }
 
