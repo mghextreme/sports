@@ -1,0 +1,35 @@
+version: '3'
+services:
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 3037:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: "db"
+      ADMINER_DESIGN: "pepa-linha"
+    networks:
+      - sports
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - '${DB_PORT:-3306}:5432'
+    environment:
+      POSTGRES_DB: '${DB_NAME}'
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_PASSWORD: '${DB_PASS}'
+      PG_TRUST_LOCALNET: 1
+    volumes:
+      - 'sportsVol:/var/lib/postgresql/data'
+    networks:
+      - sports
+
+networks:
+  sports:
+    driver: bridge
+
+volumes:
+  sportsVol:
+    driver: local
