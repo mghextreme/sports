@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { EventsModule } from './modules';
+import { EventsModule, GroupsModule, ModalitiesModule, PeopleModule, SportsModule } from './modules';
 import configuration from './config/configuration';
 
 @Module({
@@ -16,7 +16,11 @@ import configuration from './config/configuration';
       useFactory: async(configService: ConfigService) => configService.get('database'),
       inject: [ConfigService]
     }),
-    EventsModule
+    EventsModule,
+    GroupsModule,
+    ModalitiesModule,
+    PeopleModule,
+    SportsModule
   ]
 })
 export class AppModule {}
