@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { EventCreateDto, EventUpdateDto } from 'src/models';
 import { EventsService } from 'src/services';
 import { Event } from 'src/entities';
+import { DeleteResult } from 'typeorm';
 
 @Controller('events')
 export class EventsController {
@@ -14,7 +15,7 @@ export class EventsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Event | null> {
+  async findOne(@Param('id') id: number): Promise<Event> {
     return this.service.findOne(id);
   }
 
@@ -24,12 +25,12 @@ export class EventsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateDto: EventUpdateDto) {
-    return this.service.update(updateDto);
+  update(@Param('id') id: number, @Body() updateDto: EventUpdateDto): Promise<Event> {
+    return this.service.update(id, updateDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: number): Promise<DeleteResult> {
     return this.service.remove(id);
   }
 

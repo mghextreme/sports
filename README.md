@@ -1,5 +1,7 @@
 # Sports Tournament
 
+First of all, create a copy of `.env.example` file in the root folder and name it `.env`.
+
 ## Database
 
 To have a database instance, ensure you have Docker installed and start the Docker Compose file using the following command:

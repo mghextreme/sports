@@ -1,7 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Group } from "./group.entity";
+import { Modality } from "./modality.entity";
 
 @Entity()
 export class Event {
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,4 +25,10 @@ export class Event {
 
   @Column({ default: null })
   logo?: string;
+
+  @OneToMany(() => Group, group => group.event)
+  groups: Group[];
+
+  @OneToMany(() => Modality, modality => modality.event)
+  modalities: Modality[];
 }
