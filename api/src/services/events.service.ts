@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { EventCreateDto, EventUpdateDto } from 'src/models';
 import { IEntityService } from './entity.service.interface';
-import { Event } from 'src/entities';
+import { Event, Group, Modality } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
@@ -9,7 +9,9 @@ import { DeleteResult, Repository } from 'typeorm';
 export class EventsService implements IEntityService<Event> {
 
   constructor(
-    @InjectRepository(Event) private readonly repository: Repository<Event>) { }
+    @InjectRepository(Event) private readonly repository: Repository<Event>,
+    @InjectRepository(Modality) private readonly modalitiesRepository: Repository<Modality>,
+    @InjectRepository(Group) private readonly groupsRepository: Repository<Group>) { }
 
   async findAll(): Promise<Event[]> {
     return this.repository.find();
@@ -32,6 +34,18 @@ export class EventsService implements IEntityService<Event> {
 
   async remove(id: number): Promise<DeleteResult> {
     return this.repository.delete(id);
+  }
+
+  async findOneModalities(id: number): Promise<Modality[]> {
+    return this.modalitiesRepository.find({
+      where: { event: id }
+    });
+  }
+
+  async findOneGroups(id: number): Promise<Group[]> {
+    return this.groupsRepository.find({
+      where: { event: id }
+    });
   }
 
 }
