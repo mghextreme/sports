@@ -1,6 +1,6 @@
 import { ICreateDto } from "./create.dto.interface";
 
-export class EventCreateDto implements ICreateDto {
+export class EventCreateDto implements ICreateDto<Event> {
   name: string;
   location?: string;
   startDate: Date;

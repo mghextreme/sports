@@ -1,1 +1,1 @@
-export interface ICreateDto { }
+export interface ICreateDto<T> { }

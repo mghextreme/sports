@@ -1,3 +1,3 @@
-export interface IUpdateDto {
+export interface IUpdateDto<T> {
   id: number;
 }
