@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { EventCreateDto, EventUpdateDto } from 'src/models';
 import { EventsService } from 'src/services';
-import { Event } from 'src/entities';
+import { Event, Group, Modality } from 'src/entities';
 import { DeleteResult } from 'typeorm';
 
 @Controller('events')
@@ -17,6 +17,16 @@ export class EventsController {
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<Event> {
     return this.service.findOne(id);
+  }
+
+  @Get(':id/groups')
+  async findOneGroups(@Param('id') id: number): Promise<Group[]> {
+    return this.service.findOneGroups(id);
+  }
+
+  @Get(':id/modalities')
+  async findOneModalities(@Param('id') id: number): Promise<Modality[]> {
+    return this.service.findOneModalities(id);
   }
 
   @Post()
