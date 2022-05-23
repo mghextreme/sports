@@ -7,9 +7,9 @@ export interface IEntityService<T> {
 
   findOne(id: number): Promise<T>;
 
-  create(createDto: ICreateDto): Promise<T>;
+  create(createDto: ICreateDto<T>): Promise<T>;
 
-  update(id: number, updateDto: IUpdateDto): Promise<T>;
+  update(id: number, updateDto: IUpdateDto<T>): Promise<T>;
 
   remove(id: number): Promise<DeleteResult>;
 
