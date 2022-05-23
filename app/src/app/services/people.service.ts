@@ -20,7 +20,7 @@ export class PeopleService {
   }
 
   getAll(): Observable<IPerson[]> {
-    return this.http.get<IPerson[]>(`/api/persons`)
+    return this.http.get<IPerson[]>(`/api/people`)
       .pipe(map(people => {
         people.forEach(person => {
           person.dateOfBirth = person.dateOfBirth
@@ -32,7 +32,7 @@ export class PeopleService {
   }
 
   get(id: number): Observable<IPerson> {
-    return this.http.get<IPerson>(`/api/persons/${id}`)
+    return this.http.get<IPerson>(`/api/people/${id}`)
       .pipe(map(person => {
         person.dateOfBirth = person.dateOfBirth
           ? new Date(person.dateOfBirth.toString())
@@ -42,7 +42,7 @@ export class PeopleService {
   }
 
   search(term: string): Observable<IPerson[]> {
-    return this.http.get<IPerson[]>(`/api/persons/search/${term}`)
+    return this.http.get<IPerson[]>(`/api/people/search/${term}`)
       .pipe(map(persons => {
         persons.forEach(person => {
           person.dateOfBirth = person.dateOfBirth
@@ -55,15 +55,15 @@ export class PeopleService {
   }
 
   add(person: IPerson): Observable<IPerson> {
-    return this.http.post<IPerson>(`/api/persons`, person);
+    return this.http.post<IPerson>(`/api/people`, person);
   }
 
   update(id: number, person: IPerson): Observable<IPerson> {
-    return this.http.put<IPerson>(`/api/persons/${id}`, person);
+    return this.http.put<IPerson>(`/api/people/${id}`, person);
   }
 
   deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(`/api/persons/${id}`);
+    return this.http.delete<void>(`/api/people/${id}`);
   }
 
 }
