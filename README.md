@@ -20,8 +20,6 @@ npm start
 
 * Requires [database](#database) to be setup
 
-> Alternatively, you can run the API Mock from the `api-mock` folder, which doesn't require database setup
-
 ## App
 
 To start the Angular application, run the following command within the `/app` folder:
