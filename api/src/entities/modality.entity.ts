@@ -15,14 +15,20 @@ export class Modality {
   @Column()
   finished: boolean;
 
-  @Column()
-  maxTeamSize?: number;
+  @Column({ default: null })
+  maxTeamSize: number;
 
   @Column()
   maxTeamsPerGroup: number;
 
+  @Column()
+  eventId: number;
+
   @ManyToOne(() => Event, event => event.modalities)
   event: Event;
+
+  @Column()
+  sportId: number;
 
   @ManyToOne(() => Sport, sport => sport.modalities)
   sport: Sport;

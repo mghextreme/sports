@@ -18,10 +18,11 @@
     "groups": "Groups"
   },
   "sports": {
+    "other": "Other",
     "football": "Football",
     "volleyball": "Volleyball",
     "basketball": "Basketball",
-    "running": "Running",
+    "tennis": "Tennis",
     "table-tennis": "Table Tennis"
   },
   "genders": {

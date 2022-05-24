@@ -10,6 +10,6 @@ export interface IModality {
   maxTeamsPerGroup: number;
   eventId: number;
 
-  sport: ISport;
+  sport?: ISport;
   event?: IEvent;
 }
