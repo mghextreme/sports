@@ -24,6 +24,9 @@ export class Group {
   @Column({ length: 8, default: null })
   color2: string;
 
+  @Column()
+  eventId: number;
+
   @ManyToOne(() => Event, event => event.groups)
   event: Event;
 

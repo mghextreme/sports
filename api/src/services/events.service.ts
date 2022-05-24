@@ -38,13 +38,14 @@ export class EventsService implements IEntityService<Event> {
 
   async findOneModalities(id: number): Promise<Modality[]> {
     return this.modalitiesRepository.find({
-      where: { event: id }
+      where: { eventId: id },
+      relations: [ 'sport' ]
     });
   }
 
   async findOneGroups(id: number): Promise<Group[]> {
     return this.groupsRepository.find({
-      where: { event: id }
+      where: { eventId: id }
     });
   }
 

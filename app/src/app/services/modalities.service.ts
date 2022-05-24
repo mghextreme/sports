@@ -38,10 +38,12 @@ export class ModalitiesService {
     if (modality.eventId === 0 && modality.event?.id !== 0) {
       modality.eventId = modality.event?.id ?? modality.eventId;
     }
+    delete modality['event'];
 
     if (modality.sportId === 0 && modality.sport?.id !== 0) {
       modality.sportId = modality.sport?.id ?? modality.sportId;
     }
+    delete modality['sport'];
 
     return this.http.post<IModality>(`/api/modalities`, modality);
   }
