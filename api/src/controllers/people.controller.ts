@@ -3,7 +3,9 @@ import { PersonCreateDto, PersonUpdateDto } from 'src/models';
 import { PeopleService } from 'src/services';
 import { Person } from 'src/entities';
 import { DeleteResult } from 'typeorm';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('people')
 @Controller('people')
 export class PeopleController {
 

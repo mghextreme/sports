@@ -3,7 +3,9 @@ import { ModalityCreateDto, ModalityUpdateDto } from 'src/models';
 import { ModalitiesService } from 'src/services';
 import { Modality } from 'src/entities';
 import { DeleteResult } from 'typeorm';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('modalities')
 @Controller('modalities')
 export class ModalitiesController {
 
