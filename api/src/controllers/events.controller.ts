@@ -3,7 +3,9 @@ import { EventCreateDto, EventUpdateDto } from 'src/models';
 import { EventsService } from 'src/services';
 import { Event, Group, Modality } from 'src/entities';
 import { DeleteResult } from 'typeorm';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('events')
 @Controller('events')
 export class EventsController {
 
