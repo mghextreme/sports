@@ -1,22 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { ModalityCreateDto, ModalityUpdateDto } from 'src/models';
-import { IEntityService } from './entity.service.interface';
 import { Modality } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
-export class ModalitiesService implements IEntityService<Modality> {
+export class ModalitiesService {
 
   constructor(
     @InjectRepository(Modality) private readonly repository: Repository<Modality>) { }
 
-  async findAll(): Promise<Modality[]> {
-    return this.repository.find();
-  }
-
   async findOne(id: number): Promise<Modality> {
-    return this.repository.findOne(id);
+    return this.repository.findOne(id, {
+      relations: ['sport']
+    });
   }
 
   async create(createDto: ModalityCreateDto): Promise<Modality> {

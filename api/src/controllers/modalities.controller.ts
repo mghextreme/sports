@@ -1,37 +1,37 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { ModalityCreateDto, ModalityUpdateDto } from 'src/models';
 import { ModalitiesService } from 'src/services';
 import { Modality } from 'src/entities';
 import { DeleteResult } from 'typeorm';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('modalities')
 @Controller('modalities')
+@UseInterceptors(ClassSerializerInterceptor)
 export class ModalitiesController {
 
   constructor(private readonly service: ModalitiesService) {}
 
-  @Get()
-  async findAll(): Promise<Modality[]> {
-    return this.service.findAll();
-  }
-
   @Get(':id')
+  @ApiResponse({ type: Modality })
   async findOne(@Param('id') id: number): Promise<Modality> {
     return this.service.findOne(id);
   }
 
   @Post()
+  @ApiResponse({ type: Modality })
   async create(@Body() createDto: ModalityCreateDto): Promise<Modality> {
     return this.service.create(createDto);
   }
 
   @Put(':id')
+  @ApiResponse({ type: Modality })
   update(@Param('id') id: number, @Body() updateDto: ModalityUpdateDto): Promise<Modality> {
     return this.service.update(id, updateDto);
   }
 
   @Delete(':id')
+  @ApiResponse({ type: DeleteResult })
   remove(@Param('id') id: number): Promise<DeleteResult> {
     return this.service.remove(id);
   }

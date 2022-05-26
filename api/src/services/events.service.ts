@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { EventCreateDto, EventUpdateDto } from 'src/models';
-import { IEntityService } from './entity.service.interface';
 import { Event, Group, Modality } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
-export class EventsService implements IEntityService<Event> {
+export class EventsService {
 
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
