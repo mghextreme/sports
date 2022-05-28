@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Group } from './group.entity';
 import { Modality } from './modality.entity';
@@ -19,8 +20,16 @@ export class Team {
   @ApiProperty()
   placing: number;
 
+  @Column()
+  @Exclude()
+  modalityId: number;
+
   @ManyToOne(() => Modality, modality => modality.teams)
   modality: Modality;
+
+  @Column()
+  @Exclude()
+  groupId: number;
 
   @ManyToOne(() => Group, group => group.teams)
   group: Group;

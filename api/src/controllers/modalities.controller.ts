@@ -1,7 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { ModalityCreateDto, ModalityUpdateDto, QueryResultDto } from 'src/models';
 import { ModalitiesService } from 'src/services';
-import { Modality } from 'src/entities';
+import { Modality, Stage, Team } from 'src/entities';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('modalities')
@@ -15,6 +15,18 @@ export class ModalitiesController {
   @ApiResponse({ type: Modality })
   async findOne(@Param('id') id: number): Promise<Modality> {
     return this.service.findOne(id);
+  }
+
+  @Get(':id/stages')
+  @ApiResponse({ type: Stage, isArray: true })
+  async findOneStages(@Param('id') id: number): Promise<Stage[]> {
+    return this.service.findOneStages(id);
+  }
+
+  @Get(':id/teams')
+  @ApiResponse({ type: Team, isArray: true })
+  async findOneTeams(@Param('id') id: number): Promise<Team[]> {
+    return this.service.findOneTeams(id);
   }
 
   @Post()
