@@ -1,8 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { ModalityCreateDto, ModalityUpdateDto } from 'src/models';
+import { ModalityCreateDto, ModalityUpdateDto, QueryResultDto } from 'src/models';
 import { ModalitiesService } from 'src/services';
 import { Modality } from 'src/entities';
-import { DeleteResult } from 'typeorm';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('modalities')
@@ -31,8 +30,8 @@ export class ModalitiesController {
   }
 
   @Delete(':id')
-  @ApiResponse({ type: DeleteResult })
-  remove(@Param('id') id: number): Promise<DeleteResult> {
+  @ApiResponse({ type: QueryResultDto })
+  remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
   }
 

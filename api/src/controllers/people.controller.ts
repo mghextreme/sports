@@ -1,8 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { PersonCreateDto, PersonUpdateDto } from 'src/models';
+import { PersonCreateDto, PersonUpdateDto, QueryResultDto } from 'src/models';
 import { PeopleService } from 'src/services';
 import { Person } from 'src/entities';
-import { DeleteResult } from 'typeorm';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('people')
@@ -24,6 +23,12 @@ export class PeopleController {
     return this.service.findOne(id);
   }
 
+  @Get('search/:term')
+  @ApiResponse({ type: Person, isArray: true })
+  async search(@Param('term') term: string): Promise<Person[]> {
+    return this.service.search(term);
+  }
+
   @Post()
   @ApiResponse({ type: Person })
   async create(@Body() createDto: PersonCreateDto): Promise<Person> {
@@ -37,8 +42,8 @@ export class PeopleController {
   }
 
   @Delete(':id')
-  @ApiResponse({ type: DeleteResult })
-  remove(@Param('id') id: number): Promise<DeleteResult> {
+  @ApiResponse({ type: QueryResultDto })
+  remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
   }
 

@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { GroupCreateDto, GroupUpdateDto } from 'src/models';
+import { GroupCreateDto, GroupMemberAddDto, GroupUpdateDto, QueryResultDto } from 'src/models';
 import { Group, Person } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class GroupsService {
 
   constructor(
-    @InjectRepository(Group) private readonly repository: Repository<Group>) { }
+    @InjectRepository(Group) private readonly repository: Repository<Group>,
+    @InjectRepository(Person) private readonly peopleRepository: Repository<Person>) { }
 
   async findOne(id: number): Promise<Group> {
     return this.repository.findOne(id);
@@ -25,14 +26,23 @@ export class GroupsService {
     return this.repository.save(record);
   }
 
-  async remove(id: number): Promise<DeleteResult> {
-    return this.repository.delete(id);
+  async remove(id: number): Promise<QueryResultDto> {
+    return this.repository.delete(id).then(r => ({ success: r.affected > 0 } as QueryResultDto));
   }
 
   async findOneMembers(id: number): Promise<Person[]> {
     return this.repository.findOne(id, {
       relations: [ 'members' ]
     }).then(g => g.members);
+  }
+
+  async addMember(id: number, addDto: GroupMemberAddDto): Promise<QueryResultDto> {
+    const person = this.peopleRepository.findOne(addDto.personId);
+    const group = await this.repository.findOne(id, {
+      relations: ['members']
+    });
+    group.members.push(await person);
+    return this.repository.save(group).then(g => ({ success: g.id == id } as QueryResultDto));
   }
 
 }
