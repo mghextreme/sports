@@ -181,6 +181,7 @@
     },
     "messages": {
       "success": "Success!",
+      "error": "Error",
       "attention-required": "Attention required",
       "item-updated": "Item was updated.",
       "item-removed": "Item was removed.",
