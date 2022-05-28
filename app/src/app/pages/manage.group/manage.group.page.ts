@@ -52,6 +52,9 @@ export class ManageGroupPageComponent {
     const newGroup = this.activeRoute.snapshot.data['new'];
     if (newGroup === true) {
       this.isNew = true;
+
+      const eventId = this.activeRoute.snapshot.params['id'];
+      this.group.eventId = eventId;
     } else {
       const groupId = this.activeRoute.snapshot.params['id'];
       this.groupsService.get(groupId).subscribe(group => {
