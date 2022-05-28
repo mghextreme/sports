@@ -5,4 +5,6 @@ export interface IGroup {
   logo?: string;
   color1?: string;
   color2?: string;
+
+  eventId?: number;
 }
