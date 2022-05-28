@@ -1,8 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { GroupCreateDto, GroupUpdateDto } from 'src/models';
+import { GroupCreateDto, GroupMemberAddDto, GroupUpdateDto, QueryResultDto } from 'src/models';
 import { GroupsService } from 'src/services';
 import { Group, Person } from 'src/entities';
-import { DeleteResult } from 'typeorm';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('groups')
@@ -30,6 +29,12 @@ export class GroupsController {
     return this.service.create(createDto);
   }
 
+  @Post(':id/members')
+  @ApiResponse({ type: QueryResultDto })
+  async addMember(@Param('id') id: number, @Body() addDto: GroupMemberAddDto): Promise<QueryResultDto> {
+    return this.service.addMember(id, addDto);
+  }
+
   @Put(':id')
   @ApiResponse({ type: Group })
   update(@Param('id') id: number, @Body() updateDto: GroupUpdateDto): Promise<Group> {
@@ -37,8 +42,8 @@ export class GroupsController {
   }
 
   @Delete(':id')
-  @ApiResponse({ type: DeleteResult })
-  remove(@Param('id') id: number): Promise<DeleteResult> {
+  @ApiResponse({ type: QueryResultDto })
+  remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
   }
 
