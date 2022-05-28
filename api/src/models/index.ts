@@ -10,3 +10,5 @@ export * from './person.create.dto';
 export * from './person.update.dto';
 export * from './query.result.dto';
 export * from './update.dto.interface';
+export * from './stage.create.dto';
+export * from './stage.update.dto';

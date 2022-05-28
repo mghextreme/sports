@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ModalityCreateDto, ModalityUpdateDto, QueryResultDto } from 'src/models';
-import { Modality } from 'src/entities';
+import { Modality, Stage, Team } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -8,7 +8,9 @@ import { Repository } from 'typeorm';
 export class ModalitiesService {
 
   constructor(
-    @InjectRepository(Modality) private readonly repository: Repository<Modality>) { }
+    @InjectRepository(Modality) private readonly repository: Repository<Modality>,
+    @InjectRepository(Stage) private readonly stagesRepository: Repository<Stage>,
+    @InjectRepository(Team) private readonly teamsRepository: Repository<Team>) { }
 
   async findOne(id: number): Promise<Modality> {
     return this.repository.findOne(id, {
@@ -29,6 +31,18 @@ export class ModalitiesService {
 
   async remove(id: number): Promise<QueryResultDto> {
     return this.repository.delete(id).then(r => ({ success: r.affected > 0 } as QueryResultDto));
+  }
+  
+  async findOneTeams(id: number): Promise<Team[]> {
+    return this.teamsRepository.find({
+      where: { modalityId: id }
+    });
+  }
+
+  async findOneStages(id: number): Promise<Stage[]> {
+    return this.stagesRepository.find({
+      where: { modalityId: id }
+    });
   }
 
 }
