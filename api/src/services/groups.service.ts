@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { GroupCreateDto, GroupMemberAddDto, GroupUpdateDto, QueryResultDto } from 'src/models';
 import { Group, Person } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as _ from 'lodash';
 
 @Injectable()
 export class GroupsService {
@@ -32,17 +33,28 @@ export class GroupsService {
 
   async findOneMembers(id: number): Promise<Person[]> {
     return this.repository.findOne(id, {
-      relations: [ 'members' ]
+      relations: ['members']
     }).then(g => g.members);
   }
 
   async addMember(id: number, addDto: GroupMemberAddDto): Promise<QueryResultDto> {
-    const person = this.peopleRepository.findOne(addDto.personId);
+    const person = await this.peopleRepository.findOne(addDto.personId, {
+      relations: ['groups']
+    });
     const group = await this.repository.findOne(id, {
       relations: ['members']
     });
-    group.members.push(await person);
+
+    if (this.personBelongsToOtherGroupAtEvent(person, group.eventId)) {
+      throw new BadRequestException(`Person '${person.id}' is already a member of another group at event '${group.eventId}'.`);
+    }
+
+    group.members.push(person);
     return this.repository.save(group).then(g => ({ success: g.id == id } as QueryResultDto));
+  }
+
+  private personBelongsToOtherGroupAtEvent(person: Person, eventId: number): boolean {
+    return _.some(person.groups, g => g.eventId == eventId);
   }
 
 }

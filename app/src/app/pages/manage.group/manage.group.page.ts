@@ -105,6 +105,13 @@ export class ManageGroupPageComponent {
     this.groupsService.addMember(this.group.id, person.id).subscribe({
       next: () => {
         this.members.push(person);
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: this.translate.instant('manage.messages.error'),
+          detail: err.error.message
+        });
       }
     });
   }
