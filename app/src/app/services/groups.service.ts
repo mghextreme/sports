@@ -43,6 +43,10 @@ export class GroupsService {
     return this.http.delete<void>(`/api/groups/${id}`);
   }
 
+  searchAvailablePeople(id: number, term: string): Observable<IPerson[]> {
+    return this.http.get<IPerson[]>(`/api/groups/${id}/searchPeople/${term}`);
+  }
+
   getMembers(id: number): Observable<IPerson[]> {
     return this.http.get<IPerson[]>(`/api/groups/${id}/members`);
   }

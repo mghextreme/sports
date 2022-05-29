@@ -23,6 +23,12 @@ export class GroupsController {
     return this.service.findOneMembers(id);
   }
 
+  @Get(':id/searchPeople/:term')
+  @ApiResponse({ type: Person, isArray: true })
+  async searchAvailablePeople(@Param('id') id: number, @Param('term') term: string): Promise<Person[]> {
+    return this.service.searchAvailablePeople(id, term);
+  }
+
   @Post()
   @ApiResponse({ type: Group })
   async create(@Body() createDto: GroupCreateDto): Promise<Group> {
@@ -45,6 +51,12 @@ export class GroupsController {
   @ApiResponse({ type: QueryResultDto })
   remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
+  }
+
+  @Delete(':id/members/:personId')
+  @ApiResponse({ type: QueryResultDto })
+  async removeMember(@Param('id') id: number, @Param('personId') personId: number): Promise<QueryResultDto> {
+    return this.service.removeMember(id, personId);
   }
 
 }

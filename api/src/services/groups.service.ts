@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { GroupCreateDto, GroupMemberAddDto, GroupUpdateDto, QueryResultDto } from 'src/models';
 import { Group, Person } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -37,6 +37,23 @@ export class GroupsService {
     }).then(g => g.members);
   }
 
+  async searchAvailablePeople(id: number, term: string): Promise<Person[]> {
+    const groupPromise = this.repository.findOne(id);
+
+    term = '%' + term + '%';
+    const people = this.peopleRepository.find({
+      where: [
+        { name: ILike(term) },
+        { document: ILike(term) },
+        { email: ILike(term) }
+      ],
+      relations: ['groups']
+    });
+
+    const group = await groupPromise;
+    return people.then(p => p.filter(p => _.every(p.groups, g => g.eventId !== group.eventId)));
+  }
+
   async addMember(id: number, addDto: GroupMemberAddDto): Promise<QueryResultDto> {
     const person = await this.peopleRepository.findOne(addDto.personId, {
       relations: ['groups']
@@ -50,6 +67,14 @@ export class GroupsService {
     }
 
     group.members.push(person);
+    return this.repository.save(group).then(g => ({ success: g.id == id } as QueryResultDto));
+  }
+
+  async removeMember(id: number, personId: number): Promise<QueryResultDto> {
+    const group = await this.repository.findOne(id, {
+      relations: ['members']
+    });
+    group.members = group.members.filter(p => p.id != personId);
     return this.repository.save(group).then(g => ({ success: g.id == id } as QueryResultDto));
   }
 

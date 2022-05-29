@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IGroup, IPerson } from 'src/app/models';
-import { AuthService, GroupsService, PeopleService } from 'src/app/services';
+import { AuthService, GroupsService } from 'src/app/services';
 
 @Component({
   templateUrl: './manage.group.page.html',
@@ -34,7 +34,6 @@ export class ManageGroupPageComponent {
   constructor(
     readonly authService: AuthService,
     private readonly groupsService: GroupsService,
-    private readonly peopleService: PeopleService,
     private readonly confirmationService: ConfirmationService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -117,7 +116,7 @@ export class ManageGroupPageComponent {
   }
 
   searchPeople() {
-    this.peopleService.search(this.peopleSearchTerm).subscribe({
+    this.groupsService.searchAvailablePeople(this.group.id, this.peopleSearchTerm).subscribe({
       next: (result) => {
         this.peopleSearch = result;
       }
