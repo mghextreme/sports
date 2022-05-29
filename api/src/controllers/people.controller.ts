@@ -23,12 +23,6 @@ export class PeopleController {
     return this.service.findOne(id);
   }
 
-  @Get('search/:term')
-  @ApiResponse({ type: Person, isArray: true })
-  async search(@Param('term') term: string): Promise<Person[]> {
-    return this.service.search(term);
-  }
-
   @Post()
   @ApiResponse({ type: Person })
   async create(@Body() createDto: PersonCreateDto): Promise<Person> {

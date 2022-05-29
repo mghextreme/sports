@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PersonCreateDto, PersonUpdateDto, QueryResultDto } from 'src/models';
 import { Person } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PeopleService {
@@ -31,17 +31,6 @@ export class PeopleService {
 
   async remove(id: number): Promise<QueryResultDto> {
     return this.repository.delete(id).then(r => ({ success: r.affected > 0 } as QueryResultDto));
-  }
-
-  async search(term: string): Promise<Person[]> {
-    term = '%' + term + '%';
-    return this.repository.find({
-      where: [
-        { name: ILike(term) },
-        { document: ILike(term) },
-        { email: ILike(term) }
-      ]
-    });
   }
 
 }
