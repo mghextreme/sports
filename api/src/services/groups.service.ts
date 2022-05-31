@@ -13,7 +13,9 @@ export class GroupsService {
     @InjectRepository(Person) private readonly peopleRepository: Repository<Person>) { }
 
   async findOne(id: number): Promise<Group> {
-    return this.repository.findOne(id);
+    return this.repository.findOne(id, {
+      relations: ['event']
+    });
   }
 
   async create(createDto: GroupCreateDto): Promise<Group> {

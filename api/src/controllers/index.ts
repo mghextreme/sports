@@ -4,3 +4,4 @@ export * from './modalities.controller';
 export * from './people.controller';
 export * from './sports.controller';
 export * from './stages.controller';
+export * from './teams.controller';

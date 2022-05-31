@@ -12,3 +12,5 @@ export * from './query.result.dto';
 export * from './update.dto.interface';
 export * from './stage.create.dto';
 export * from './stage.update.dto';
+export * from './team.create.dto';
+export * from './team.update.dto';

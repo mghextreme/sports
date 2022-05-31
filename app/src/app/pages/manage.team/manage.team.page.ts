@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { IGroup, IModality, ITeam } from 'src/app/models';
-import { AuthService, GroupsService, ModalitiesService, TeamsService } from 'src/app/services';
+import { AuthService, EventsService, ModalitiesService, TeamsService } from 'src/app/services';
 import * as _ from 'lodash';
 
 @Component({
@@ -27,7 +27,7 @@ export class ManageTeamPageComponent {
   constructor(
     readonly authService: AuthService,
     private readonly teamsService: TeamsService,
-    private readonly groupsService: GroupsService,
+    private readonly eventsService: EventsService,
     private readonly modalitiesService: ModalitiesService,
     private readonly messageService: MessageService,
     private readonly translate: TranslateService,
@@ -42,11 +42,6 @@ export class ManageTeamPageComponent {
     this.modality = this.modalitiesService.getDefault();
     this.groups = [];
 
-    this.groupsService.getAll().subscribe(groups => {
-      this.groups = groups;
-      this.updateSelection();
-    });
-
     const newTeam = this.activeRoute.snapshot.data['new'];
     if (newTeam === true) {
       this.isNew = true;
@@ -58,8 +53,12 @@ export class ManageTeamPageComponent {
       const teamId = this.activeRoute.snapshot.params['id'];
       this.teamsService.get(teamId).subscribe(team => {
         this.team = team;
+        if (this.team.modality) {
+          this.setModality(this.team.modality);
+        } else {
+          this.loadModality();
+        }
         this.updateSelection();
-        this.loadModality();
       });
     }
   }
@@ -112,9 +111,23 @@ export class ManageTeamPageComponent {
   }
 
   private loadModality(): void {
-    this.modalitiesService.get(this.team.modalityId).subscribe(modality => {
-      this.modality = modality;
-    });
+    if (this.team?.modality?.id) {
+      this.modalitiesService.get(this.team.modality.id).subscribe(this.setModality);
+    }
+  }
+
+  private setModality(modality: IModality) {
+    this.modality = modality;
+    this.loadGroups();
+  }
+
+  private loadGroups(): void {
+    if (this.modality?.event?.id) {
+      this.eventsService.getGroups(this.modality.event.id).subscribe(groups => {
+        this.groups = groups;
+        this.updateSelection();
+      });
+    }
   }
 
   private updateSelection() {
