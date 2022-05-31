@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { EventsModule, GroupsModule, ModalitiesModule, PeopleModule, SportsModule, StagesModule } from './modules';
+import { EventsModule, GroupsModule, ModalitiesModule, PeopleModule, SportsModule, StagesModule, TeamsModule } from './modules';
 import configuration from './config/configuration';
 
 @Module({
@@ -21,7 +21,8 @@ import configuration from './config/configuration';
     ModalitiesModule,
     PeopleModule,
     SportsModule,
-    StagesModule
+    StagesModule,
+    TeamsModule
   ]
 })
 export class AppModule {}

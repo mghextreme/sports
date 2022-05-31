@@ -14,7 +14,7 @@ export class ModalitiesService {
 
   async findOne(id: number): Promise<Modality> {
     return this.repository.findOne(id, {
-      relations: ['sport']
+      relations: ['sport', 'event']
     });
   }
 
