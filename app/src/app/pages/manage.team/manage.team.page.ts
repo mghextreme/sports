@@ -19,7 +19,8 @@ export class ManageTeamPageComponent {
   team: ITeam;
   modality: IModality;
   groups: IGroup[];
-  selectedGroup?: IGroup;
+
+  selectedGroup: number = 0;
 
   @ViewChild('teamForm', { static: false }) form?: NgForm;
   validated = false;
@@ -58,15 +59,14 @@ export class ManageTeamPageComponent {
         } else {
           this.loadModality();
         }
-        this.updateSelection();
+        this.selectedGroup = this.team.group?.id ?? 0;
       });
     }
   }
 
   handleSubmit() {
     if (this.form?.valid) {
-      this.team.group = this.selectedGroup;
-      this.team.groupId = this.selectedGroup?.id ?? this.team.groupId;
+      this.team.groupId = this.selectedGroup;
 
       if (this.isNew) {
         this.teamsService.add(this.team).subscribe(team => {
@@ -96,7 +96,7 @@ export class ManageTeamPageComponent {
 
   handleGroupChange() {
     if (this.modality.maxTeamsPerGroup === 1) {
-      const selGroup = this.groups.find(g => g.id === this.selectedGroup?.id);
+      const selGroup = this.groups.find(g => g.id === this.selectedGroup);
       if (selGroup) {
         const tempTeam = _.cloneDeep(this.team);
         tempTeam.name = selGroup.name;
@@ -111,8 +111,9 @@ export class ManageTeamPageComponent {
   }
 
   private loadModality(): void {
-    if (this.team?.modality?.id) {
-      this.modalitiesService.get(this.team.modality.id).subscribe(this.setModality);
+    let modalityId = this.team?.modality?.id ?? this.team.modalityId;
+    if (modalityId) {
+      this.modalitiesService.get(modalityId).subscribe(modality => this.setModality(modality));
     }
   }
 
@@ -125,17 +126,7 @@ export class ManageTeamPageComponent {
     if (this.modality?.event?.id) {
       this.eventsService.getGroups(this.modality.event.id).subscribe(groups => {
         this.groups = groups;
-        this.updateSelection();
       });
-    }
-  }
-
-  private updateSelection() {
-    if (this.groups.length > 0 && this.team.groupId) {
-      const selGroup = this.groups.find(g => g.id === this.team.groupId);
-      if (selGroup) {
-        this.selectedGroup = selGroup;
-      }
     }
   }
 

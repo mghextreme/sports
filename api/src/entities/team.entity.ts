@@ -17,7 +17,7 @@ export class Team {
   name: string;
 
   @Column({ default: null })
-  @ApiProperty()
+  @ApiProperty({ required: false, nullable: true, default: null })
   placing: number;
 
   @Column()

@@ -47,6 +47,10 @@ export class TeamsService {
   }
 
   update(id: number, team: ITeam): Observable<ITeam> {
+    if (team.groupId === 0 && team.group?.id !== 0) {
+      team.groupId = team.group?.id ?? team.groupId;
+    }
+
     return this.http.put<ITeam>(`/api/teams/${id}`, team);
   }
 

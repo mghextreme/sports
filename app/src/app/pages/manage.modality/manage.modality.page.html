@@ -21,8 +21,8 @@
     </div>
     <div class="mb-3">
       <label for="sport" class="form-label">{{ 'manage.modality-form.sport' | translate }}</label>
-      <select class="form-select" id="sport" name="sport" [(ngModel)]="modality.sportId" #sport="ngModel">
-        <option value="0" selected>- {{ 'manage.modality-form.select-sport' | translate }} -</option>
+      <select class="form-select" id="sport" name="sport" [(ngModel)]="selectedSport" #sport="ngModel">
+        <option value="-1" selected>- {{ 'manage.modality-form.select-sport' | translate }} -</option>
         <option *ngFor="let sport of sports" [value]="sport.id">{{ 'sports.' + sport.code | translate }}</option>
       </select>
     </div>
