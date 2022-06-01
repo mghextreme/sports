@@ -24,6 +24,8 @@ export class ManageModalityPageComponent {
   teams: ITeam[];
   sports: ISport[];
 
+  selectedSport: number = 0;
+
   @ViewChild('stagesTable') stagesTable?: Table;
   @ViewChild('teamsTable') teamsTable?: Table;
 
@@ -64,6 +66,7 @@ export class ManageModalityPageComponent {
       const modalityId = this.activeRoute.snapshot.params['id'];
       this.modalitiesService.get(modalityId).subscribe(modality => {
         this.modality = modality;
+        this.selectedSport = this.modality.sport?.id ?? 0;
       });
       this.modalitiesService.getStages(modalityId).subscribe(stages => {
         this.stages = stages;
@@ -78,6 +81,8 @@ export class ManageModalityPageComponent {
 
   handleSubmit() {
     if (this.form?.valid) {
+      this.modality.sportId = this.selectedSport;
+
       if (this.isNew) {
         this.modalitiesService.add(this.modality).subscribe(modality => {
           this.router.navigate(['/modality', modality.id, 'manage'], { replaceUrl: true });

@@ -49,6 +49,11 @@ export class ModalitiesService {
   }
 
   update(id: number, modality: IModality): Observable<IModality> {
+    if (modality.sportId === 0 && modality.sport?.id !== 0) {
+      modality.sportId = modality.sport?.id ?? modality.sportId;
+    }
+    delete modality['sport'];
+
     return this.http.put<IModality>(`/api/modalities/${id}`, modality);
   }
 
