@@ -1,7 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { QueryResultDto, StageCreateDto, StageStartDto, StageUpdateDto } from 'src/models';
 import { StagesService } from 'src/services';
-import { Stage } from 'src/entities';
+import { Match, Stage } from 'src/entities';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('stages')
@@ -33,6 +33,12 @@ export class StagesController {
   @ApiResponse({ type: QueryResultDto })
   remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
+  }
+
+  @Get(':id/matches')
+  @ApiResponse({ type: Match, isArray: true })
+  async findOneMatches(@Param('id') id: number): Promise<Match[]> {
+    return this.service.findOneMatches(id);
   }
 
   @Post(':id/start')

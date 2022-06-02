@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { IDetailedMatch, IMatchFeedItem, ITeam, ITeamParticipant } from 'src/app/models';
+import { IDetailedMatch, IMatchFeedItem, IMatchTeam, ITeam, ITeamParticipant } from 'src/app/models';
 import { MatchesService, TeamsService } from 'src/app/services';
 
 @Component({
@@ -56,11 +56,11 @@ export class MatchPageComponent {
     return this.participantsById[participantId] ?? this.teamsService.getDefaultParticipant();
   }
 
-  private setTeams(teams: ITeam[]) {
+  private setTeams(teams: IMatchTeam[]) {
     this.teamsById = {};
-    teams.forEach(team => {
-      this.teamsById[team.id] = team;
-      this.loadTeamParticipants(team.id);
+    teams.forEach(matchTeam => {
+      this.teamsById[matchTeam.id] = matchTeam.team;
+      this.loadTeamParticipants(matchTeam.id);
     });
   }
 

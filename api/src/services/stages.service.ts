@@ -52,6 +52,15 @@ export class StagesService {
     }
   }
 
+  async findOneMatches(id: number): Promise<Match[]> {
+    return this.matchesRepository.find({
+      relations: ['teams','teams.team'],
+      where: {
+        stageId: id
+      }
+    })
+  }
+
   private async addTeams(record: Stage, teamIds: number[]): Promise<Team[]> {
     if (teamIds.length <= 0) {
       throw new BadRequestException(`No teams selected.`);

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { IStage, StageMode } from 'src/app/models';
+import { IMatch, IMatchTeam, IStage, ITeam, StageMode } from 'src/app/models';
 import { AuthService, StagesService } from 'src/app/services';
 
 @Component({
@@ -15,8 +15,12 @@ export class ManageStagePageComponent {
 
   isNew = false;
 
+  isLoadingMatches = true;
+
   stage: IStage;
   modes: string[];
+
+  matches: IMatch[];
 
   @ViewChild('stageForm', { static: false }) form?: NgForm;
   validated = false;
@@ -35,6 +39,7 @@ export class ManageStagePageComponent {
 
     this.stage = this.stagesService.getDefault();
     this.modes = Object.values(StageMode);
+    this.matches = [];
 
     const newStage = this.activeRoute.snapshot.data['new'];
     if (newStage === true) {
@@ -47,7 +52,15 @@ export class ManageStagePageComponent {
       this.stagesService.get(stageId).subscribe(stage => {
         this.stage = stage;
       });
+      this.stagesService.getMatches(stageId).subscribe(matches => {
+        this.matches = matches;
+        this.isLoadingMatches = false;
+      });
     }
+  }
+
+  openMatch(match: IMatch) {
+    this.router.navigate(['/match', match.id, 'manage']);
   }
 
   handleSubmit() {

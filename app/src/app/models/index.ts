@@ -5,6 +5,7 @@ export * from './group.interface';
 export * from './match.interface';
 export * from './match-feed-item.interface';
 export * from './match-feed-type.enum';
+export * from './match-team.interface';
 export * from './modality.interface';
 export * from './person.interface';
 export * from './round-robin-row.interface';
