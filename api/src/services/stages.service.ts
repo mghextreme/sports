@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { QueryResultDto, RoundRobinStartDto, StageCreateDto, StageStartDto, StageUpdateDto } from 'src/models';
+import { QueryResultDto, RoundRobinStartDto, SingleBracketStartDto, StageCreateDto, StageStartDto, StageUpdateDto } from 'src/models';
 import { Match, MatchTeam, Stage, StageMode, Team } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
@@ -47,6 +47,8 @@ export class StagesService {
     switch (record.mode) {
       case StageMode.RoundRobin:
         return this.startRoundRobin(record, startDto.teamIds, startDto.roundRobin);
+      case StageMode.SingleBracket:
+        return this.startSingleBracket(record, startDto.teamIds, startDto.singleBracket);
       default:
         throw new BadRequestException(`Unsupported stage mode '${record.mode}'.`);
     }
@@ -124,6 +126,38 @@ export class StagesService {
     return matches;
   }
 
+  private async startSingleBracket(record: Stage, teamIds: number[], singleBracket: SingleBracketStartDto): Promise<QueryResultDto> {
+    let matches = this.generateSingleBracketMatches(record, teamIds);
+    record.started = true;
+    record.matches = await matches;
+    return this.repository.save(record).then(r => ({ success: r.started } as QueryResultDto));
+  }
+
+  private async generateSingleBracketMatches(record: Stage, teamIds: number[]): Promise<Match[]> {
+    const numRounds = Math.ceil(Math.log2(teamIds.length));
+    const requiredTeams = Math.pow(2, numRounds);
+
+    while (teamIds.length < requiredTeams) {
+      teamIds.push(-1);
+    }
+
+    let matches: Match[] = [];
+
+    // Round 1 - teams known
+    for (let i = 0; i < teamIds.length / 2; i++) {
+      let team1 = teamIds[i];
+      let team2 = teamIds[teamIds.length - i - 1];
+      matches.push(await this.createMatch(record.id, [ team1, team2 ]));
+    }
+
+    const totalMatches = requiredTeams - 1;
+    while (matches.length < totalMatches) {
+      matches.push(await this.createMatch(record.id, [ -1, -1 ]));
+    }
+
+    return matches;
+  }
+
   private rotateTeams(teamIds: number[]): number[] {
     let tempTeams = teamIds.splice(teamIds.length - 1, 1);
     teamIds.splice(1, 0, ...tempTeams);
@@ -141,11 +175,13 @@ export class StagesService {
     }
 
     for (let teamId of teamIds) {
-      let matchTeam = this.matchTeamsRepository.create({
-        matchId: match.id,
-        teamId: teamId
-      });
-      match.teams.push(await this.matchTeamsRepository.save(matchTeam));
+      if (teamId != -1) {
+        let matchTeam = this.matchTeamsRepository.create({
+          matchId: match.id,
+          teamId: teamId
+        });
+        match.teams.push(await this.matchTeamsRepository.save(matchTeam));
+      }
     }
 
     return this.matchesRepository.save(match);
