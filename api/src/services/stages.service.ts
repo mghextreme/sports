@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { QueryResultDto, RoundRobinStartDto, SingleBracketStartDto, StageCreateDto, StageStartDto, StageUpdateDto } from 'src/models';
-import { Match, MatchTeam, Stage, StageMode, Team } from 'src/entities';
+import { Match, MatchTeam, RoundRobinRow, Stage, StageMode, Team } from 'src/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import * as _ from 'lodash';
@@ -12,7 +12,8 @@ export class StagesService {
     @InjectRepository(Stage) private readonly repository: Repository<Stage>,
     @InjectRepository(Match) private readonly matchesRepository: Repository<Match>,
     @InjectRepository(Team) private readonly teamsRepository: Repository<Team>,
-    @InjectRepository(MatchTeam) private readonly matchTeamsRepository: Repository<MatchTeam>) { }
+    @InjectRepository(MatchTeam) private readonly matchTeamsRepository: Repository<MatchTeam>,
+    @InjectRepository(RoundRobinRow) private readonly roundRobinRepository: Repository<RoundRobinRow>) { }
 
   async findOne(id: number): Promise<Stage> {
     return this.repository.findOne(id, {
@@ -60,7 +61,16 @@ export class StagesService {
       where: {
         stageId: id
       }
-    })
+    });
+  }
+
+  async findOneRoundRobinRows(id: number): Promise<RoundRobinRow[]> {
+    return this.roundRobinRepository.find({
+      relations: ['team'],
+      where: {
+        stageId: id
+      }
+    });
   }
 
   private async addTeams(record: Stage, teamIds: number[]): Promise<Team[]> {

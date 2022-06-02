@@ -3,6 +3,7 @@ import { QueryResultDto, StageCreateDto, StageStartDto, StageUpdateDto } from 's
 import { StagesService } from 'src/services';
 import { Match, Stage } from 'src/entities';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { RoundRobinRow } from 'src/entities/round-robin.view';
 
 @ApiTags('stages')
 @Controller('stages')
@@ -39,6 +40,12 @@ export class StagesController {
   @ApiResponse({ type: Match, isArray: true })
   async findOneMatches(@Param('id') id: number): Promise<Match[]> {
     return this.service.findOneMatches(id);
+  }
+
+  @Get(':id/roundRobinRows')
+  @ApiResponse({ type: RoundRobinRow, isArray: true })
+  async findOneRoundRobinRows(@Param('id') id: number): Promise<RoundRobinRow[]> {
+    return this.service.findOneRoundRobinRows(id);
   }
 
   @Post(':id/start')

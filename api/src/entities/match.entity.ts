@@ -15,6 +15,14 @@ export class Match {
   @ApiProperty({ required: false })
   name: string;
 
+  @Column({ default: false })
+  @ApiProperty({ required: false, default: false })
+  started: boolean;
+
+  @Column({ default: false })
+  @ApiProperty({ required: false, default: false })
+  finished: boolean;
+
   @Column()
   @Exclude()
   stageId: number;
