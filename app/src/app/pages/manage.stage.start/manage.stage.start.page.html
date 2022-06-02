@@ -7,35 +7,33 @@
 </title-bar>
 
 <div class="container-md pb-5 mt-3">
-  <h2 class="mt-3 fs-4">{{ 'manage.stage-start' | translate }}</h2>
-  <ul>
-    <li>
-      <p>Select teams</p>
-      <ul>
-        <li>
-          <p>If only stage, add option to select all teams</p>
-        </li>
-        <li>
-          <p>If auto-qualifiers (from groups) set, auto-add teams</p>
-        </li>
-        <li>
-          <p>If selection is lower than max teams on stage, ask for confirmation</p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Seeding</p>
-      <ul>
-        <li>
-          <p>If multiple teams per group, add option to prevent teams from the same group to play each other early</p>
-        </li>
-        <li>
-          <p>If auto-qualifiers (from groups) set, auto-seed teams</p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Generate games</p>
-    </li>
-  </ul>
+  <h2 class="mt-3 fs-4">{{ 'manage.stage-form.start' | translate }}</h2>
+
+  <h3 class="mt-3 fs-4">{{ 'manage.stage-form.select-teams' | translate }}</h3>
+  <p>Max teams for this stage: {{ stage.maxTeams }}</p>
+  <p-multiSelect [options]="teams" [(ngModel)]="selectedTeams" optionLabel="name" display="chip" [selectionLimit]="stage.maxTeams ?? teams.length"></p-multiSelect>
+
+  <h3 class="mt-3 fs-4">{{ 'manage.stage-form.seed-teams' | translate }}</h3>
+  <p-orderList [value]="selectedTeams">
+    <ng-template let-team pTemplate="item">
+      {{ team.name }}
+    </ng-template>
+  </p-orderList>
+
+  <h3 class="mt-3 fs-4">{{ 'manage.stage-form.configuration' | translate }}</h3>
+  <form class="details" #configForm="ngForm" (ngSubmit)="handleSubmit()">
+    <div *ngIf="stage.mode === 'round'" class="round-robin-config">
+      <div class="mb-3">
+        <label for="homeAndAwayGames" class="form-label">{{ 'manage.stage-form.home-and-away-games' | translate }}</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="homeAndAwayGames" name="homeAndAwayGames" [(ngModel)]="roundRobinConfig.homeAndAwayGames">
+          <label class="form-check-label" for="homeAndAwayGames">{{ 'manage.stage-form.home-and-away-games' | translate }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="buttons mt-2 text-end">
+      <button type="submit" class="btn btn-success rounded-0">{{ 'manage.submit' | translate }}</button>
+    </div>
+  </form>
+
 </div>

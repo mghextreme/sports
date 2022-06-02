@@ -12,4 +12,20 @@
       display: flex;
     }
   }
+
+  p-multiselect {
+    .p-multiselect {
+      display: flex;
+    }
+  }
+
+  p-orderlist {
+    .p-orderlist {
+      .p-orderlist-list-container {
+        ul.cdk-drop-list {
+          min-height: 100%;
+        }
+      }
+    }
+  }
 }

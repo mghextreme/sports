@@ -1,8 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Match } from './match.entity';
 import { Modality } from './modality.entity';
 import { StageMode } from './stage-mode.enum';
+import { Team } from './team.entity';
 
 @Entity({ name: 'stages' })
 export class Stage {
@@ -37,4 +39,13 @@ export class Stage {
 
   @ManyToOne(() => Modality, modality => modality.teams)
   modality: Modality;
+
+  @ManyToMany(() => Team, team => team.stages)
+  @JoinTable({ name: 'stage_teams' })
+  @Exclude()
+  teams: Team[];
+
+  @OneToMany(() => Match, match => match.stage)
+  @Exclude()
+  matches: Match[];
 }

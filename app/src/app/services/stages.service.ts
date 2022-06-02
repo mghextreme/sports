@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IMatch, IRoundRobinRow, ISingleBracketMatch, IStage, StageMode } from '../models';
+import { IMatch, IRoundRobinRow, ISingleBracketMatch, IStage, IStageStart, StageMode } from '../models';
 import { MatchesUtils } from '../utils';
 
 @Injectable({
@@ -51,6 +51,10 @@ export class StagesService {
 
   deleteById(id: number): Observable<void> {
     return this.http.delete<void>(`/api/stages/${id}`);
+  }
+
+  start(id: number, config: IStageStart): Observable<void> {
+    return this.http.post<void>(`/api/stages/${id}/start`, config);
   }
 
 }

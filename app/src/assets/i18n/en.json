@@ -170,7 +170,12 @@
     "stage-form": {
       "name": "Name",
       "mode": "Mode",
-      "max-teams": "Maximum amount of teams"
+      "max-teams": "Maximum amount of teams",
+      "start": "Start",
+      "select-teams": "Select teams",
+      "seed-teams": "Seed teams",
+      "configuration": "Configuration",
+      "home-and-away-games": "Home and Away games"
     },
     "person-form": {
       "name": "Name",
