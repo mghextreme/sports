@@ -24,8 +24,8 @@ export class MatchesService {
       started: false,
       finished: false,
       teams: [
-        this.teams.getDefault(),
-        this.teams.getDefault()
+        { id: 0, score: 0, team: this.teams.getDefault() },
+        { id: 0, score: 0, team: this.teams.getDefault() }
       ]
     };
   }
@@ -36,8 +36,8 @@ export class MatchesService {
       started: false,
       finished: false,
       teams: [
-        this.teams.getDefault(),
-        this.teams.getDefault()
+        { id: 0, score: 0, team: this.teams.getDefault() },
+        { id: 0, score: 0, team: this.teams.getDefault() }
       ],
       modality: this.modalities.getDefault(),
       stage: this.stages.getDefault()

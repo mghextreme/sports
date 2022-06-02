@@ -20,7 +20,7 @@ export class MatchComponent {
 
   get teams(): ITeam[] {
     return this.match.teams && this.match.teams.length > 0
-      ? this.match.teams
+      ? this.match.teams.map(mt => mt.team)
       : [ this.teamsService.getDefault(), this.teamsService.getDefault() ];
   }
 
