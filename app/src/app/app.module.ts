@@ -9,6 +9,8 @@ import { ConfirmationService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { OrderListModule } from 'primeng/orderlist';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
@@ -54,6 +56,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ConfirmDialogModule,
     DialogModule,
     FormsModule,
+    MultiSelectModule,
+    OrderListModule,
     TableModule,
     ToastModule,
     AppRoutingModule,

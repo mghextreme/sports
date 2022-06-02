@@ -1,5 +1,7 @@
 export * from './event.entity';
 export * from './group.entity';
+export * from './match.entity';
+export * from './match-team.entity';
 export * from './modality.entity';
 export * from './person.entity';
 export * from './sport.entity';

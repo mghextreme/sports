@@ -1,5 +1,5 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { QueryResultDto, StageCreateDto, StageUpdateDto } from 'src/models';
+import { QueryResultDto, StageCreateDto, StageStartDto, StageUpdateDto } from 'src/models';
 import { StagesService } from 'src/services';
 import { Stage } from 'src/entities';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -33,6 +33,12 @@ export class StagesController {
   @ApiResponse({ type: QueryResultDto })
   remove(@Param('id') id: number): Promise<QueryResultDto> {
     return this.service.remove(id);
+  }
+
+  @Post(':id/start')
+  @ApiResponse({ type: QueryResultDto })
+  async start(@Param('id') id: number, @Body() startDto: StageStartDto): Promise<QueryResultDto> {
+    return this.service.start(id, startDto);
   }
 
 }
